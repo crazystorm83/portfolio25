@@ -1,0 +1,9 @@
+import { EN_DIRECTION } from '../enums';
+
+export type TY_DIRECTION = {
+    UP: EN_DIRECTION.UP;
+    DOWN: EN_DIRECTION.DOWN;
+    LEFT: EN_DIRECTION.LEFT;
+    RIGHT: EN_DIRECTION.RIGHT;
+};
+export type CV_DIRECTION = keyof TY_DIRECTION;
