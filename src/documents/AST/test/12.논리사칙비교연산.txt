@@ -1,0 +1,37 @@
+//논리연산 + 사칙연산 case4
+아래의 값을 AST 로 변환 후 JSON 형태로 만들어줘
+case1
+조건1: 1 + 2 = 10  OR (A AND B)
+참: 1
+
+case2
+조건1: (1 + 2) * 3 = 10  OR (A AND B)
+참: 1
+
+case3
+조건1: 1 * (2 + 3) = 10  OR (A AND B)
+참: 1
+
+case4
+조건1: 1 + (2 * 3) / 4 = 10  OR (A AND B)
+참: 1
+
+case5
+조건1: ((1 + 2) * 3) / 4 = 10  OR (A AND B)
+참: 1
+
+case6
+조건1: 1 + ((2 * 3) / 4) = 10 OR (A AND B)
+참: 1
+
+case7
+조건1: 1 + ((2 * 3) / 4) = 10 OR (A AND B) OR (C AND D AND E)
+참: 1
+
+case8
+조건1: 1 + ((2 * 3) / 4) - 5 = 10 OR (A AND B) OR (C AND D AND E)
+참: 1
+
+아래의 식을 유효성 검사 할 수 있는 함수 만들어줘
+조건1: 1 + ((2 * 3) / 4) - 5 = 10 OR (A AND B) OR (C AND D AND E)
+참: 1

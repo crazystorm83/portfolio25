@@ -1,0 +1,59 @@
+//논리연산 + 사칙연산 case1
+아래의 값을 AST 로 변환 후 JSON 형태로 만들어줘
+case1
+조건1: A AND 1 + 2
+참: 1
+
+case2
+조건1: A AND (1 + 2) * 3
+참: 1
+
+case3
+조건1: A AND 1 * (2 + 3)
+참: 1
+
+case4
+조건1: A AND 1 + (2 * 3) / 4
+참: 1
+
+case5
+조건1: A AND (1 + 2) * (3 - 4)
+참: 1
+
+아래의 값을 AST 로 변환 후 JSON 형태로 만들어줘
+case6
+조건1: A AND 1 - (2 + 3) * (4 - 5) + 6
+참: 1
+
+case7
+조건1: A AND 1 / (2 + 3) * (4 - 5) / 6
+참: 1
+
+case8
+조건1: A AND ((1 + 2) * 3) / 4
+참: 1
+
+case9
+조건1: A AND 1 + ((2 * 3) / 4)
+참: 1
+
+case10
+조건1: A AND 1 * ((2 + 3) * 4) / 5
+참: 1
+
+아래의 값을 AST 로 변환 후 JSON 형태로 만들어줘
+case11
+조건1: A AND 1 + ((2 * 3) / 4) * 5
+참: 1
+
+요구사항1
+case1 ~ case11까지 AST 정보로 새로운 JSON 값을 만드는데, 아래의 rule 을 적용해서 만들어줘.
+1. 최초의 key는 MetadataStatement 의 sid 가 된다.
+2. BracketExpression 을 만나면, 하위의 sid 를 JSON metadatastatment sid 하위에 적고, create_bracket: true 를 값을 적는다.
+
+요구사항1
+case1 ~ case5 까지 AST 정보에서 BracketExpression 을 제외시켜줘
+요구사항1
+case6 ~ case10 까지 AST 정보에서 BracketExpression 을 제외시켜줘
+요구사항1
+case11 까지 AST 정보에서 BracketExpression 을 제외시켜줘
