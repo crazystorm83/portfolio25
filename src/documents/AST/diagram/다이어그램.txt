@@ -1,0 +1,221 @@
+classDiagram
+    %% 기본 인터페이스
+    class IFlowAst {
+        +string sid
+    }
+    
+    %% 주요 인터페이스 계층
+    class IFlowAstStatement {
+        +EN_FLOW_AST type
+    }
+    class IFlowAstExpression {
+        +EN_FLOW_AST type
+    }
+    class IFlowAstProgram {
+        +EN_FLOW_AST.Program type
+        +IFlowAstMetadataStatement[] body
+    }
+    
+    %% Statement 인터페이스들
+    class IFlowAstMetadataStatement {
+        +EN_FLOW_AST.MetadataStatement type
+        +IFlowAstStatement statement
+    }
+    class IFlowAstIfStatement {
+        +EN_FLOW_AST.IfStatement type
+        +IFlowAstExpression test
+        +IFlowAstStatement consequent
+        +IFlowAstStatement? alternate
+    }
+    class IFlowAstCombinationStatement {
+        +EN_FLOW_AST.CombinationStatement type
+        +IFlowAstExpression[] expressions
+    }
+    class IFlowAstResultStatement {
+        +EN_FLOW_AST.ResultStatement type
+        +IFlowAstExpression value
+        +EN_FLOW_VALUE_TYPE value_type
+    }
+    
+    %% Expression 인터페이스들
+    class IFlowAstBinaryExpression {
+        +EN_FLOW_AST.BinaryExpression type
+        +IFlowAstExpression left
+        +EN_OPERATOR_TYPE operator
+        +IFlowAstExpression right
+    }
+    class IFlowAstCallExpression {
+        +EN_FLOW_AST.CallExpression type
+        +string callee
+        +Record~string,any~ arguments
+        +EN_FLOW_RETURNTYPE return_type
+    }
+    class IFlowAstArrayExpression {
+        +EN_FLOW_AST.ArrayExpression type
+        +IFlowAstExpression[] elements
+    }
+    class IFlowAstObjectExpression {
+        +EN_FLOW_AST.ObjectExpression type
+        +IFlowAstPropertyExpression[] properties
+    }
+    class IFlowAstPropertyExpression {
+        +EN_FLOW_AST.PropertyExpression type
+        +IFlowAstLiteralExpression key
+        +IFlowAstExpression value
+    }
+    class IFlowAstLiteralExpression {
+        +EN_FLOW_AST.LiteralExpression type
+        +any value
+        +EN_FLOW_VALUE_TYPE value_type
+    }
+    class IFlowAstOperatorExpression {
+        +EN_FLOW_AST.OperatorExpression type
+        +EN_OPERATOR_TYPE kind
+    }
+    class IFlowAstBracketExpression {
+        +EN_FLOW_AST.BracketExpression type
+        +EN_BRACKET_TYPE kind
+    }
+    
+    %% 열거형 타입들
+    class EN_FLOW_AST {
+        <<enumeration>>
+        Program
+        MetadataStatement
+        IfStatement
+        CombinationStatement
+        ResultStatement
+        BinaryExpression
+        CallExpression
+        ArrayExpression
+        ObjectExpression
+        PropertyExpression
+        LiteralExpression
+        OperatorExpression
+        BracketExpression
+    }
+    
+    class EN_BRACKET_TYPE {
+        <<enumeration>>
+        Round
+        Square
+        Angle
+    }
+    
+    class EN_FLOW_RETURNTYPE {
+        <<enumeration>>
+        boolean
+        decimal
+        string
+        date
+        datetime
+    }
+    
+    class EN_FLOW_VALUE_TYPE {
+        <<enumeration>>
+        String
+        Decimal
+        Any
+        Date
+        DateTime
+    }
+    
+    class EN_FLOW_PROVIDER {
+        <<enumeration>>
+        decimal
+        code
+        string
+        date
+        datetime
+    }
+    
+    class EN_FLOW_UI_PROVIDER {
+        <<enumeration>>
+        any
+        decimal
+        code
+        string
+        date
+        datetime
+    }
+    
+    %% 연산자 타입 계층
+    class EN_OPERATOR_TYPE {
+        <<type>>
+    }
+    class EN_LOGICAL_OPERATOR {
+        <<enumeration>>
+        AND: &&
+        OR: ||
+    }
+    class EN_ARITHMETIC_OPERATOR {
+        <<enumeration>>
+        MULTIPLY: *
+        DIVIDE: /
+        PLUS: +
+        MINUS: -
+    }
+    class EN_COMPARER_OPERATOR {
+        <<enumeration>>
+        EQUAL: =
+    }
+    
+    %% 함수 타입 계층
+    class EN_FLOW_FUNCTION {
+        <<type>>
+    }
+    class EN_FLOW_DECIMAL_FUNCTION {
+        <<enumeration>>
+    }
+    class EN_FLOW_CODE_FUNCTION {
+        <<enumeration>>
+    }
+    class EN_FLOW_STRING_FUNCTION {
+        <<enumeration>>
+    }
+    class EN_FLOW_DATE_FUNCTION {
+        <<enumeration>>
+    }
+    class EN_FLOW_DATETIME_FUNCTION {
+        <<enumeration>>
+    }
+    class EN_FLOW_EQUAL_FUNCTION {
+        <<enumeration>>
+        eq
+    }
+    class EN_FLOW_NOT_EQUAL_FUNCTION {
+        <<enumeration>>
+        neq
+    }
+    
+    %% 상속 관계
+    IFlowAst <|-- IFlowAstStatement
+    IFlowAst <|-- IFlowAstExpression
+    IFlowAst <|-- IFlowAstProgram
+    
+    IFlowAstStatement <|-- IFlowAstMetadataStatement
+    IFlowAstStatement <|-- IFlowAstIfStatement
+    IFlowAstStatement <|-- IFlowAstCombinationStatement
+    IFlowAstStatement <|-- IFlowAstResultStatement
+    
+    IFlowAstExpression <|-- IFlowAstBinaryExpression
+    IFlowAstExpression <|-- IFlowAstCallExpression
+    IFlowAstExpression <|-- IFlowAstArrayExpression
+    IFlowAstExpression <|-- IFlowAstObjectExpression
+    IFlowAstExpression <|-- IFlowAstPropertyExpression
+    IFlowAstExpression <|-- IFlowAstLiteralExpression
+    IFlowAstExpression <|-- IFlowAstOperatorExpression
+    IFlowAstExpression <|-- IFlowAstBracketExpression
+    
+    EN_OPERATOR_TYPE <|-- EN_LOGICAL_OPERATOR
+    EN_OPERATOR_TYPE <|-- EN_ARITHMETIC_OPERATOR
+    EN_OPERATOR_TYPE <|-- EN_COMPARER_OPERATOR
+    
+    EN_FLOW_FUNCTION <|-- EN_FLOW_DECIMAL_FUNCTION
+    EN_FLOW_FUNCTION <|-- EN_FLOW_CODE_FUNCTION
+    EN_FLOW_FUNCTION <|-- EN_FLOW_STRING_FUNCTION
+    EN_FLOW_FUNCTION <|-- EN_FLOW_DATE_FUNCTION
+    EN_FLOW_FUNCTION <|-- EN_FLOW_DATETIME_FUNCTION
+    
+    EN_FLOW_DATETIME_FUNCTION <|-- EN_FLOW_EQUAL_FUNCTION
+    EN_FLOW_DATETIME_FUNCTION <|-- EN_FLOW_NOT_EQUAL_FUNCTION
