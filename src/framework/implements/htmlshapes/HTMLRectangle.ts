@@ -9,24 +9,41 @@ import { sealed } from '../../decoarator/@sealed';
 import { lifecycle } from '../../decoarator/@lifecycle';
 import { methodHook } from '../../decoarator/@methodHook';
 import { Shape } from '../../abstracts/shape/Shape';
-import { IPosition, IRenderer, ISize } from '../../interfacies';
+import {
+    IListAddPayload,
+    IListAddResult,
+    IPosition,
+    IRenderer,
+    ISize,
+} from '../../interfacies';
+import { ENTITY_DATA } from '../../computedvalues';
 
-export class HTMLRectangle extends Shape {
-    constructor(configuration: IHTMLRectangleConfiguration) {
+export class HTMLRectangle<
+    TClassData extends ENTITY_DATA,
+    TStyleData extends ENTITY_DATA,
+    TAttributeData extends ENTITY_DATA
+> extends Shape<TClassData, TStyleData, TAttributeData> {
+    constructor(
+        configuration: IHTMLRectangleConfiguration<
+            TClassData,
+            TStyleData,
+            TAttributeData
+        >
+    ) {
         super(configuration);
 
         this._configuration.type = 'rectangle';
 
-        const drawLifecycle = new HTMLRectangleDrawLifecycle(
+        const draw = new HTMLRectangleDraw(
             this._configuration.paint,
             this._configuration.renderer
         );
-        const moveLifecycle = new HTMLRectangleMoveLifecycle();
-        const resizeLifecycle = new HTMLRectangleResizeLifecycle();
+        const move = new HTMLRectangleMove();
+        const resize = new HTMLRectangleResize();
 
-        this.drawLifecycle = drawLifecycle;
-        this.moveLifecycle = moveLifecycle;
-        this.resizeLifecycle = resizeLifecycle;
+        this.draw = draw;
+        this.move = move;
+        this.resize = resize;
     }
 }
 
@@ -36,17 +53,59 @@ type THTMLRectangleDrawLifecycleState = {
 
 @sealed()
 @lifecycle('IShapeDrawLifecycle')
-export class HTMLRectangleDrawLifecycle<
+export class HTMLRectangleDraw<
+    TClassData extends ENTITY_DATA,
+    TStyleData extends ENTITY_DATA,
+    TAttributeData extends ENTITY_DATA,
     TState extends THTMLRectangleDrawLifecycleState
-> implements IShapeDrawLifecycle
+> implements IShapeDrawLifecycle<TClassData, TStyleData, TAttributeData>
 {
     protected _state: TState = {
         state: 'none',
     } as TState;
 
-    constructor(protected _paint: IPaint, protected _renderer: IRenderer) {}
+    constructor(
+        protected _paint: IPaint<TClassData, TStyleData, TAttributeData>,
+        protected _renderer: IRenderer<TClassData, TStyleData, TAttributeData>
+    ) {}
 
-    set paint(value: IPaint) {
+    @methodHook
+    prepare<
+        TPayload extends TClassData & TStyleData & TAttributeData,
+        TResult = any
+    >(payload: TPayload): TResult {
+        this._state.state = 'prepare';
+
+        return {} as TResult;
+    }
+    @methodHook
+    create<
+        TPayload extends TClassData & TStyleData & TAttributeData,
+        TResult = any
+    >(payload: TPayload): TResult {
+        this._paint.style.add({
+            data: payload,
+        });
+        this._renderer.draw(null, null);
+
+        return undefined as TResult;
+    }
+    @methodHook
+    draw<
+        TPayload extends TClassData & TStyleData & TAttributeData,
+        TResult = any
+    >(payload: TPayload): TResult {
+        throw new Error('Method not implemented.');
+    }
+    @methodHook
+    complete<
+        TPayload extends TClassData & TStyleData & TAttributeData,
+        TResult = any
+    >(payload: TPayload): TResult {
+        throw new Error('Method not implemented.');
+    }
+
+    set paint(value: IPaint<TClassData, TStyleData, TAttributeData>) {
         this._paint = value;
 
         if (this._renderer === undefined) return;
@@ -58,7 +117,7 @@ export class HTMLRectangleDrawLifecycle<
         }
     }
 
-    set renderer(value: IRenderer) {
+    set renderer(value: IRenderer<TClassData, TStyleData, TAttributeData>) {
         this._renderer = value;
 
         if (this._renderer === undefined) return;
@@ -80,48 +139,11 @@ export class HTMLRectangleDrawLifecycle<
     ) {
         _.set(this._state, path, value);
     }
-
-    @methodHook
-    prepare<TPayload, TResult>(payload: TPayload): TResult {
-        this._state.state = 'prepare';
-
-        return {} as TResult;
-    }
-    @methodHook
-    create<TPayload extends IPosition & ISize, TResult = any>(
-        payload: TPayload
-    ): TResult {
-        this._paint.style.add<IPosition & ISize, void>(payload);
-        this._renderer.draw(null, null);
-
-        return undefined as TResult;
-    }
-    @methodHook
-    draw<TPayload extends IPosition & ISize, TResult>(
-        payload: TPayload
-    ): TResult {
-        this._state.state = 'drawing';
-
-        console.log(this._state.state);
-
-        this._paint.style.add<IPosition & ISize, void>(payload);
-        this._renderer.draw(null, null);
-
-        return {} as TResult;
-    }
-    @methodHook
-    complete<TPayload, TResult>(payload: TPayload): TResult {
-        this._state.state = 'complete';
-
-        console.log(this._state.state);
-
-        return {} as TResult;
-    }
 }
 
 type TShapeMoveLifecycleKeys = keyof IShapeMoveLifecycle;
 
-export class HTMLRectangleMoveLifecycle implements IShapeMoveLifecycle {
+export class HTMLRectangleMove implements IShapeMoveLifecycle {
     prepare<TPayload, TResult>(payload: TPayload): TResult {
         throw new Error('Method not implemented.');
     }
@@ -133,7 +155,7 @@ export class HTMLRectangleMoveLifecycle implements IShapeMoveLifecycle {
     }
 }
 
-export class HTMLRectangleResizeLifecycle implements IShapeResizeLifecycle {
+export class HTMLRectangleResize implements IShapeResizeLifecycle {
     prepare<TPayload, TResult>(payload: TPayload): TResult {
         throw new Error('Method not implemented.');
     }

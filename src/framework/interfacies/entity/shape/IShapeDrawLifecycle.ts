@@ -1,13 +1,34 @@
+import { ENTITY_DATA } from '../../../computedvalues';
 import { IPosition } from '../IPosition';
 import { ISize } from '../ISize';
 
-export interface IShapeDrawLifecycle {
-    prepare<TPayload = any, TResult = any>(payload: TPayload): TResult;
-    create<TPayload extends IPosition & ISize = any, TResult = any>(
+export interface IShapeDrawLifecycle<
+    TClassData extends ENTITY_DATA,
+    TStyleData extends ENTITY_DATA,
+    TAttributeData extends ENTITY_DATA
+> {
+    prepare<
+        TPayload extends TClassData & TStyleData & TAttributeData,
+        TResult = any
+    >(
         payload: TPayload
     ): TResult;
-    draw<TPayload extends IPosition & ISize = any, TResult = any>(
+    create<
+        TPayload extends TClassData & TStyleData & TAttributeData,
+        TResult = any
+    >(
         payload: TPayload
     ): TResult;
-    complete<TPayload = any, TResult = any>(payload: TPayload): TResult;
+    draw<
+        TPayload extends TClassData & TStyleData & TAttributeData,
+        TResult = any
+    >(
+        payload: TPayload
+    ): TResult;
+    complete<
+        TPayload extends TClassData & TStyleData & TAttributeData,
+        TResult = any
+    >(
+        payload: TPayload
+    ): TResult;
 }

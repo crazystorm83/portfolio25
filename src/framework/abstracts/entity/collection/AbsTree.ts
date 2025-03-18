@@ -1,4 +1,4 @@
-import { ITree } from '../../../../interfacies/entity/ITree';
+import { ITree } from '../../../interfacies/entity/ITree';
 
 export type $$root_node_sid = null;
 export type $$node_sid = string | $$root_node_sid;
@@ -70,7 +70,7 @@ export interface IPreviousPayload {
     sid: $$node_sid;
 }
 
-export abstract class BaseTree<TNode extends INode> implements ITree {
+export abstract class AbsTree<TNode extends INode> implements ITree {
     abstract addNode(payload: IAddPayload<TNode>): void;
     abstract addNextSibling(payload: IAddNextSibling<TNode>): void;
     abstract addPrevSibling(payload: IAddPrevSibling<TNode>): void;

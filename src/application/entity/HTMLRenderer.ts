@@ -7,32 +7,38 @@ import {
     IHTMLRendererTargetPayload,
     ISerializer,
     IStyle,
+    ENTITY_DATA,
 } from '../../framework';
 import { HTMLAttribute } from './HTMLAttribute';
 import { HTMLClass } from './HTMLClass';
 import { HTMLStyle } from './HTMLStyle';
 
-export abstract class HTMLRenderer implements IHTMLRenderer {
-    protected _class: IClass = new HTMLClass();
-    protected _style: IStyle = new HTMLStyle();
-    protected _attribute: IAttribute = new HTMLAttribute();
+export abstract class HTMLRenderer<
+    TClassData extends ENTITY_DATA,
+    TStyleData extends ENTITY_DATA,
+    TAttributeData extends ENTITY_DATA
+> implements IHTMLRenderer<TClassData, TStyleData, TAttributeData>
+{
+    protected _class: IClass<TClassData> = new HTMLClass();
+    protected _style: IStyle<TStyleData> = new HTMLStyle();
+    protected _attribute: IAttribute<TAttributeData> = new HTMLAttribute();
 
-    get class(): IClass {
+    get class(): IClass<TClassData> {
         throw new Error('Method not implemented.');
     }
-    set class(value: IClass) {
+    set class(value: IClass<TClassData>) {
         throw new Error('Method not implemented.');
     }
-    get style(): IStyle {
+    get style(): IStyle<TStyleData> {
         throw new Error('Method not implemented.');
     }
-    set style(value: IStyle) {
+    set style(value: IStyle<TStyleData>) {
         throw new Error('Method not implemented.');
     }
-    get attribute(): IAttribute {
+    get attribute(): IAttribute<TAttributeData> {
         throw new Error('Method not implemented.');
     }
-    set attribute(value: IAttribute) {
+    set attribute(value: IAttribute<TAttributeData>) {
         throw new Error('Method not implemented.');
     }
 

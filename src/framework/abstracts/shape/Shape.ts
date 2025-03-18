@@ -1,48 +1,70 @@
+import { ENTITY_DATA } from '../../computedvalues';
 import {
     IPaint,
     IRenderer,
+    IShapeConfiguration,
     IShapeDrawLifecycle,
     IShapeMoveLifecycle,
     IShapeResizeLifecycle,
 } from '../../interfacies';
 
-export class Shape {
-    protected _configuration: any;
-    protected _drawLifecycle: IShapeDrawLifecycle | undefined;
-    protected _moveLifecycle: IShapeMoveLifecycle | undefined;
-    protected _resizeLifecycle: IShapeResizeLifecycle | undefined;
-    protected _paint: IPaint | undefined;
-    protected _renderer: IRenderer | undefined;
+export class Shape<
+    TClassData extends ENTITY_DATA,
+    TStyleData extends ENTITY_DATA,
+    TAttributeData extends ENTITY_DATA
+> {
+    protected _configuration: IShapeConfiguration<
+        TClassData,
+        TStyleData,
+        TAttributeData
+    >;
+    protected _draw:
+        | IShapeDrawLifecycle<TClassData, TStyleData, TAttributeData>
+        | undefined;
+    protected _move: IShapeMoveLifecycle | undefined;
+    protected _resize: IShapeResizeLifecycle | undefined;
+    protected _paint:
+        | IPaint<TClassData, TStyleData, TAttributeData>
+        | undefined;
+    protected _renderer:
+        | IRenderer<TClassData, TStyleData, TAttributeData>
+        | undefined;
     protected _state: any;
 
-    constructor(configuration: any) {
+    constructor(
+        configuration: IShapeConfiguration<
+            TClassData,
+            TStyleData,
+            TAttributeData
+        >
+    ) {
         this._configuration = configuration;
     }
-    get drawLifecycle() {
-        if (!this._drawLifecycle) {
-            throw new Error('not assign drawLifecycle');
+    get draw() {
+        if (!this._draw) {
+            throw new Error('not assign draw');
         }
-        return this._drawLifecycle;
+        return this._draw;
     }
-    set drawLifecycle(value) {
-        this._drawLifecycle = value;
+    set draw(value) {
+        this._draw = value;
     }
-    get moveLifecycle() {
-        if (!this._moveLifecycle) {
-            throw new Error('not assign moveLifecycle');
+    get move() {
+        if (!this._move) {
+            throw new Error('not assign move');
         }
-        return this._moveLifecycle;
+        return this._move;
     }
-    set moveLifecycle(value) {
-        this._moveLifecycle = value;
+    set move(value) {
+        this._move = value;
     }
-    get resizeLifecycle() {
-        if (!this._resizeLifecycle) {
-            throw new Error('not assign resizeLifecycle');
+    get resize() {
+        if (!this._resize) {
+            throw new Error('not assign resize');
         }
-        return this._resizeLifecycle;
+        return this._resize;
     }
-    set resizeLifecycle(value) {
-        this._resizeLifecycle = value;
+    set resize(value) {
+        this._resize = value;
     }
 }

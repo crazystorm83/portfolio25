@@ -1,6 +1,16 @@
-import { IStyle } from '../../framework';
+import {
+    IListInsertAtPayload,
+    IListInsertAtResult,
+    IListRemoveAllResult,
+    IListRemoveAtPayload,
+    IListRemoveAtResult,
+    IListRemovePayload,
+    IListRemoveResult,
+    IStyle,
+    ENTITY_DATA,
+} from '../../framework';
 
-export class HTMLStyle implements IStyle {
+export class HTMLStyle<T extends ENTITY_DATA> implements IStyle<T> {
     protected _top: number;
     protected _left: number;
     protected _width: number;
@@ -41,8 +51,23 @@ export class HTMLStyle implements IStyle {
     add<TPayload = any, TResult = any>(payload: TPayload): TResult {
         return undefined as TResult;
     }
+    insertAt<
+        TPayload extends IListInsertAtPayload<T>,
+        TResult extends IListInsertAtResult
+    >(index: number, payload: TPayload): TResult {
+        throw new Error('Method not implemented.');
+    }
     remove<TPayload = any, TResult = any>(payload: TPayload): TResult {
         return undefined as TResult;
+    }
+    removeAt<
+        TPayload extends IListRemoveAtPayload<T>,
+        TResult extends IListRemoveAtResult<T>
+    >(payload: TPayload): TResult {
+        throw new Error('Method not implemented.');
+    }
+    removeAll<TResult extends IListRemoveAllResult<T>>(): TResult {
+        throw new Error('Method not implemented.');
     }
     has<TPayload = any, TResult = boolean>(payload: TPayload): TResult {
         return undefined as TResult;

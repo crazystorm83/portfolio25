@@ -16,7 +16,7 @@ export class WebApplication {
         | 'verification'
         | 'operator';
 
-    set porotocol(value: string) {
+    set protocol(value: string) {
         this._protocol = value;
     }
 
@@ -52,7 +52,7 @@ export class WebApplication {
     ) {
         const window_location = window.location;
 
-        this.porotocol = window_location.protocol;
+        this.protocol = window_location.protocol;
         this.domain = window_location.hostname;
         this.port = window_location.port;
     }

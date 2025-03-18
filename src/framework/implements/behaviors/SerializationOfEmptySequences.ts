@@ -6,9 +6,9 @@ type $$base_tree = {
     depth: number;
 };
 
-function serializationOfEmptySequences<TData extends $$base_tree>(payload: {
-    datas: TData | TData[];
-}) {
+function serializationOfEmptySequences<
+    ENTITY_DATA extends $$base_tree
+>(payload: { datas: ENTITY_DATA | ENTITY_DATA[] }) {
     //빈순번 직렬화
     const { datas } = payload;
 
@@ -38,8 +38,8 @@ function serializationOfEmptySequences<TData extends $$base_tree>(payload: {
 }
 
 function processingOfEmptySerializationSingletons<
-    TData extends $$base_tree
->(payload: { data: TData; allData: TData[] }) {
+    ENTITY_DATA extends $$base_tree
+>(payload: { data: ENTITY_DATA; allData: ENTITY_DATA[] }) {
     //빈순번 직렬화 단건 처리
     const { data, allData } = payload;
 

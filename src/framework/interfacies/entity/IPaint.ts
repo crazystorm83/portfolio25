@@ -1,14 +1,19 @@
+import { ENTITY_DATA } from '../../computedvalues';
 import { IAttribute } from './IAttribute';
 import { IClass } from './IClass';
 import { IStyle } from './IStyle';
 
-export interface IPaint {
-    get class(): IClass;
-    set class(value: IClass);
+export interface IPaint<
+    TClassData extends ENTITY_DATA,
+    TStyleData extends ENTITY_DATA,
+    TAttributeData extends ENTITY_DATA
+> {
+    get class(): IClass<TClassData>;
+    set class(value: IClass<TClassData>);
 
-    get style(): IStyle;
-    set style(value: IStyle);
+    get style(): IStyle<TStyleData>;
+    set style(value: IStyle<TStyleData>);
 
-    get attribute(): IAttribute;
-    set attribute(value: IAttribute);
+    get attribute(): IAttribute<TAttributeData>;
+    set attribute(value: IAttribute<TAttributeData>);
 }

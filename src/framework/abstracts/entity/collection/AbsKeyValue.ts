@@ -1,6 +1,6 @@
-import { IKeyValue } from '../../../../interfacies';
+import { IKeyValue } from '../../../interfacies';
 
-export abstract class BaseKeyValue implements IKeyValue {
+export abstract class AbsKeyValue implements IKeyValue {
     abstract add<TPayload = any, TResult = any>(
         key: string,
         value: TPayload
