@@ -4,10 +4,11 @@ import {
     INavigatorMovePayload,
 } from './AbsNavigator';
 
-export abstract class RedirectNavigator extends AbsNavigator {
+export class RedirectNavigator extends AbsNavigator {
     move(payload: INavigatorMovePayload): void {}
-    async moveAsync(payload: INavigatorMoveAsyncPayload): Promise<void> {
-        //https://github.com/TypeStrong/ts-node/issues/100
+    async moveAsync<TResult = any>(
+        payload: INavigatorMoveAsyncPayload
+    ): Promise<TResult> {
         const { module, micromodule, menu, version } = payload;
 
         let navigationPath = `${module}`;
@@ -22,6 +23,8 @@ export abstract class RedirectNavigator extends AbsNavigator {
             navigationPath = `${navigationPath}?ver=${version}`;
         }
 
-        window.location.href = `${navigationPath}`;
+        window.location.href = navigationPath;
+
+        return null as TResult;
     }
 }

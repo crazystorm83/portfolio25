@@ -4,10 +4,11 @@ import {
     INavigatorMovePayload,
 } from './AbsNavigator';
 
-export abstract class SPANavigator extends AbsNavigator {
+export class SPANavigator extends AbsNavigator {
     move(payload: INavigatorMovePayload): void {}
-    async moveAsync(payload: INavigatorMoveAsyncPayload): Promise<void> {
-        //https://github.com/TypeStrong/ts-node/issues/100
+    async moveAsync<TResult = any>(
+        payload: INavigatorMoveAsyncPayload
+    ): Promise<TResult> {
         const { module, micromodule, menu, version } = payload;
 
         let navigationPath = `${module}`;
@@ -23,5 +24,9 @@ export abstract class SPANavigator extends AbsNavigator {
         }
 
         const jsonData = await this._fetchAsync({ url: navigationPath });
+
+        console.log(jsonData);
+
+        return null as TResult;
     }
 }

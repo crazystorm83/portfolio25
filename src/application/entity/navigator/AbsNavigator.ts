@@ -57,5 +57,7 @@ export abstract class AbsNavigator implements INavigator {
     }
 
     abstract move(payload: INavigatorMovePayload): void;
-    abstract moveAsync(payload: INavigatorMoveAsyncPayload): Promise<void>;
+    abstract moveAsync<TResult = any>(
+        payload: INavigatorMoveAsyncPayload
+    ): Promise<TResult>;
 }
