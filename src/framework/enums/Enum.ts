@@ -31,21 +31,6 @@ export enum EN_LAYOUT_VIEW_TYPE {
     EDITOR = 'editor',
 }
 
-export enum EN_BUTTON_TYPE {
-    SAVE = 'save', //저장
-    CANCEL = 'cancel', //취소
-    DELETE = 'delete', //삭제
-    REMOVE = 'remove', //제거
-    ADD = 'add', //추가
-    EDIT = 'edit', //수정
-    APPLY = 'apply', //적용
-    SEARCH = 'search', //검색
-    PRINT = 'print', //인쇄
-    UPLOAD = 'upload', //업로드
-    SUBMIT = 'submit', //전송
-    RESET = 'reset', //초기화
-}
-
 //#region format
 
 export enum EN_DATE_FORMAT {
