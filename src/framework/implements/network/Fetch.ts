@@ -1,11 +1,18 @@
 export class Fetch {
+    static _controller?: AbortController;
+
     private static async callAsync(url: string, method: string, body: any) {
+        this._controller = new AbortController();
+        const signal = this._controller.signal;
+
         return fetch(url, {
             method: method,
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(body),
+
+            signal,
         })
             .then((response) => {
                 // 응답 처리 (HTTP 상태 확인)
@@ -39,5 +46,8 @@ export class Fetch {
 
     static async patchAsync(url: string, body: any) {
         return await Fetch.callAsync(url, 'PATCH', body);
+    }
+    static abort() {
+        Fetch._controller?.abort();
     }
 }
