@@ -9,12 +9,13 @@ import {
     IStyle,
     ENTITY_DATA,
 } from '../../framework';
+import { $$numeric } from '../../framework/datatypes';
 
 export class HTMLStyle<T extends ENTITY_DATA> implements IStyle<T> {
-    protected _top: number;
-    protected _left: number;
-    protected _width: number;
-    protected _height: number;
+    protected _top: $$numeric;
+    protected _left: $$numeric;
+    protected _width: $$numeric;
+    protected _height: $$numeric;
 
     constructor() {
         this._top = -1;
@@ -23,28 +24,28 @@ export class HTMLStyle<T extends ENTITY_DATA> implements IStyle<T> {
         this._height = -1;
     }
 
-    get top(): number {
+    get top(): $$numeric {
         return this._top;
     }
-    set top(value: number) {
+    set top(value: $$numeric) {
         this._top = value;
     }
-    get left(): number {
+    get left(): $$numeric {
         return this._left;
     }
-    set left(value: number) {
+    set left(value: $$numeric) {
         this._left = value;
     }
-    get width(): number {
+    get width(): $$numeric {
         return this._width;
     }
-    set width(value: number) {
+    set width(value: $$numeric) {
         this._width = value;
     }
-    get height(): number {
+    get height(): $$numeric {
         return this._height;
     }
-    set height(value: number) {
+    set height(value: $$numeric) {
         this._height = value;
     }
 
@@ -54,7 +55,7 @@ export class HTMLStyle<T extends ENTITY_DATA> implements IStyle<T> {
     insertAt<
         TPayload extends IListInsertAtPayload<T>,
         TResult extends IListInsertAtResult
-    >(index: number, payload: TPayload): TResult {
+    >(index: $$numeric, payload: TPayload): TResult {
         throw new Error('Method not implemented.');
     }
     remove<TPayload = any, TResult = any>(payload: TPayload): TResult {
@@ -74,10 +75,10 @@ export class HTMLStyle<T extends ENTITY_DATA> implements IStyle<T> {
     }
     serialize<
         TResult = {
-            top: number;
-            left: number;
-            width: number;
-            height: number;
+            top: $$numeric;
+            left: $$numeric;
+            width: $$numeric;
+            height: $$numeric;
         }
     >(): TResult {
         return {

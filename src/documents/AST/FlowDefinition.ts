@@ -1,5 +1,7 @@
 //아래는 typescript 로 정의된 데이터를 흐름도로 만들어줘.
 
+import { $$numeric, $$txt } from '../../framework/datatypes';
+
 enum EN_FLOW_AST {
     Program = 'program',
 
@@ -124,7 +126,7 @@ type EN_OPERATOR_TYPE =
     | EN_COMPARER_OPERATOR;
 
 // precedence와 operator를 맵핑
-const OPERATOR_PRECEDENCE: Record<EN_OPERATOR_TYPE, number> = {
+const OPERATOR_PRECEDENCE: Record<EN_OPERATOR_TYPE, $$numeric> = {
     [LOGICAL_OPERATORS.AND]: 1,
     [LOGICAL_OPERATORS.OR]: 1,
     [COMPARER_OPERATORS.EQUAL]: 2,
@@ -134,7 +136,7 @@ const OPERATOR_PRECEDENCE: Record<EN_OPERATOR_TYPE, number> = {
     [ARITHMETIC_OPERATORS.MINUS]: 4,
 } as const;
 
-function operatorPrecedence(operator: EN_OPERATOR_TYPE): number {
+function operatorPrecedence(operator: EN_OPERATOR_TYPE): $$numeric {
     const precedence = OPERATOR_PRECEDENCE[operator];
 
     if (precedence === undefined) {
@@ -157,7 +159,7 @@ interface IFlowAst {
     * 각 node 의 sequence id
     sid rule: EN*FLOW_TYPE + '*' + 난수(8자리)
     */
-    sid: string;
+    sid: $$txt;
 }
 
 interface IFlowAstStatement extends IFlowAst {
@@ -220,7 +222,7 @@ interface IFlowAstBinaryExpression extends IFlowAstExpression {
 interface IFlowAstCallExpression extends IFlowAstExpression {
     type: EN_FLOW_AST.CallExpression;
     callee: `${EN_FLOW_UI_PROVIDER}.${EN_FLOW_FUNCTION}` | 'any';
-    arguments: Record<string, any>;
+    arguments: Record<$$txt, any>;
     return_type: EN_FLOW_RETURNTYPE;
 }
 interface IFlowAstArrayExpression extends IFlowAstExpression {

@@ -1,7 +1,9 @@
-export interface ISize {
-    get width(): number;
-    set width(value: number);
+import { $$numeric } from '../../datatypes';
 
-    get height(): number;
-    set height(value: number);
+export interface ISize {
+    get width(): $$numeric;
+    set width(value: $$numeric);
+
+    get height(): $$numeric;
+    set height(value: $$numeric);
 }

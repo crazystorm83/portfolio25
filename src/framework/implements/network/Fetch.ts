@@ -1,7 +1,9 @@
+import { $$txt } from '../../datatypes';
+
 export class Fetch {
     static _controller?: AbortController;
 
-    private static async callAsync(url: string, method: string, body: any) {
+    private static async callAsync(url: $$txt, method: $$txt, body: any) {
         this._controller = new AbortController();
         const signal = this._controller.signal;
 
@@ -28,23 +30,23 @@ export class Fetch {
             });
     }
 
-    static async getAsync(url: string) {
+    static async getAsync(url: $$txt) {
         return await Fetch.callAsync(url, 'GET', null);
     }
 
-    static async postAsync(url: string, body: any) {
+    static async postAsync(url: $$txt, body: any) {
         return await Fetch.callAsync(url, 'POST', body);
     }
 
-    static async putAsync(url: string, body: any) {
+    static async putAsync(url: $$txt, body: any) {
         return await Fetch.callAsync(url, 'PUT', body);
     }
 
-    static async deleteAsync(url: string) {
+    static async deleteAsync(url: $$txt) {
         return await Fetch.callAsync(url, 'DELETE', null);
     }
 
-    static async patchAsync(url: string, body: any) {
+    static async patchAsync(url: $$txt, body: any) {
         return await Fetch.callAsync(url, 'PATCH', body);
     }
     static abort() {

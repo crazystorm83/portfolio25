@@ -1,3 +1,4 @@
+import { $$txt } from '../../../framework/datatypes';
 import { IWebApplicationConfiguration } from './WebApplicationConfiguration';
 
 export interface IWebApplication {
@@ -5,9 +6,9 @@ export interface IWebApplication {
 }
 
 export class WebApplication implements IWebApplication {
-    protected _protocol: string = '';
-    protected _domain: string = '';
-    protected _port: string = '';
+    protected _protocol: $$txt = '';
+    protected _domain: $$txt = '';
+    protected _port: $$txt = '';
 
     //#region location properties
 
@@ -20,11 +21,11 @@ export class WebApplication implements IWebApplication {
         | 'verification'
         | 'operator';
 
-    set protocol(value: string) {
+    set protocol(value: $$txt) {
         this._protocol = value;
     }
 
-    set domain(value: string) {
+    set domain(value: $$txt) {
         this._domain = value;
 
         if (value === 'localhost') {
@@ -38,7 +39,7 @@ export class WebApplication implements IWebApplication {
         }
     }
 
-    set port(value: string) {
+    set port(value: $$txt) {
         this._port = value;
     }
 

@@ -9,6 +9,7 @@ import {
     IListRemoveResult,
     ENTITY_DATA,
 } from '../../framework';
+import { $$numeric } from '../../framework/datatypes';
 
 export class HTMLAttribute<T extends ENTITY_DATA> implements IAttribute<T> {
     add<TPayload = any, TResult = any>(payload: TPayload): TResult {
@@ -17,7 +18,7 @@ export class HTMLAttribute<T extends ENTITY_DATA> implements IAttribute<T> {
     insertAt<
         TPayload extends IListInsertAtPayload<T>,
         TResult extends IListInsertAtResult
-    >(index: number, payload: TPayload): TResult {
+    >(index: $$numeric, payload: TPayload): TResult {
         throw new Error('Method not implemented.');
     }
     remove<TPayload = any, TResult = any>(payload: TPayload): TResult {

@@ -1,7 +1,9 @@
-export interface IPosition {
-    get top(): number;
-    set top(value: number);
+import { $$numeric } from '../../datatypes';
 
-    get left(): number;
-    set left(value: number);
+export interface IPosition {
+    get top(): $$numeric;
+    set top(value: $$numeric);
+
+    get left(): $$numeric;
+    set left(value: $$numeric);
 }

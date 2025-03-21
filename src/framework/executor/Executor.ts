@@ -1,3 +1,4 @@
+import { $$txt } from '../datatypes';
 import {
     EN_MOUDLE_PREFIX,
     EN_MODULE_POSTFIX,
@@ -7,15 +8,15 @@ import { IUserAction } from '../useraction';
 
 export interface IIdentifier {
     prefix: EN_MOUDLE_PREFIX;
-    micromodulename: string;
+    micromodulename: $$txt;
     version?: EN_MODULE_VERSION;
     postfix: EN_MODULE_POSTFIX;
 }
 
 export abstract class Executor {
-    protected _map = new Map<string, IUserAction>();
+    protected _map = new Map<$$txt, IUserAction>();
 
-    private __createId(payload: IIdentifier): string {
+    private __createId(payload: IIdentifier): $$txt {
         const { prefix, micromodulename, version, postfix } = payload;
 
         let id = `I${prefix}${micromodulename}`;

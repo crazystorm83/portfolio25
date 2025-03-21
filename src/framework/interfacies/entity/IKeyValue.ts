@@ -1,11 +1,10 @@
+import { $$txt } from '../../datatypes';
+
 export interface IKeyValue {
-    add<TPayload = any, TResult = any>(key: string, value: TPayload): TResult;
-    remove<TPayload = any, TResult = any>(
-        key: string,
-        value: TPayload
-    ): TResult;
+    add<TPayload = any, TResult = any>(key: $$txt, value: TPayload): TResult;
+    remove<TPayload = any, TResult = any>(key: $$txt, value: TPayload): TResult;
     has<TPayload = any, TResult = boolean>(
-        key: string,
+        key: $$txt,
         value: TPayload
     ): TResult;
 }

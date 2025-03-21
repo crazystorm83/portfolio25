@@ -17,6 +17,7 @@ import {
     ISize,
 } from '../../interfacies';
 import { ENTITY_DATA } from '../../computedvalues';
+import { $$txt } from '../../datatypes';
 
 export class HTMLRectangle<
     TClassData extends ENTITY_DATA,
@@ -133,7 +134,7 @@ export class HTMLRectangleDraw<
         return this._state;
     }
 
-    protected _setState<TKey extends _.PropertyPath = string, TPayload = any>(
+    protected _setState<TKey extends _.PropertyPath = $$txt, TPayload = any>(
         path: TKey,
         value: TPayload
     ) {

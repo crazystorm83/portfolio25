@@ -1,9 +1,11 @@
+import { $$numeric, $$txt } from '../../datatypes';
+
 type $$base_tree = {
-    parent_sid: string | null;
-    sid: string;
-    group_sid: string;
-    paths: (string | null)[];
-    depth: number;
+    parent_sid: $$txt | null;
+    sid: $$txt;
+    group_sid: $$txt;
+    paths: ($$txt | null)[];
+    depth: $$numeric;
 };
 
 function serializationOfEmptySequences<

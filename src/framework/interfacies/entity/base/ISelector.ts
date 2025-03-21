@@ -1,4 +1,6 @@
+import { $$txt } from '../../../datatypes';
+
 export interface ISelector {
-    set selector(value: string);
-    get selector(): string;
+    set selector(value: $$txt);
+    get selector(): $$txt;
 }

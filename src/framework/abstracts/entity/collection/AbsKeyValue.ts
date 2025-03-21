@@ -1,16 +1,17 @@
+import { $$txt } from '../../../datatypes';
 import { IKeyValue } from '../../../interfacies';
 
 export abstract class AbsKeyValue implements IKeyValue {
     abstract add<TPayload = any, TResult = any>(
-        key: string,
+        key: $$txt,
         value: TPayload
     ): TResult;
     abstract remove<TPayload = any, TResult = any>(
-        key: string,
+        key: $$txt,
         value: TPayload
     ): TResult;
     abstract has<TPayload = any, TResult = boolean>(
-        key: string,
+        key: $$txt,
         value: TPayload
     ): TResult;
 }

@@ -1,6 +1,8 @@
+import { $$txt } from './$$txt';
+
 export const $$code = '$$code';
 export type $$code = {
-    sid: string;
-    code: string;
-    name: string;
+    sid: $$txt;
+    code: $$txt;
+    name: $$txt;
 };

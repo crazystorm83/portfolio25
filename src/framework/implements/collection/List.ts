@@ -1,4 +1,5 @@
 import { ENTITY_DATA } from '../../computedvalues';
+import { $$numeric } from '../../datatypes';
 import {
     IListAddPayload,
     IListAddResult,
@@ -25,7 +26,7 @@ export class List<T extends ENTITY_DATA> extends BaseList<T> {
     insertAt<
         TPayload extends IListInsertAtPayload<T>,
         TResult extends IListInsertAtResult
-    >(index: number, payload: TPayload): TResult {
+    >(index: $$numeric, payload: TPayload): TResult {
         this.__list.splice(index, 0, payload.data);
 
         return { success: true } as TResult;

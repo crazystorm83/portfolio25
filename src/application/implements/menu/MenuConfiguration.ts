@@ -1,14 +1,15 @@
+import { $$txt } from '../../../framework/datatypes';
 import { IMenuConfiguration } from '../../interfacies';
 
 export class MenuConfiguration implements IMenuConfiguration {
-    protected _selector: string | null = null;
+    protected _selector: $$txt | null = null;
 
     //#region properties
 
-    set selector(value: string) {
+    set selector(value: $$txt) {
         this._selector = value;
     }
-    get selector(): string {
+    get selector(): $$txt {
         if (!this._selector) {
             throw new Error('selector is not set');
         }

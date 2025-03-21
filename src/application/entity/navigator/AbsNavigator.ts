@@ -3,12 +3,13 @@ import {
     EN_MENU_MICROMODULE,
     EN_MENU_MODULE,
 } from '../../../framework';
+import { $$txt } from '../../../framework/datatypes';
 
 export interface INavigatorMovePayload {
     module: EN_MENU_MODULE;
     micromodule?: EN_MENU_MICROMODULE;
     menu: EN_MENU;
-    version: string;
+    version: $$txt;
 }
 export interface INavigatorMoveAsyncPayload extends INavigatorMovePayload {}
 
@@ -18,7 +19,7 @@ export interface INavigator {
 }
 
 export abstract class AbsNavigator implements INavigator {
-    protected _fetch(payload: { url: string }) {
+    protected _fetch(payload: { url: $$txt }) {
         const { url } = payload;
 
         fetch(url)
@@ -38,8 +39,8 @@ export abstract class AbsNavigator implements INavigator {
     }
 
     protected async _fetchAsync(payload: {
-        url: string;
-    }): Promise<Record<string, any>> {
+        url: $$txt;
+    }): Promise<Record<$$txt, any>> {
         const { url } = payload;
         return await fetch(url)
             .then((response) => {

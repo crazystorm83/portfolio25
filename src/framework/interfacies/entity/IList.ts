@@ -1,4 +1,5 @@
 import { ENTITY_DATA } from '../../computedvalues';
+import { $$numeric } from '../../datatypes';
 
 export interface IListAddPayload<T extends ENTITY_DATA> {
     data: T;
@@ -23,7 +24,7 @@ export interface IListRemoveResult<T extends ENTITY_DATA> {
 }
 
 export interface IListRemoveAtPayload<T extends ENTITY_DATA> {
-    index: number;
+    index: $$numeric;
 }
 export interface IListRemoveAtResult<T extends ENTITY_DATA> {
     removed_data: T;
@@ -50,7 +51,7 @@ export interface IList<T extends ENTITY_DATA> {
         TPayload extends IListInsertAtPayload<T>,
         TResult extends IListInsertAtResult
     >(
-        index: number,
+        index: $$numeric,
         payload: TPayload
     ): TResult;
     remove<

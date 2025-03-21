@@ -1,4 +1,5 @@
 import { ENTITY_DATA } from '../../../computedvalues';
+import { $$numeric } from '../../../datatypes';
 import {
     IList,
     IListAddPayload,
@@ -22,7 +23,7 @@ export abstract class AbsList<T extends ENTITY_DATA> implements IList<T> {
     abstract insertAt<
         TPayload extends IListInsertAtPayload<T>,
         TResult extends IListInsertAtResult
-    >(index: number, payload: TPayload): TResult;
+    >(index: $$numeric, payload: TPayload): TResult;
     abstract remove<
         TPayload extends IListRemovePayload<T>,
         TResult extends IListRemoveResult<T>

@@ -1,14 +1,15 @@
+import { $$txt } from '../../../datatypes';
 import { ITree } from '../../../interfacies/entity/ITree';
 
 export type $$root_node_sid = null;
-export type $$node_sid = string | $$root_node_sid;
+export type $$node_sid = $$txt | $$root_node_sid;
 
 export interface INode {
     parent_sid: $$node_sid;
     sid: $$node_sid;
 
-    value: string;
-    label: string;
+    value: $$txt;
+    label: $$txt;
 }
 
 export interface IAddPayload<TNode extends INode> {
