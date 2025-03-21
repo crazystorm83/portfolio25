@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-
 import { forwardRef } from 'react';
 import { IReactNode } from '../../interfaces';
 
@@ -22,9 +21,11 @@ export const Anchor = forwardRef<HTMLAnchorElement, IAnchorProps>(
                 );
             }
 
-            <a
-                {...props}
-                ref={ref}></a>;
+            return (
+                <a
+                    {...props}
+                    ref={ref}></a>
+            );
         }, []);
 
         return render();

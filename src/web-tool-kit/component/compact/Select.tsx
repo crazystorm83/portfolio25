@@ -1,29 +1,29 @@
 import React, { useCallback } from 'react';
-
 import { forwardRef } from 'react';
 import { IReactNode } from '../../interfaces';
 
 export interface ISelectProps extends IReactNode {}
 
 export const Select = forwardRef<HTMLSelectElement, ISelectProps>(
-    function Select(props, ref) {
+    ({ children, ...rest }: ISelectProps, ref) => {
         const render = useCallback(() => {
-            if (props.children) {
+            if (children) {
                 return (
                     <select
-                        {...props}
+                        {...rest}
                         ref={ref}>
-                        ${props.children}
+                        {children}
                     </select>
                 );
             }
-
-            <select
-                {...props}
-                ref={ref}>
-                <option></option>
-            </select>;
-        }, []);
+            return (
+                <select
+                    {...rest}
+                    ref={ref}>
+                    <option></option>
+                </select>
+            );
+        }, [children, rest, ref]);
         return render();
     }
 );

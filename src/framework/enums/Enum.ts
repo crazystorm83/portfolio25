@@ -16,13 +16,13 @@ export enum EN_LAYOUT_VIEW_TYPE {
 
     LIST_GRID = 'list_grid',
     INPUT_GRID = 'input_grid',
-    
+
     FORM = 'form',
     TOOLBAR = 'toolbar',
     TREE = 'tree',
     KANBAN = 'kanban',
     GANTT = 'gantt',
-    
+
     HORIZONTAL_BAR_GRAPH = 'horizontal_bar_graph',
     VERTICAL_BAR_GRAPH = 'vertical_bar_graph',
     LINE_GRAPH = 'line_graph',
@@ -44,6 +44,13 @@ export enum EN_DATETIME_FORMAT {
     MINUTE = 'mm',
     SECOND = 'ss',
     MILLISECOND = 'sss',
+}
+
+export enum EN_ATTR_TYPE {
+    Initializer = 'initializer',
+    Information = 'information',
+    Renderer = 'renderer',
+    Validator = 'validator',
 }
 
 //#endregion
