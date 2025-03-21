@@ -1,4 +1,4 @@
-import { IIdentifier } from '../executor';
+import { IIdentifier } from '../IIdentifier';
 
 export interface IUserActionIdentifier extends IIdentifier {}
 

@@ -1,4 +1,4 @@
-export enum EN_MODULE_VERSION {
+export enum EN_MODULE_MAJOR_VERSION {
     Version1 = '',
     Version2 = 'V2',
     Version3 = 'V3',
