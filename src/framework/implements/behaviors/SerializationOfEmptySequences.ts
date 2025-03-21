@@ -1,10 +1,10 @@
-import { $$numeric, $$txt } from '../../datatypes';
+import { $$null, $$numeric, $$txt } from '../../datatypes';
 
 type $$base_tree = {
-    parent_sid: $$txt | null;
+    parent_sid: $$txt | $$null;
     sid: $$txt;
     group_sid: $$txt;
-    paths: ($$txt | null)[];
+    paths: ($$txt | $$null)[];
     depth: $$numeric;
 };
 
@@ -74,21 +74,21 @@ function processingOfEmptySerializationSingletons<
 ((name) => {
     const data1: $$base_tree[] = [
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_1',
             group_sid: 'group_sid_1',
             depth: 0,
             paths: ['group_sid_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_2',
             group_sid: 'group_sid_1',
             depth: 0,
             paths: ['group_sid_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_3',
             group_sid: 'group_sid_1',
             depth: 0,
@@ -121,21 +121,21 @@ function processingOfEmptySerializationSingletons<
 ((name) => {
     const data2 = [
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_1',
             group_sid: 'group_sid_1',
             depth: 1,
             paths: ['group_sid_1', 'group_sid_2'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_2',
             group_sid: 'group_sid_1',
             depth: 1,
             paths: ['group_sid_1', 'group_sid_2'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_3',
             group_sid: 'group_sid_1',
             depth: 1,
@@ -168,21 +168,21 @@ function processingOfEmptySerializationSingletons<
 ((name) => {
     const data3 = [
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_1',
             group_sid: 'group_sid_2',
             depth: 1,
             paths: ['group_sid_1', 'group_sid_2'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_2',
             group_sid: 'group_sid_1',
             depth: 0,
             paths: ['group_sid_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_3',
             group_sid: 'group_sid_3',
             depth: 1,
@@ -215,35 +215,35 @@ function processingOfEmptySerializationSingletons<
 ((name) => {
     const data4 = [
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_1',
             group_sid: 'group_sid_x_1',
             depth: 1,
             paths: ['group_sid_1', 'group_sid_x_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_100',
             group_sid: 'group_sid_1',
             depth: 0,
             paths: ['group_sid_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_3',
             group_sid: 'group_sid_z_1',
             depth: 2,
             paths: ['group_sid_1', 'group_sid_y_1', 'group_sid_z_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_4',
             group_sid: 'group_sid_y_1',
             depth: 1,
             paths: ['group_sid_1', 'group_sid_y_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_5',
             group_sid: 'group_sid_v_1',
             depth: 2,
@@ -286,21 +286,21 @@ function processingOfEmptySerializationSingletons<
 ((name) => {
     const data5 = [
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_1',
             group_sid: 'group_sid_x_1',
             depth: 1,
             paths: ['group_sid_1', 'group_sid_x_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_100',
             group_sid: 'group_sid_1',
             depth: 0,
             paths: ['group_sid_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_3',
             group_sid: 'group_sid_d_1',
             depth: 8,
@@ -315,14 +315,14 @@ function processingOfEmptySerializationSingletons<
             ],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_4',
             group_sid: 'group_sid_y_1',
             depth: 1,
             paths: ['group_sid_1', 'group_sid_y_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_5',
             group_sid: 'group_sid_v_1',
             depth: 2,
@@ -365,35 +365,35 @@ function processingOfEmptySerializationSingletons<
 ((name) => {
     const data6 = [
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_1',
             group_sid: 'group_sid_x_1',
             depth: 1,
             paths: ['group_sid_1', 'group_sid_x_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_1',
             group_sid: 'group_sid_x_1',
             depth: 1,
             paths: ['group_sid_1', 'group_sid_x_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_1',
             group_sid: 'group_sid_x_1',
             depth: 1,
             paths: ['group_sid_1', 'group_sid_x_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_100',
             group_sid: 'group_sid_1',
             depth: 0,
             paths: ['group_sid_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_3',
             group_sid: 'group_sid_d_1',
             depth: 8,
@@ -408,14 +408,14 @@ function processingOfEmptySerializationSingletons<
             ],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_4',
             group_sid: 'group_sid_y_1',
             depth: 1,
             paths: ['group_sid_1', 'group_sid_y_1'],
         },
         {
-            parent_sid: null,
+            parent_sid: $$null,
             sid: 'sid_5',
             group_sid: 'group_sid_v_1',
             depth: 2,

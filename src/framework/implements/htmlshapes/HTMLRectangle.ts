@@ -17,7 +17,7 @@ import {
     ISize,
 } from '../../interfacies';
 import { ENTITY_DATA } from '../../computedvalues';
-import { $$txt } from '../../datatypes';
+import { $$null, $$txt } from '../../datatypes';
 
 export class HTMLRectangle<
     TClassData extends ENTITY_DATA,
@@ -87,7 +87,7 @@ export class HTMLRectangleDraw<
         this._paint.style.add({
             data: payload,
         });
-        this._renderer.draw(null, null);
+        this._renderer.draw($$null, $$null);
 
         return undefined as TResult;
     }

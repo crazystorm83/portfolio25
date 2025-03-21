@@ -1,3 +1,4 @@
+import { $$null } from '../../../framework/datatypes';
 import {
     AbsNavigator,
     INavigatorMoveAsyncPayload,
@@ -25,6 +26,6 @@ export class RedirectNavigator extends AbsNavigator {
 
         window.location.href = navigationPath;
 
-        return null as TResult;
+        return $$null as TResult;
     }
 }

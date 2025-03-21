@@ -1,3 +1,4 @@
+import { $$null } from '../../../framework/datatypes';
 import {
     AbsNavigator,
     INavigatorMoveAsyncPayload,
@@ -27,6 +28,6 @@ export class SPANavigator extends AbsNavigator {
 
         console.log(jsonData);
 
-        return null as TResult;
+        return $$null as TResult;
     }
 }

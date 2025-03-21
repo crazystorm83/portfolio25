@@ -1,4 +1,4 @@
-import { $$txt } from '../../datatypes';
+import { $$null, $$txt } from '../../datatypes';
 
 export class Fetch {
     static _controller?: AbortController;
@@ -31,7 +31,7 @@ export class Fetch {
     }
 
     static async getAsync(url: $$txt) {
-        return await Fetch.callAsync(url, 'GET', null);
+        return await Fetch.callAsync(url, 'GET', $$null);
     }
 
     static async postAsync(url: $$txt, body: any) {
@@ -43,7 +43,7 @@ export class Fetch {
     }
 
     static async deleteAsync(url: $$txt) {
-        return await Fetch.callAsync(url, 'DELETE', null);
+        return await Fetch.callAsync(url, 'DELETE', $$null);
     }
 
     static async patchAsync(url: $$txt, body: any) {
