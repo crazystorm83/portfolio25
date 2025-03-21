@@ -8,7 +8,7 @@ import {
     IShapeResizeLifecycle,
 } from '../../interfacies';
 
-export class Shape<
+export abstract class Shape<
     TClassData extends ENTITY_DATA,
     TStyleData extends ENTITY_DATA,
     TAttributeData extends ENTITY_DATA

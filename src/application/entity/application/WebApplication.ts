@@ -1,6 +1,10 @@
 import { IWebApplicationConfiguration } from './WebApplicationConfiguration';
 
-export class WebApplication {
+export interface IWebApplication {
+    startAsync(): Promise<void>;
+}
+
+export class WebApplication implements IWebApplication {
     protected _protocol: string = '';
     protected _domain: string = '';
     protected _port: string = '';
