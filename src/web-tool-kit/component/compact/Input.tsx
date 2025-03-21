@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 
 import { forwardRef } from 'react';
-import { ClassBuilder, StyleBuilder } from '../../interfacies';
+import { ClassBuilder, StyleBuilder } from '../../interfaces';
 
 export interface IInputProps {
     onInput?: (event: InputEvent) => void;

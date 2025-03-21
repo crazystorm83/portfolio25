@@ -1,9 +1,11 @@
 import { ISelector } from '../../../framework';
-import { IMenuConfiguration } from '../../interfacies/menu/IMenuConfiguration';
-import { IContentConofiguration } from '../../interfacies/page/IContentConofiguration';
-import { IFooterConfiguration } from '../../interfacies/page/IFooterConfiguration';
-import { IHeaderConfiguration } from '../../interfacies/page/IHeaderConfiguration';
-import { IRootConfiguration } from '../../interfacies/page/IRootConfiguration';
+import {
+    IContentConofiguration,
+    IFooterConfiguration,
+    IHeaderConfiguration,
+    IMenuConfiguration,
+    IRootConfiguration,
+} from '../../interfacies';
 
 export interface IWebSelector extends ISelector {}
 

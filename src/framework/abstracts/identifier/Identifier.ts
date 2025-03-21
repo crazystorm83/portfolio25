@@ -1,5 +1,5 @@
 import { $$txt } from '../../datatypes';
-import { IIdentifier } from '../../interfacies/identifier';
+import { IIdentifier } from '../../interfaces/identifier';
 
 export abstract class Identifier implements IIdentifier {
     constructor(protected _id: $$txt) {}

@@ -13,7 +13,7 @@ import {
     IListRemoveAtResult,
     IListRemovePayload,
     IListRemoveResult,
-} from '../../../interfacies';
+} from '../../../interfaces';
 
 export abstract class AbsList<T extends ENTITY_DATA> implements IList<T> {
     abstract add<

@@ -1,9 +1,8 @@
-export function tfoot() {
-    
-}import React, { useCallback } from 'react';
+export function tfoot() {}
+import React, { useCallback } from 'react';
 
 import { forwardRef } from 'react';
-import { IReactNode } from '../../interfacies';
+import { IReactNode } from '../../interfaces';
 
 export interface ITfootProps extends IReactNode {}
 

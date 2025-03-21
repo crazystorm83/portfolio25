@@ -6,7 +6,7 @@ import {
     IShapeDrawLifecycle,
     IShapeMoveLifecycle,
     IShapeResizeLifecycle,
-} from '../../interfacies';
+} from '../../interfaces';
 
 export abstract class Shape<
     TClassData extends ENTITY_DATA,

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { forwardRef } from 'react';
-import { IReactNode } from '../../interfacies';
+import { IReactNode } from '../../interfaces';
 
 export interface IColgroupProps extends IReactNode {}
 

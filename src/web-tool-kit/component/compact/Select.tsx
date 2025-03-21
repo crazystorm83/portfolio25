@@ -1,10 +1,9 @@
 import React, { useCallback } from 'react';
 
 import { forwardRef } from 'react';
-import { IReactNode } from '../../interfacies';
+import { IReactNode } from '../../interfaces';
 
-export interface ISelectProps extends IReactNode {
-}
+export interface ISelectProps extends IReactNode {}
 
 export const Select = forwardRef<HTMLSelectElement, ISelectProps>(
     function Select(props, ref) {

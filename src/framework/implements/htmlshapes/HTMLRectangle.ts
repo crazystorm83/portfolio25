@@ -1,10 +1,10 @@
 import * as _ from 'lodash';
 
-import { IPaint } from '../../interfacies/entity/IPaint';
-import { IShapeDrawLifecycle } from '../../interfacies/entity/shape/IShapeDrawLifecycle';
-import { IShapeMoveLifecycle } from '../../interfacies/entity/shape/IShapeMoveLifecycle';
-import { IShapeResizeLifecycle } from '../../interfacies/entity/shape/IShapeResizeLifecycle';
-import { IHTMLRectangleConfiguration } from '../../interfacies/configuration/htmlshape/IHTMLRectangleConfiguration';
+import { IPaint } from '../../interfaces/entity/IPaint';
+import { IShapeDrawLifecycle } from '../../interfaces/entity/shape/IShapeDrawLifecycle';
+import { IShapeMoveLifecycle } from '../../interfaces/entity/shape/IShapeMoveLifecycle';
+import { IShapeResizeLifecycle } from '../../interfaces/entity/shape/IShapeResizeLifecycle';
+import { IHTMLRectangleConfiguration } from '../../interfaces/configuration/htmlshape/IHTMLRectangleConfiguration';
 import { sealed } from '../../decoarator/@sealed';
 import { lifecycle } from '../../decoarator/@lifecycle';
 import { methodHook } from '../../decoarator/@methodHook';
@@ -15,7 +15,7 @@ import {
     IPosition,
     IRenderer,
     ISize,
-} from '../../interfacies';
+} from '../../interfaces';
 import { ENTITY_DATA } from '../../computedvalues';
 import { $$null, $$txt } from '../../datatypes';
 

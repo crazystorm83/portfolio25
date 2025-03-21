@@ -4,5 +4,5 @@ export * as primitive_datatype from './datatypes';
 export * from './decoarator';
 export * from './enums';
 export * from './implements';
-export * from './interfacies';
+export * from './interfaces';
 export * from './validator';

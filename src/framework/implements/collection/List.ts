@@ -1,19 +1,19 @@
-import { ENTITY_DATA } from '../../computedvalues';
+import { ENTITY_DATA } from '../../computedvalues/ComputedValues';
 import { $$numeric } from '../../datatypes';
 import {
     IListAddPayload,
     IListAddResult,
-    IListRemovePayload,
-    IListRemoveResult,
     IListHasPayload,
     IListHasResult,
     IListInsertAtPayload,
     IListInsertAtResult,
+    IListRemoveAllResult,
     IListRemoveAtPayload,
     IListRemoveAtResult,
-    IListRemoveAllResult,
-} from '../../interfacies';
-import { BaseList } from './base';
+    IListRemovePayload,
+    IListRemoveResult,
+} from '../../interfaces';
+import { BaseList } from './base/BaseList';
 
 export class List<T extends ENTITY_DATA> extends BaseList<T> {
     private __list: T[] = [];

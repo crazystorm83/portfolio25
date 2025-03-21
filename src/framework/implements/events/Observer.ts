@@ -1,4 +1,4 @@
-import { IObserver, ISubject } from '../../interfacies/events/IObserver';
+import { IObserver, ISubject } from '../../interfaces/events/IObserver';
 import { $$txt } from '../../datatypes';
 import { Identifier } from '../../abstracts';
 
