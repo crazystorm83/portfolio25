@@ -1,5 +1,5 @@
 import { $$null, $$txt } from '../../../framework/datatypes';
-import { IMenuConfiguration } from '../../interfacies';
+import { IMenuConfiguration } from '../../interfaces';
 
 export class MenuConfiguration implements IMenuConfiguration {
     protected _selector: $$txt | $$null = $$null;

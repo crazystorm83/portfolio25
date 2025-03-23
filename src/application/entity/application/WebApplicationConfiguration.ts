@@ -4,7 +4,7 @@ import {
     IHeaderConfiguration,
     IMenuConfiguration,
     IRootConfiguration,
-} from '@application/interfacies';
+} from '@application/interfaces';
 import { ILogger, ISelector } from '@framework/interfaces';
 
 export interface IWebSelector extends ISelector {}
