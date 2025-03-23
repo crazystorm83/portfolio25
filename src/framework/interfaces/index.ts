@@ -1,5 +1,7 @@
 export * from './identifier';
 
+export * from './generator';
+
 export * from './configuration';
 export * from './entity';
 
