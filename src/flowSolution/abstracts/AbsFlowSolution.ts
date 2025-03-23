@@ -5,4 +5,10 @@ export abstract class AbsFlowSolution extends AbsSolution {
     constructor() {
         super(new SolutionIdentifier('IFlowSolution'));
     }
+
+    override run(): void {}
+
+    override runAsync(): Promise<void> {
+        return Promise.resolve();
+    }
 }

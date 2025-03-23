@@ -1,3 +1,6 @@
 import { ISolutionIdentifier } from '../identifier';
 
-export interface ISolution extends ISolutionIdentifier {}
+export interface ISolution extends ISolutionIdentifier {
+    run(): void;
+    runAsync(): Promise<void>;
+}
