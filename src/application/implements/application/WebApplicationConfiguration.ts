@@ -43,7 +43,7 @@ export interface IWebApplicationConfiguration {
 export class WebApplicationConfiguration
     implements IWebApplicationConfiguration
 {
-    private __solution: Map<ISolutionIdentifier, ISolution> = new Map();
+    private __solution: Map<string, ISolution> = new Map();
 
     set logger(logger: ILogger) {
         throw new Error('Method not implemented.');
@@ -64,20 +64,20 @@ export class WebApplicationConfiguration
         throw new Error('Method not implemented.');
     }
 
-    setSolution(key: ISolutionIdentifier, value: ISolution) {
-        this.__solution.set(key, value);
+    setSolution(value: ISolution) {
+        this.__solution.set(value.id, value);
     }
     getSolution(key: ISolutionIdentifier | string): ISolution | undefined {
-        let _key: ISolutionIdentifier;
-        
-        if (typeof key === 'string') {
-            _key = new SolutionIdentifier(key);
+        let _key: string;
+
+        if (typeof key !== 'string') {
+            _key = key.id;
         } else {
             _key = key;
         }
 
         const solution: ISolution | undefined = this.__solution.get(_key);
-        if (solution === undefined) {
+        if (_.isUndefined(solution)) {
             throw new Error('Solution not found');
         }
 

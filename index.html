@@ -12,7 +12,13 @@
     <body>
         HTML
         <script>
-            nh.applicationStart();
+            const flowSolution = new nh.FlowSolution();
+
+            const config = new nh.WebApplicationConfiguration();
+
+            config.setSolution(flowSolution);
+
+            nh.applicationStart(config);
         </script>
     </body>
 </html>

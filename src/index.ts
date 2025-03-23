@@ -4,3 +4,4 @@ import lodash from 'lodash';
 
 export * from './framework';
 export * from './application';
+export * from './flowSolution';
