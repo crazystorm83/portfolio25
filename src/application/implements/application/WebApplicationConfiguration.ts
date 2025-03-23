@@ -3,9 +3,10 @@ import {
     IFooterConfiguration,
     IHeaderConfiguration,
     IMenuConfiguration,
+    IPageConfiguration,
     IRootConfiguration,
+    IWebApplicationConfiguration,
 } from '@application/interfaces';
-import { SolutionIdentifier } from '@framework/implements';
 import {
     ILogger,
     ISelector,
@@ -14,31 +15,6 @@ import {
 } from '@framework/interfaces';
 
 export interface IWebSelector extends ISelector {}
-
-export interface IPageConfiguration {
-    set root(root: IRootConfiguration);
-    get root(): Readonly<IRootConfiguration>;
-
-    set header(header: IHeaderConfiguration);
-    get header(): Readonly<IHeaderConfiguration>;
-
-    set content(content: IContentConofiguration);
-    get content(): Readonly<IContentConofiguration>;
-
-    set footer(footer: IFooterConfiguration);
-    get footer(): Readonly<IFooterConfiguration>;
-}
-
-export interface IWebApplicationConfiguration {
-    set menu(menu: IMenuConfiguration);
-    get menu(): Readonly<IMenuConfiguration>;
-
-    set page(page: IPageConfiguration);
-    get page(): Readonly<IPageConfiguration>;
-
-    set logger(logger: ILogger);
-    get logger(): Readonly<ILogger>;
-}
 
 export class WebApplicationConfiguration
     implements IWebApplicationConfiguration
@@ -67,7 +43,7 @@ export class WebApplicationConfiguration
     setSolution(value: ISolution) {
         this.__solution.set(value.id, value);
     }
-    getSolution(key: ISolutionIdentifier | string): ISolution | undefined {
+    getSolution(key: ISolutionIdentifier | string): ISolution {
         let _key: string;
 
         if (typeof key !== 'string') {

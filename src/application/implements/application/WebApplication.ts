@@ -1,5 +1,5 @@
+import { IWebApplicationConfiguration } from '@application/interfaces';
 import { $$txt } from '@framework/datatypes';
-import { IWebApplicationConfiguration } from '.';
 
 export interface IWebApplication {
     startAsync(): Promise<void>;
