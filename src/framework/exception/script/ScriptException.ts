@@ -1,4 +1,4 @@
-import { Exception } from '../Exception';
+import { Exception } from '@framework/exception/Exception';
 
 export class ScriptException extends Exception {
     throw<TPayload>(payload: TPayload): void {

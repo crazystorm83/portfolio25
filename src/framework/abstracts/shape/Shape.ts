@@ -1,4 +1,4 @@
-import { ENTITY_DATA } from '../../computedvalues';
+import { ENTITY_DATA } from '@framework/computedvalues';
 import {
     IPaint,
     IRenderer,
@@ -6,7 +6,7 @@ import {
     IShapeDrawLifecycle,
     IShapeMoveLifecycle,
     IShapeResizeLifecycle,
-} from '../../interfaces';
+} from '@framework/interfaces';
 
 export abstract class Shape<
     TClassData extends ENTITY_DATA,

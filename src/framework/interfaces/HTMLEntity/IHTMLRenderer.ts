@@ -1,5 +1,5 @@
-import { ENTITY_DATA } from '../../computedvalues';
-import { IRenderer } from '../entity';
+import { ENTITY_DATA } from '@framework/computedvalues';
+import { IRenderer } from '@framework/interfaces/entity';
 
 export interface IHTMLRendererTargetPayload {
     el: HTMLElement;

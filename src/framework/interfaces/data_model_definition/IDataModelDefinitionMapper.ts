@@ -1,4 +1,4 @@
-import { $$txt } from '../../datatypes';
+import { $$txt } from '@framework/datatypes';
 import { IPropDefinition } from './IPropDefinition';
 
 export interface IDataModelDefinition {

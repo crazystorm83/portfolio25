@@ -1,5 +1,5 @@
-import { $$txt } from '../../../datatypes';
-import { IKeyValue } from '../../../interfaces';
+import { $$txt } from '@framework/datatypes';
+import { IKeyValue } from '@framework/interfaces';
 
 export abstract class AbsKeyValue implements IKeyValue {
     abstract add<TPayload = any, TResult = any>(

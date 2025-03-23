@@ -1,4 +1,4 @@
-import { $$txt } from '../../../datatypes';
+import { $$txt } from '@framework/datatypes';
 
 export interface ISelector {
     set selector(value: $$txt);

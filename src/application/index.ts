@@ -1,4 +1,4 @@
-export * from './applicationStarter';
+export * from './applicationStart';
 export * from './entity';
 export * from './implements';
 export * from './interfacies';

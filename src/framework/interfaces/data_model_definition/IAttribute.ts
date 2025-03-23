@@ -1,6 +1,6 @@
-import { ENTITY_DATA } from '../../computedvalues';
-import { $$numeric, $$txt } from '../../datatypes';
-import { EN_ATTR_TYPE } from '../../enums';
+import { ENTITY_DATA } from '@framework/computedvalues';
+import { $$numeric, $$txt } from '@framework/datatypes';
+import { EN_ATTR_TYPE } from '@framework/enums';
 
 export interface IAttribute<T> extends ENTITY_DATA<T> {
     prop_id: $$txt;

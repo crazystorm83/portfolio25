@@ -1,11 +1,11 @@
-import { ISelector } from '../../../framework';
 import {
     IContentConofiguration,
     IFooterConfiguration,
     IHeaderConfiguration,
     IMenuConfiguration,
     IRootConfiguration,
-} from '../../interfacies';
+} from '@application/interfacies';
+import { ILogger, ISelector } from '@framework/interfaces';
 
 export interface IWebSelector extends ISelector {}
 
@@ -29,11 +29,21 @@ export interface IWebApplicationConfiguration {
 
     set page(page: IPageConfiguration);
     get page(): Readonly<IPageConfiguration>;
+
+    set logger(logger: ILogger);
+    get logger(): Readonly<ILogger>;
 }
 
 export class WebApplicationConfiguration
     implements IWebApplicationConfiguration
 {
+    set logger(logger: ILogger) {
+        throw new Error('Method not implemented.');
+    }
+    get logger(): ILogger {
+        throw new Error('Method not implemented.');
+    }
+
     set menu(menu: IMenuConfiguration) {}
     get menu(): Readonly<IMenuConfiguration> {
         throw new Error('Method not implemented.');

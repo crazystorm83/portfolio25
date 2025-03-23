@@ -1,4 +1,4 @@
-import { $$null, $$txt } from '../../datatypes';
+import { $$null, $$txt } from '@framework/datatypes';
 
 export class Fetch {
     static _controller?: AbortController;

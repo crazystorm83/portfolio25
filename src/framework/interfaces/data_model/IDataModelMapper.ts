@@ -1,4 +1,4 @@
-import { $$txt } from '../../datatypes';
+import { $$txt } from '@framework/datatypes';
 
 export type IDataModelMapper = {
     [data_model_id: $$txt]: any;

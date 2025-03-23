@@ -1,6 +1,6 @@
 //아래는 typescript 로 정의된 데이터를 흐름도로 만들어줘.
 
-import { $$numeric, $$txt } from '../../framework/datatypes';
+import { $$numeric, $$txt } from '@framework/datatypes';
 
 enum EN_FLOW_AST {
     Program = 'program',

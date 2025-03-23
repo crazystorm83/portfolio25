@@ -1,4 +1,4 @@
-import { ENTITY_DATA } from '../../computedvalues';
+import { ENTITY_DATA } from '@framework/computedvalues';
 import { IAttribute } from './IAttribute';
 import { IClass } from './IClass';
 import { IStyle } from './IStyle';

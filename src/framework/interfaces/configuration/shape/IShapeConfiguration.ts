@@ -1,5 +1,5 @@
-import { ENTITY_DATA } from '../../../computedvalues';
-import { IPaint, IRenderer } from '../../entity';
+import { ENTITY_DATA } from '@framework/computedvalues';
+import { IPaint, IRenderer } from '@framework/interfaces/entity';
 
 export interface IShapeConfiguration<
     TClassData extends ENTITY_DATA,

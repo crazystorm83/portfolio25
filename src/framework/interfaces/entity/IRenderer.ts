@@ -1,4 +1,4 @@
-import { ENTITY_DATA } from '../../computedvalues';
+import { ENTITY_DATA } from '@framework/computedvalues';
 import { IPaint } from './IPaint';
 
 export interface IRenderer<

@@ -1,5 +1,5 @@
-import { $$null, $$txt } from '../../../datatypes';
-import { ITree } from '../../../interfaces/entity/ITree';
+import { $$null, $$txt } from '@framework/datatypes';
+import { ITree } from '@framework/interfaces/entity/ITree';
 
 export type $$root_node_sid = $$null;
 export type $$node_sid = $$txt | $$root_node_sid;

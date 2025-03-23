@@ -1,4 +1,4 @@
-import { $$numeric } from '../../datatypes';
+import { $$numeric } from '@framework/datatypes';
 
 export interface IPosition {
     get top(): $$numeric;

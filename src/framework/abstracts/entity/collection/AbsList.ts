@@ -1,5 +1,5 @@
-import { ENTITY_DATA } from '../../../computedvalues';
-import { $$numeric } from '../../../datatypes';
+import { ENTITY_DATA } from '@framework/computedvalues';
+import { $$numeric } from '@framework/datatypes';
 import {
     IList,
     IListAddPayload,
@@ -13,7 +13,7 @@ import {
     IListRemoveAtResult,
     IListRemovePayload,
     IListRemoveResult,
-} from '../../../interfaces';
+} from '@framework/interfaces';
 
 export abstract class AbsList<T extends ENTITY_DATA> implements IList<T> {
     abstract add<
