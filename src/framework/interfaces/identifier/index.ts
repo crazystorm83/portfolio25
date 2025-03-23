@@ -2,6 +2,7 @@ export * from './interpreter';
 export * from './observer';
 export * from './command';
 export * from './page';
+export * from './solution';
 export * from './task';
 export * from './action';
 export * from './workflow';

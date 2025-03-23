@@ -33,6 +33,7 @@
         "paths": {
             "@framework/*": ["src/framework/*"],
             "@application/*": ["src/application/*"],
+            "@solution/*": ["src/solution/*"],
             "@web-tool-kit/*": ["src/web-tool-kit/*"]
         },
         // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */

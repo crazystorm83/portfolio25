@@ -1,8 +1,8 @@
 import {
     IWebApplication,
     WebApplication,
-} from './entity/application/WebApplication';
-import { WebApplicationConfiguration } from './entity/application/WebApplicationConfiguration';
+} from './implements/application/WebApplication';
+import { WebApplicationConfiguration } from './implements/application/WebApplicationConfiguration';
 
 export async function applicationStart() {
     console.log('applicationStart');
