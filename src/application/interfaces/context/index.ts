@@ -1,1 +1,2 @@
-export interface IPageContext {}
+export * from './IApplicationContext';
+export * from './IPageContext';
