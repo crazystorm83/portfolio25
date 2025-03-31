@@ -1,5 +1,7 @@
+export * from './border_style';
 export * from './date_format';
 export * from './datetime_format';
+export * from './font_style';
 
 export * from './$$code';
 export * from './$$date';

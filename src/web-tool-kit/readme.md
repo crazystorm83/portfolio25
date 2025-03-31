@@ -30,19 +30,19 @@ view_type: '',
 
 button viewmodel_mapper
 {
-classNames: {
-display_state: {
-true: '',
-false: 'hide'
-}
-button: {
-type: {
-primary: 'btn-primary',
-warning: 'btn-warning',
-info: 'btn-info'
-}
-}
-}
+    classNames: {
+        display_state: {
+            true: '',
+            false: 'hide'
+        }
+        button: {
+            type: {
+                primary: 'btn-primary',
+                warning: 'btn-warning',
+                info: 'btn-info'
+            }
+        }
+    }
 }
 
 layout viewmodel

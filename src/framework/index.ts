@@ -7,6 +7,7 @@ export * from './decoarator';
 export * from './enums';
 export * from './implements';
 export * from './interfaces';
+export * from './lifecycle';
 export * from './security';
 export * from './validator';
 
