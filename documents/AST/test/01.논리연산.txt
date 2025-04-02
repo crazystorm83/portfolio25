@@ -1,7 +1,9 @@
+(TARGET) => IFlowAstItem 항목을 의미함.
+
 //논리연산 case1
 요구사항1 아래의 값을 AST 로 변환 후 JSON 형태로 만들어줘
 case1
-조건1: A AND B
+조건1: (TARGET)string AND (TARGET)string
 참: 1
 
 case2
