@@ -11,3 +11,6 @@ export * from './logger';
 export * from './solution';
 
 export * from './HTMLEntity';
+
+export * from './module';
+export * from './register';
