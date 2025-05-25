@@ -9,6 +9,6 @@ export * from './implements';
 export * from './interfaces';
 export * from './lifecycle';
 export * from './security';
-export * from './validator';
+export * from './validate';
 
 // export * from './reflect';
