@@ -1,8 +1,9 @@
-import { $$webtoken, IPlugin, ISelectionGetPlainTextPayload, ISelectionGetPlainTextResult, ISelectionGetStructuredPayload, ISelectionGetStructuredResult, Selection, SelectionLexical } from "./Selection";
+import { SelectionLexical } from "./Selection";
+import { ITokenizePlugin } from "@framework/interfaces";
 
 export class WebSelectionLexical extends SelectionLexical {
   constructor(protected override _config: {
-    plugins: IPlugin[]
+    plugins: ITokenizePlugin[]
   }) {
     super(_config);
   }
