@@ -1,11 +1,12 @@
 import { ITokenizePlugin, IWebTokenizePayloadPlugin, IWebTokenizeResultPlugin } from "@framework/interfaces";
 import { $$webtoken } from "src/modules/cursor/implements/Selection";
+import { Tokenize } from "../Tokenize";
 
 export interface IWebSelectionPlainTextTokenizePlugin extends ITokenizePlugin {}
 export interface IWebSelectionPlainTextTokenizePluginPayload extends IWebTokenizePayloadPlugin {}
 export interface IWebSelectionPlainTextTokenizePluginResult extends IWebTokenizeResultPlugin {}
 
-export class WebSelectionPlainTextTokenizePlugin implements IWebSelectionPlainTextTokenizePlugin {
+export class WebSelectionPlainTextTokenizePlugin extends Tokenize implements IWebSelectionPlainTextTokenizePlugin {
     name: string = "IWebSelectionPlainTextTokenizePlugin";
 
     execute(payload: IWebSelectionPlainTextTokenizePluginPayload): IWebSelectionPlainTextTokenizePluginResult {
@@ -18,14 +19,9 @@ export class WebSelectionPlainTextTokenizePlugin implements IWebSelectionPlainTe
         
         const div = document.createElement('div');
         div.appendChild(request_data.cloneNode(true));
-        let text = div.textContent || div.innerText || '';
 
-        result_datas.push({
-            type: "text",
-            styles: [],
-            attributes: [],
-            text: text
-        });
+        const { data: result_data } = this._tokenize(div);        
+        result_datas.push(result_data);
         
         return {
             datas: result_datas,

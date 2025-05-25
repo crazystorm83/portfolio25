@@ -1,11 +1,12 @@
 import { ITokenizePlugin, IWebTokenizePayloadPlugin, IWebTokenizeResultPlugin } from "@framework/interfaces";
 import { $$webtoken } from "src/modules/cursor/implements/Selection";
+import { Tokenize } from "../Tokenize";
 
 export interface IWebSelectionWithFormatTokenizePlugin extends ITokenizePlugin {}
 export interface IWebSelectionWithFormatTokenizePluginPayload extends IWebTokenizePayloadPlugin {}
 export interface IWebSelectionWithFormatTokenizePluginResult extends IWebTokenizeResultPlugin {}
 
-export class WebSelectionWithFormatTokenizePlugin implements IWebSelectionWithFormatTokenizePlugin {
+export class WebSelectionWithFormatTokenizePlugin extends Tokenize implements IWebSelectionWithFormatTokenizePlugin {
     name: string = "IWebSelectionWithFormatTokenizePlugin";
 
     execute(payload: IWebSelectionWithFormatTokenizePluginPayload): IWebSelectionWithFormatTokenizePluginResult {
@@ -63,42 +64,5 @@ export class WebSelectionWithFormatTokenizePlugin implements IWebSelectionWithFo
             datas: result_datas,
             pluginname: this.name
         };
-    }
-      
-    private __extractImportantStyles(node) {
-        const important = {};
-        try {
-          const computedStyle = window.getComputedStyle(node);
-          const props = [
-            'fontWeight', 'fontStyle', 'textDecoration',
-            'color', 'backgroundColor', 'fontSize', 'fontFamily'
-          ];
-          
-          props.forEach(prop => {
-            const value = computedStyle[prop];
-            if (value && value !== 'normal' && value !== 'none' && 
-                value !== 'rgb(0, 0, 0)' && value !== 'rgba(0, 0, 0, 0)') {
-              important[prop] = value;
-            }
-          });
-        } catch (e) {
-          // 스타일 접근 실패 시 무시
-        }
-        
-        return important;
-    }
-    
-    private __extractImportantAttributes(node) {
-        const important = {};
-        const attrs = ['href', 'src', 'alt', 'title'];
-        
-        attrs.forEach(attr => {
-            const value = node.getAttribute(attr);
-            if (value) {
-            important[attr] = value;
-            }
-        });
-        
-        return important;
     }
 }

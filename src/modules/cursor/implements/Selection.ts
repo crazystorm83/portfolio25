@@ -12,7 +12,7 @@ export interface IOptionalDatas<TData> {
     datas?: TData[];
 }
 
-export type $$tokenType = "unknown" | "text" | "image" | "link" | "video" | "audio" | "table" | "list" | "unordered-list" | "ordered-list" | "heading" | "paragraph" | "code" | "quote" | "enter" | "block-quote" | "code-block";
+export type $$tokenType = "unknown" | "text" | "image" | "link" | "video" | "audio" | "table" | "list" | "unordered-list" | "ordered-list" | "heading" | "paragraph" | "code" | "quote" | "enter" | "block-quote" | "code-block" | "block";
 
 export type $$webtoken = {
     type: $$tokenType,
