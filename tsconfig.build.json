@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "./.ts-temp",
+    "outDir": "./.ts-temp",
+    "strict": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": ["packages/*/src/**/*"],
+  "exclude": [
+    "./libdefs/*.js",
+    "**/__tests__/**",
+    "**/dist/**",
+    "**/npm/**",
+    "**/node_modules/**"
+  ],
+  "extends": "./tsconfig.json"
+}

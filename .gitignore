@@ -1,3 +1,7 @@
+.ts-temp
+
+packages/*/dist
+
 node_modules/*
 build/*
 src/web-tool-kit/node_modules/*
