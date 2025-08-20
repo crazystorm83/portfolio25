@@ -1,4 +1,4 @@
-import { $$tf } from '@framework/datatypes';
+import { $$tf } from '../../index';
 
 export const $$underline = '$$underline';
 export type $$underline = $$tf;

@@ -1,0 +1,1 @@
+{"version":3,"file":"Identifier.js","sourceRoot":"","sources":["../../../../../../packages/framework/src/abstracts/identifier/Identifier.ts"],"names":[],"mappings":"AAGA,MAAM,OAAgB,UAAU;IAC5B,YAAsB,GAAU;QAAV,QAAG,GAAH,GAAG,CAAO;IAAG,CAAC;IAEpC,IAAI,EAAE,CAAC,KAAY;QACf,IAAI,CAAC,GAAG,GAAG,KAAK,CAAC;IACrB,CAAC;IACD,IAAI,EAAE;QACF,OAAO,IAAI,CAAC,GAAG,CAAC;IACpB,CAAC;CACJ"}

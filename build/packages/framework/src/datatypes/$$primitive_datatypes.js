@@ -1,0 +1,17 @@
+export const $$primitive_datatypes = {
+    $$code: '$$code',
+    $$date: '$$date',
+    $$datetime: '$$datetime',
+    $$decimal: '$$decimal',
+    $$enum: '$$enum',
+    $$multicode: '$$multicode',
+    $$numeric: '$$numeric',
+    $$tf: '$$tf',
+    $$txt: '$$txt',
+    $$date_range: '$$date_range',
+    $$datetime_range: '$$datetime_range',
+    $$decimal_range: '$$decimal_range',
+    $$numeric_range: '$$numeric_range',
+    $$txt_range: '$$txt_range',
+};
+//# sourceMappingURL=$$primitive_datatypes.js.map

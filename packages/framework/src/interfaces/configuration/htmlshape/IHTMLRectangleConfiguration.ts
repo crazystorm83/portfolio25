@@ -1,4 +1,4 @@
-import { ENTITY_DATA } from '../../../computedvalues';
+import { ENTITY_DATA } from '../../../computedvalues/ComputedValues';
 import { IShapeConfiguration } from '../shape/IShapeConfiguration';
 
 export interface IHTMLRectangleConfiguration<

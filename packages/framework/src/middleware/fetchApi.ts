@@ -1,4 +1,4 @@
-import { $$txt } from '@framework/datatypes';
+import { $$txt } from '../datatypes';
 
 export class fetchApi {
     protected _controller?: AbortController;

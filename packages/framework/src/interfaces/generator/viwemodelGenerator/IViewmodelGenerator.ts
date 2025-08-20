@@ -1,3 +1,3 @@
-import { IGenerator } from '../IGenerator';
+import { IGenerator } from '../../generator/IGenerator';
 
 export interface IViewmodelGenerator extends IGenerator {}

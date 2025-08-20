@@ -1,5 +1,4 @@
-import { IIdentifier } from '../identifier';
-import { $$txt } from '@framework/datatypes';
+import { $$txt } from '../../datatypes';
 
 export interface IRegister<T = any> {
     has(id: $$txt): boolean;

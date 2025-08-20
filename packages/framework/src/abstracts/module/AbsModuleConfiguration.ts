@@ -1,3 +1,4 @@
-import { IModuleConfiguration } from '@framework/interfaces';
+import { IModuleConfiguration } from "../../interfaces";
+
 
 export abstract class AbsModuleConfiguration implements IModuleConfiguration {}

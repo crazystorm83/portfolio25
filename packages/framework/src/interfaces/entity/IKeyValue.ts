@@ -1,4 +1,4 @@
-import { $$txt } from '@framework/datatypes';
+import { $$txt } from '../../datatypes';
 
 export interface IKeyValue {
     add<TPayload = any, TResult = any>(key: $$txt, value: TPayload): TResult;

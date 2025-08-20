@@ -1,1 +1,1 @@
-export * from './HTMLRectangle';
+export { };

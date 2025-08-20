@@ -1,10 +1,13 @@
+# Cursor rules 폴더 무시
+.cursor
 .ts-temp
+# VSCode 폴더 무시
+.vscode
+# 문서 폴더 무시
+documents
+node_modules/*
 
 packages/*/dist
 
-node_modules/*
-build/*
 src/web-tool-kit/node_modules/*
-# Cursor rules 폴더 무시
-.cursor/
-.cursor/*
+

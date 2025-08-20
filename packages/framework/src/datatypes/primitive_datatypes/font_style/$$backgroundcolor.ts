@@ -1,4 +1,4 @@
-import { $$txt } from '@framework/datatypes';
+import { $$txt } from '../../index';
 
 export const $$backgroundcolor = '$$backgroundcolor';
 export type $$backgroundcolor = $$txt;

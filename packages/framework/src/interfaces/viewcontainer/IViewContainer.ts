@@ -1,5 +1,5 @@
-import { $$txt } from '@framework/datatypes';
-import { EN_VIEW_TYPE } from '@framework/enums';
+import { $$txt } from '../../datatypes';
+import { EN_VIEW_TYPE } from '../../enums';
 
 export interface IViewContainer {
     sid: $$txt;

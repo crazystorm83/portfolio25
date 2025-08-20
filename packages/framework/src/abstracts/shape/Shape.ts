@@ -1,12 +1,8 @@
-import { ENTITY_DATA } from '@framework/computedvalues';
-import {
-    IPaint,
-    IRenderer,
-    IShapeConfiguration,
-    IShapeDrawLifecycle,
-    IShapeMoveLifecycle,
-    IShapeResizeLifecycle,
-} from '@framework/interfaces';
+import { ENTITY_DATA } from '../../computedvalues/ComputedValues';
+import { IShapeDrawLifecycle, IShapeMoveLifecycle, IShapeResizeLifecycle } from '../../interfaces';
+import { IShapeConfiguration } from '../../interfaces/configuration/shape/IShapeConfiguration';
+import { IPaint } from '../../interfaces/entity/IPaint';
+import { IRenderer } from '../../interfaces/entity/IRenderer';
 
 export abstract class Shape<
     TClassData extends ENTITY_DATA,

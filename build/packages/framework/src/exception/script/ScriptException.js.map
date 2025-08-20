@@ -1,0 +1,1 @@
+{"version":3,"file":"ScriptException.js","sourceRoot":"","sources":["../../../../../../packages/framework/src/exception/script/ScriptException.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,gCAAgC,CAAC;AAE3D,MAAM,OAAO,eAAgB,SAAQ,SAAS;IAC1C,KAAK,CAAW,OAAiB;QAC7B,MAAM,IAAI,KAAK,CAAC,yBAAyB,CAAC,CAAC;IAC/C,CAAC;CACJ"}

@@ -1,4 +1,4 @@
-import { $$numeric } from '@framework/datatypes';
+import { $$numeric } from '../../datatypes';
 
 export interface ISize {
     get width(): $$numeric;

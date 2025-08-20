@@ -11,10 +11,8 @@ import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
-import { exec as cpExec } from 'child_process';
-import { promisify } from 'util';
+import { exec } from 'child-process-promise';
 import { File } from './stream/File.js';
-const exec = promisify(cpExec);
 
 import { packageManager } from './packages/PackageManager.js';
 
@@ -25,74 +23,52 @@ const thirdPartyExternals = ['react', 'react-dom', 'lodash', 'jquery', 'yjs', 'y
 const thirdPartyExternalsRegExp = new RegExp(`^(${thirdPartyExternals.join('|')})(\\/|$)`);
 
 /**
- *
+ * @param {import('./packages/PackageMatadata.js').PackageMatadata} pkg
  */
-async function buildTSDeclarationFiles() {
-    const publicPackages = packageManager.getPublicPackages();
+async function buildTSDeclarationFiles(pkg) {
+    const pkgDir = path.dirname(pkg.packageJsonPath);
+    const pkgTsconfigPath = path.resolve(pkgDir, 'tsconfig.json');
+    const tmpTsconfigPath = path.resolve(pkgDir, '.tsbuild.temp.json');
+    const relRoot = path.relative(pkgDir, process.cwd()) || '.';
+    const outDir = path.resolve(process.cwd(), '.ts-temp', pkgDir);
 
-    for (const pkg of publicPackages) {
-        const pkgDir = path.dirname(pkg.packageJsonPath);
-        const pkgTsconfigPath = path.resolve(pkgDir, 'tsconfig.json');
-        const tmpTsconfigPath = path.resolve(pkgDir, '.tsbuild.temp.json');
-        const relRoot = path.relative(pkgDir, process.cwd()) || '.';
-        const outDir = path.resolve(process.cwd(), '.ts-temp', path.basename(pkgDir));
+    const hasLocalTsconfig = fs.existsSync(pkgTsconfigPath);
 
-        const hasLocalTsconfig = fs.existsSync(pkgTsconfigPath);
+    const tempConfig = {
+        extends: hasLocalTsconfig ? './tsconfig.json' : path.join(relRoot, 'tsconfig.json'),
+        compilerOptions: {
+            noEmit: false,
+            declaration: true,
+            emitDeclarationOnly: true,
+            declarationDir: outDir,
+            outDir: outDir,
+            jsx: 'react-jsx',
+            moduleResolution: 'Bundler',
+            skipLibCheck: true,
+            typeRoots: [path.join(relRoot, 'node_modules/@types'), path.join(relRoot, '@types')],
+            types: ['lodash'],
+        },
+        include: ['src/**/*'],
+    };
 
-        const possibleRootTsconfig = path.join(relRoot, 'tsconfig.json');
-        const baseConfigPath = hasLocalTsconfig
-            ? './tsconfig.json'
-            : (fs.existsSync(possibleRootTsconfig) ? possibleRootTsconfig : null);
+    fs.writeJsonSync(tmpTsconfigPath, tempConfig, { spaces: 2 });
 
-        const tempConfig = {
-            ...(baseConfigPath ? { extends: baseConfigPath } : {}),
-            compilerOptions: {
-                noEmit: false,
-                declaration: true,
-                declarationMap: true,
-                emitDeclarationOnly: true,
-                declarationDir: outDir,
-                outDir: outDir,
-                jsx: 'react-jsx',
-                moduleResolution: 'Bundler',
-                skipLibCheck: true,
-            },
-            include: ['src/**/*'],
-        };
-
-        fs.writeJsonSync(tmpTsconfigPath, tempConfig, { spaces: 2 });
-
-        try {
-            await exec(`npx tsc -p ${tmpTsconfigPath}`);
-        } finally {
-            fs.removeSync(tmpTsconfigPath);
-        }
+    try {
+        await exec(`npx tsc -p ${tmpTsconfigPath}`);
+    } catch(e) {
+        console.log(e);  
+    } finally {
+        fs.removeSync(tmpTsconfigPath);
     }
 }
 
 /**
- * Copy generated .d.ts files from temporary directory into the package's types directory
- * and then clean up the temp directory.
+ *
  * @param {string} packageName
- * @param {string} outputPathForDeclaration
- * @param {string} packageJsonPath
+ * @param {string} outputPath
  */
-function moveTSDeclarationFilesIntoDist(packageName, outputPathForDeclaration, packageJsonPath) {
-    try {
-        const pkgDir = path.dirname(packageJsonPath);
-        const tempOutDir = path.resolve(process.cwd(), '.ts-temp', path.basename(pkgDir));
-
-        if (!fs.existsSync(tempOutDir)) return;
-
-        fs.ensureDirSync(outputPathForDeclaration);
-        fs.copySync(tempOutDir, outputPathForDeclaration, { overwrite: true, errorOnExist: false });
-    } catch (_) {
-        // ignore
-    } finally {
-        const pkgDir = path.dirname(packageJsonPath);
-        const tempOutDir = path.resolve(process.cwd(), '.ts-temp', path.basename(pkgDir));
-        if (fs.existsSync(tempOutDir)) fs.removeSync(tempOutDir);
-    }
+function moveTSDeclarationFilesIntoDist(packageDirectory, outputPath) {
+    fs.copySync(`./.ts-temp/${packageDirectory}`, outputPath);
 }
 
 /**
@@ -137,7 +113,10 @@ function rollupInputOptions(inputFile, extensions, pkg) {
             tsconfig: tsconfigPath,
             outDir: undefined,
             declaration: false,
-            declarationMap: false,
+            compilerOptions: {
+                typeRoots: [path.resolve('node_modules/@types'), path.resolve('@types')],
+                types: ['lodash'],
+            },
         }),
         ...(isProduction ? [terser()] : []),
     ];
@@ -178,6 +157,10 @@ function rollupOuterOptions(format, outputPath, outputFile, packageName) {
                 format,
                 sourcemap: !isProduction,
                 name: packageName,
+
+                globals: {
+                    'lodash': '_' // lodash 를 전역 _ 변수로 매핑
+                }
             };
             break;
         }
@@ -198,13 +181,15 @@ async function buildPackage(pkg) {
     const extensions = ['js', 'jsx', 'ts', 'tsx'];
 
     try {
+        await buildTSDeclarationFiles(pkg);
+
         const npmName = pkg.getNpmName();
         const packageName = pkg.getPackageName();
+        const pkgDir = path.dirname(pkg.packageJsonPath);
         const fileName = File.getFileName(npmName);
         console.log(fileName);
 
         const buildDefinition = pkg.getBuildDefinition();
-        console.log(buildDefinition);
 
         const inputFile = path.resolve(buildDefinition.sourcePath, buildDefinition.sourceFile);
         const outputPath = buildDefinition.outputPath;
@@ -221,20 +206,15 @@ async function buildPackage(pkg) {
             });
         }
 
-        // //copy declaration files
-        // moveTSDeclarationFilesIntoDist(packageName, outputPathForDeclaration, pkg.packageJsonPath);
+        //copy declaration files
+        moveTSDeclarationFilesIntoDist(pkgDir, outputPathForDeclaration, pkg.packageJsonPath);
     } catch (error) {
         console.log(error);
     }
 }
 
-/**
- * Build all packages
- */
 async function buildAll() {
     const publicPackages = packageManager.getPublicPackages();
-    
-    // await buildTSDeclarationFiles();
 
     for (const pkg of publicPackages) {
         await buildPackage(pkg);

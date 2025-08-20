@@ -1,16 +1,13 @@
-export * from './identifier';
-
-export * from './generator';
-
 export * from './configuration';
+export * from './data_model_definition';
 export * from './entity';
-
 export * from './events';
+export * from './generator';
+export * from './HTMLEntity';
+export * from './identifier';
 export * from './logger';
-
+export * from './module';
+export * from './plugins';
+export * from './register';
 export * from './solution';
 
-export * from './HTMLEntity';
-
-export * from './module';
-export * from './register';

@@ -13,12 +13,6 @@
     "skipLibCheck": true
   },
   "include": ["packages/*/src/**/*"],
-  "exclude": [
-    "./libdefs/*.js",
-    "**/__tests__/**",
-    "**/dist/**",
-    "**/npm/**",
-    "**/node_modules/**"
-  ],
+  "exclude": ["**/dist/**", "**/node_modules/**", "scripts/**", "src/**"],
   "extends": "./tsconfig.json"
 }

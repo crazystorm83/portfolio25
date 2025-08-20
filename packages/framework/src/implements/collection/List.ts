@@ -12,8 +12,8 @@ import {
     IListRemoveAtResult,
     IListRemovePayload,
     IListRemoveResult,
-} from '../../interfaces';
-import { BaseList } from './base/BaseList';
+} from '../../interfaces/entity/IList';
+import { BaseList } from '../collection/base/BaseList';
 
 export class List<T extends ENTITY_DATA> extends BaseList<T> {
     private __list: T[] = [];

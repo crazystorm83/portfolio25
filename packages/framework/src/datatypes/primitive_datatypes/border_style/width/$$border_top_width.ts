@@ -1,4 +1,4 @@
-import { $$numeric } from '@framework/datatypes';
+import { $$numeric } from '../../../../index';
 
 export const $$border_top_width = '$$border_top_width';
 export type $$border_top_width = $$numeric;

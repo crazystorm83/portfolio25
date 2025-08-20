@@ -1,0 +1,7 @@
+export var EN_HORIZONTAL_ALIGN;
+(function (EN_HORIZONTAL_ALIGN) {
+    EN_HORIZONTAL_ALIGN["LEFT"] = "left";
+    EN_HORIZONTAL_ALIGN["CENTER"] = "center";
+    EN_HORIZONTAL_ALIGN["RIGHT"] = "right";
+})(EN_HORIZONTAL_ALIGN || (EN_HORIZONTAL_ALIGN = {}));
+//# sourceMappingURL=EN_HORIZONTAL_ALIGN.js.map

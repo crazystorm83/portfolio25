@@ -1,13 +1,12 @@
-import { $$txt } from '@framework/datatypes';
-import { IIdentifier } from '@framework/interfaces/identifier';
+import { IIdentifier } from '../../interfaces/identifier/IIdentifier';
 
 export abstract class Identifier implements IIdentifier {
-    constructor(protected _id: $$txt) {}
+    constructor(protected _id: string) {}
 
-    set id(value: $$txt) {
+    set id(value: string) {
         this._id = value;
     }
-    get id(): $$txt {
+    get id(): string {
         return this._id;
     }
 }

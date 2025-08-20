@@ -1,17 +1,20 @@
 import fs from 'fs-extra';
-import path from 'path';
+import path from 'node:path';
+
+import { distDir } from '../env/constant.js';
 import { Directory } from '../stream/Directory.js';
 import { File } from '../stream/File.js';
 
-export class PackageMetadata {
+export class PackageMatadata {
     /** @type {string} */
     packageJsonPath;
-
     /** @type {Record<string, any>} */
     packageJson;
+    /** @type {boolean} */
+    isProduction;
 
     /** @param {string} packageJsonPath */
-    constructor(packageJsonPath) {
+    constructor(packageJsonPath, isProduction = false) {
         this.packageJsonPath = packageJsonPath;
         this.packageJson = fs.readJsonSync(packageJsonPath);
     }
@@ -51,8 +54,8 @@ export class PackageMetadata {
         const packageName = this.getPackageName();
         return {
             name: fileName,
-            outputPathForDeclaration: Directory.resolve(directoryName, 'types'),
-            outputPath: Directory.resolve(directoryName, 'dist'),
+            outputPathForDeclaration: Directory.resolve(directoryName, typesDir),
+            outputPath: Directory.resolve(directoryName, distDir),
             outputFile: `${fileName}.js`,
             packageName: packageName,
             sourcePath: Directory.resolve(directoryName, 'src'),

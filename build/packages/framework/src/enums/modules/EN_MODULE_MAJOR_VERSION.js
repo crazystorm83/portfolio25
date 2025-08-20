@@ -1,0 +1,14 @@
+export var EN_MODULE_MAJOR_VERSION;
+(function (EN_MODULE_MAJOR_VERSION) {
+    EN_MODULE_MAJOR_VERSION["Version1"] = "";
+    EN_MODULE_MAJOR_VERSION["Version2"] = "V2";
+    EN_MODULE_MAJOR_VERSION["Version3"] = "V3";
+    EN_MODULE_MAJOR_VERSION["Version4"] = "V4";
+    EN_MODULE_MAJOR_VERSION["Version5"] = "V5";
+    EN_MODULE_MAJOR_VERSION["Version6"] = "V6";
+    EN_MODULE_MAJOR_VERSION["Version7"] = "V7";
+    EN_MODULE_MAJOR_VERSION["Version8"] = "V8";
+    EN_MODULE_MAJOR_VERSION["Version9"] = "V9";
+    EN_MODULE_MAJOR_VERSION["Version10"] = "V10";
+})(EN_MODULE_MAJOR_VERSION || (EN_MODULE_MAJOR_VERSION = {}));
+//# sourceMappingURL=EN_MODULE_MAJOR_VERSION.js.map

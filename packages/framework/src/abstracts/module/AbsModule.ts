@@ -1,4 +1,4 @@
-import { IModuleIdentifier } from '../../interfaces';
+import { IModuleIdentifier } from '../../interfaces/module/IModuleIdentifier';
 
 export abstract class AbsModule implements IModuleIdentifier {
     get id(): string {

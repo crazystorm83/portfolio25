@@ -1,8 +1,9 @@
+import _ from 'lodash';
 import { $$txt } from '../datatypes';
 import {
-    EN_MOUDLE_PREFIX,
-    EN_MODULE_POSTFIX,
     EN_MODULE_MAJOR_VERSION,
+    EN_MODULE_POSTFIX,
+    EN_MOUDLE_PREFIX,
 } from '../enums';
 
 export interface IDispatchPayload {

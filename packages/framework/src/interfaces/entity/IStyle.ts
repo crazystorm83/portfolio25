@@ -1,5 +1,4 @@
-import { ENTITY_DATA } from '@framework/computedvalues';
-import { IDeserializer, ISerializer } from './base';
+import { ENTITY_DATA } from '../../computedvalues/ComputedValues';
 import { IList } from './IList';
 import { IPosition } from './IPosition';
 import { ISize } from './ISize';

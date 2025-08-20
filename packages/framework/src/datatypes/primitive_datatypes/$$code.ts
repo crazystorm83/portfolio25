@@ -1,4 +1,4 @@
-import { $$txt } from './$$txt';
+import { $$txt } from '../index';
 
 export const $$code = '$$code';
 export type $$code = {

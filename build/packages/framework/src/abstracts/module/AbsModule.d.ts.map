@@ -1,0 +1,1 @@
+{"version":3,"file":"AbsModule.d.ts","sourceRoot":"","sources":["../../../../../../packages/framework/src/abstracts/module/AbsModule.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,iBAAiB,EAAE,MAAM,kBAAkB,CAAC;AAErD,8BAAsB,SAAU,YAAW,iBAAiB;IAK5C,OAAO,CAAC,QAAQ,CAAC,GAAG;IAJhC,IAAI,EAAE,IAAI,MAAM,CAEf;gBAE4B,GAAG,EAAE,MAAM;CAC3C"}

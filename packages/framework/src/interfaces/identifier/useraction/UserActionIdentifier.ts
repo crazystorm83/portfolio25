@@ -1,4 +1,4 @@
-import { IIdentifier } from '@framework/interfaces/identifier/IIdentifier';
+import { IIdentifier } from '../../identifier/IIdentifier';
 
 export interface IUserActionIdentifier extends IIdentifier {}
 

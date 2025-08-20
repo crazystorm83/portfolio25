@@ -1,0 +1,1 @@
+{"version":3,"file":"IPosition.d.ts","sourceRoot":"","sources":["../../../../../../packages/framework/src/interfaces/entity/IPosition.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,sBAAsB,CAAC;AAEjD,MAAM,WAAW,SAAS;IACtB,IAAI,GAAG,IAAI,SAAS,CAAC;IACrB,IAAI,GAAG,CAAC,KAAK,EAAE,SAAS,EAAE;IAE1B,IAAI,IAAI,IAAI,SAAS,CAAC;IACtB,IAAI,IAAI,CAAC,KAAK,EAAE,SAAS,EAAE;CAC9B"}

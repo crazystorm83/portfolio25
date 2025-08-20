@@ -1,4 +1,4 @@
-import { ISolutionIdentifier } from '@framework/interfaces/identifier/solution/ISolutionIdentifier';
+import { ISolutionIdentifier } from '../../interfaces/identifier/solution/ISolutionIdentifier';
 
 export class SolutionIdentifier implements ISolutionIdentifier {
     constructor(private __id: string) {}

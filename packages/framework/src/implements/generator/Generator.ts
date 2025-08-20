@@ -1,5 +1,5 @@
-import { AbsGenerator } from '@framework/abstracts';
-import { IGenerator } from '@framework/interfaces/generator';
+import { AbsGenerator } from '../../abstracts/generator/AbsGenerator';
+import { IGenerator } from '../../interfaces/generator/IGenerator';
 
 export abstract class Generator extends AbsGenerator implements IGenerator {
     abstract generate<TPayload = any, TResult = any>(

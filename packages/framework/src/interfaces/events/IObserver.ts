@@ -1,4 +1,4 @@
-import { IObserverIdentifier } from '@framework/interfaces/identifier';
+import { IObserverIdentifier } from '../identifier/observer/IObserverIdentifier';
 
 export interface ISubject {
     attach(observer: IObserver): void;

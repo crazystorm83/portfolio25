@@ -1,5 +1,5 @@
-import { ENTITY_DATA } from '@framework/computedvalues';
-import { $$numeric } from '@framework/datatypes';
+import { ENTITY_DATA } from '../../computedvalues/ComputedValues';
+import { $$numeric } from '../../datatypes';
 
 export interface IListAddPayload<T extends ENTITY_DATA> {
     data: T;

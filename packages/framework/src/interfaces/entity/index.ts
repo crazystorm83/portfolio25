@@ -10,3 +10,4 @@ export * from './IPosition';
 export * from './IRenderer';
 export * from './ISize';
 export * from './IStyle';
+export * from './ITree';

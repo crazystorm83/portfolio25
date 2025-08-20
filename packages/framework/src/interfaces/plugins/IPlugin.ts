@@ -1,4 +1,4 @@
-import { IOptionalData, IOptionalDatas, IRequireData } from "../entity";
+import { IOptionalData, IOptionalDatas, IRequireData } from "../data_model/IDataModel";
 
 
 export interface IPluginPayload<TData> extends IRequireData<TData>{}

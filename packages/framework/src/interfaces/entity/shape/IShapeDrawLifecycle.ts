@@ -1,6 +1,4 @@
-import { ENTITY_DATA } from '@framework/computedvalues';
-import { IPosition } from '@framework/interfaces/entity/IPosition';
-import { ISize } from '@framework/interfaces/entity/ISize';
+import { ENTITY_DATA } from '../../../computedvalues/ComputedValues';
 
 export interface IShapeDrawLifecycle<
     TClassData extends ENTITY_DATA,

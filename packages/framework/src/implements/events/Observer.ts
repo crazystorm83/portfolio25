@@ -1,6 +1,6 @@
-import { IObserver, ISubject } from '@framework/interfaces/events/IObserver';
-import { $$txt } from '@framework/datatypes';
-import { Identifier } from '@framework/abstracts';
+import { Identifier } from '../../abstracts/identifier/Identifier';
+import { $$txt } from '../../datatypes';
+import { IObserver, ISubject } from '../../interfaces/events/IObserver';
 
 export class Subject implements ISubject {
     private observers: Map<$$txt, IObserver> = new Map();

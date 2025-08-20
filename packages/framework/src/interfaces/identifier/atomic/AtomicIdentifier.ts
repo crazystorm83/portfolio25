@@ -1,3 +1,3 @@
-import { IIdentifier } from '../IIdentifier';
+import { IIdentifier } from '../../identifier/IIdentifier';
 
 export interface IAtomicIdentifier extends IIdentifier {}

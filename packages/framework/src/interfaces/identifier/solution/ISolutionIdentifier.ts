@@ -1,3 +1,3 @@
-import { IIdentifier } from '@framework/interfaces/identifier/IIdentifier';
+import { IIdentifier } from '../../identifier';
 
 export interface ISolutionIdentifier extends IIdentifier {}

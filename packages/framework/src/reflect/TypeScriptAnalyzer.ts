@@ -1,10 +1,5 @@
 import * as ts from 'typescript';
-import { CommentMetadata } from './interfaces/CommentMetadata';
-import { MemberMetadata } from './interfaces/MemberMetadata';
-import { ParameterMetadata } from './interfaces/ParameterMetadata';
-import { DecoratorMetadata } from './interfaces/DecoratorMetadata';
-import { ClassMetadata } from './interfaces/ClassMetadata';
-import { AnalysisResult } from './interfaces/AnalysisResult';
+import { AnalysisResult, ClassMetadata, CommentMetadata, DecoratorMetadata, MemberMetadata } from './interfaces';
 
 /**
  * TypeScript 코드 분석을 위한 클래스
@@ -385,7 +380,7 @@ class TypeScriptAnalyzer {
     }
 }
 
-export { TypeScriptAnalyzer, AnalysisResult };
+export { TypeScriptAnalyzer };
 
 // 사용 예시
 const sourceCode = `

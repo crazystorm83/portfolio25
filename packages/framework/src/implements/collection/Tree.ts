@@ -11,7 +11,7 @@ import {
     INode,
     IPreviousPayload,
     IRemovePayload,
-} from '../../abstracts/entity/collection/AbsTree';
+} from '../../abstracts/entity/collection';
 import { BaseTree } from './base';
 
 export abstract class Tree<TNode extends INode> extends BaseTree<TNode> {

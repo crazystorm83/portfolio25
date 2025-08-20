@@ -1,0 +1,1 @@
+{"version":3,"file":"TimeoutException.d.ts","sourceRoot":"","sources":["../../../../../../packages/framework/src/exception/timeout/TimeoutException.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,cAAc,CAAC;AAEzC,qBAAa,gBAAiB,SAAQ,SAAS;IAC3C,KAAK,CAAC,QAAQ,EAAE,OAAO,EAAE,QAAQ,GAAG,IAAI;CAG3C"}

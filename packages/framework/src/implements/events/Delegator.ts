@@ -1,4 +1,4 @@
-import { IDelegator } from '@framework/interfaces';
+import { IDelegator } from '../../interfaces/events/IDelegator';
 
 type EventHandler = (data: any) => void;
 

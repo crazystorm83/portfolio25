@@ -1,6 +1,7 @@
-import { ENTITY_DATA } from '../../../computedvalues';
-import { IPaint, IRenderer } from '../../entity';
+import { ENTITY_DATA } from '../../../computedvalues/ComputedValues';
 import { IHTMLRectangleConfiguration } from './IHTMLRectangleConfiguration';
+import { IPaint } from '../../entity/IPaint';
+import { IRenderer } from '../../entity/IRenderer';
 
 export class HTMLRectangleConfiguration<
     TClassData extends ENTITY_DATA,

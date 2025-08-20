@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages Test Runner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .controls {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #1e7e34;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .status {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+
+        .status.running {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .test-results {
+            padding: 20px;
+            max-height: 700px;
+            overflow-y: auto;
+        }
+
+        .package-group {
+            margin-bottom: 30px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .package-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            font-weight: 700;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .package-header:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+        }
+
+        .package-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .package-content.expanded {
+            padding: 20px;
+            max-height: 2000px;
+        }
+
+        .folder-group {
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .folder-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            font-weight: 600;
+            border-bottom: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .folder-header:hover {
+            background: #e9ecef;
+        }
+
+        .folder-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .folder-content.expanded {
+            padding: 20px;
+            max-height: 1000px;
+        }
+
+        .test-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .test-item:last-child {
+            border-bottom: none;
+        }
+
+        .test-icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .test-name {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .test-duration {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+
+        .test-message {
+            color: #dc3545;
+            font-size: 0.9em;
+            margin-top: 5px;
+            margin-left: 28px;
+        }
+
+        .summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .performance-warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .package-stats {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .folder-stats {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+            }
+            
+            .summary {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📦 Packages Test Runner</h1>
+            <p>패키지별 실시간 테스트 실행 및 결과 확인</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-primary" onclick="runAllTests()">
+                🚀 모든 패키지 테스트 실행
+            </button>
+            <button class="btn btn-success" onclick="runTestsWithWatch()">
+                👀 감시 모드로 실행
+            </button>
+            <button class="btn btn-warning" onclick="runTestsWithCoverage()">
+                📊 커버리지 포함 실행
+            </button>
+            <button class="btn btn-danger" onclick="clearResults()">
+                🗑️ 결과 초기화
+            </button>
+        </div>
+
+        <div id="status" class="status" style="display: none;"></div>
+
+        <div class="test-results" id="testResults">
+            <div style="text-align: center; padding: 40px; color: #6c757d;">
+                <h3>테스트를 실행해주세요</h3>
+                <p>위의 버튼을 클릭하여 패키지 테스트를 시작하세요.</p>
+            </div>
+        </div>
+
+        <div class="summary" id="summary" style="display: none;">
+            <div class="summary-item">
+                <span>📦 총 패키지:</span>
+                <span id="totalPackages">0</span>
+            </div>
+            <div class="summary-item">
+                <span>📊 총 테스트:</span>
+                <span id="totalTests">0</span>
+            </div>
+            <div class="summary-item">
+                <span>✅ 성공:</span>
+                <span id="passedTests">0</span>
+            </div>
+            <div class="summary-item">
+                <span>❌ 실패:</span>
+                <span id="failedTests">0</span>
+            </div>
+            <div class="summary-item">
+                <span>⏱️ 실행 시간:</span>
+                <span id="executionTime">0ms</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let testResults = [];
+        let isRunning = false;
+
+        function showStatus(message, type = 'running') {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = `status ${type}`;
+            statusEl.style.display = 'block';
+        }
+
+        function hideStatus() {
+            document.getElementById('status').style.display = 'none';
+        }
+
+        function updateSummary() {
+            const packages = new Set(testResults.map(r => r.package));
+            const total = testResults.length;
+            const passed = testResults.filter(r => r.status === 'PASS').length;
+            const failed = testResults.filter(r => r.status === 'FAIL').length;
+
+            document.getElementById('totalPackages').textContent = packages.size;
+            document.getElementById('totalTests').textContent = total;
+            document.getElementById('passedTests').textContent = passed;
+            document.getElementById('failedTests').textContent = failed;
+            document.getElementById('summary').style.display = 'flex';
+        }
+
+        function renderTestResults() {
+            const container = document.getElementById('testResults');
+            
+            if (testResults.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #6c757d;">
+                        <h3>테스트를 실행해주세요</h3>
+                        <p>위의 버튼을 클릭하여 패키지 테스트를 시작하세요.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // 패키지별로 그룹화
+            const packages = {};
+            testResults.forEach(result => {
+                if (!packages[result.package]) {
+                    packages[result.package] = {};
+                }
+                
+                if (!packages[result.package][result.folder]) {
+                    packages[result.package][result.folder] = [];
+                }
+                
+                packages[result.package][result.folder].push(result);
+            });
+
+            let html = '';
+            Object.entries(packages).forEach(([packageName, folders]) => {
+                const packageResults = Object.values(folders).flat();
+                const packagePassed = packageResults.filter(r => r.status === 'PASS').length;
+                const packageTotal = packageResults.length;
+                
+                html += `
+                    <div class="package-group">
+                        <div class="package-header" onclick="togglePackage(this)">
+                            📦 ${packageName}
+                            <span class="package-stats">(${packagePassed}/${packageTotal} 성공)</span>
+                        </div>
+                        <div class="package-content">
+                `;
+
+                Object.entries(folders).forEach(([folderPath, results]) => {
+                    const folderPassed = results.filter(r => r.status === 'PASS').length;
+                    const folderTotal = results.length;
+                    
+                    html += `
+                        <div class="folder-group">
+                            <div class="folder-header" onclick="toggleFolder(this)">
+                                📁 ${folderPath}
+                                <span class="folder-stats">(${folderPassed}/${folderTotal} 성공)</span>
+                            </div>
+                            <div class="folder-content">
+                    `;
+
+                    results.forEach(result => {
+                        const icon = result.status === 'PASS' ? '✅' : '❌';
+                        const duration = result.duration ? ` (${result.duration.toFixed(2)}ms)` : '';
+                        
+                        html += `
+                            <div class="test-item">
+                                <span class="test-icon">${icon}</span>
+                                <span class="test-name">${result.name}</span>
+                                <span class="test-duration">${duration}</span>
+                            </div>
+                        `;
+
+                        if (result.message) {
+                            html += `<div class="test-message">└─ ${result.message}</div>`;
+                        }
+
+                        if (result.duration && result.duration > 10) {
+                            html += `<div class="performance-warning">⚠️ 성능 개선 필요 (10ms 초과)</div>`;
+                        }
+                    });
+
+                    html += `
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function togglePackage(header) {
+            const content = header.nextElementSibling;
+            content.classList.toggle('expanded');
+        }
+
+        function toggleFolder(header) {
+            const content = header.nextElementSibling;
+            content.classList.toggle('expanded');
+        }
+
+        async function runAllTests() {
+            if (isRunning) return;
+            
+            isRunning = true;
+            testResults = [];
+            showStatus('패키지 테스트 실행 중...', 'running');
+            
+            try {
+                await simulatePackageTestExecution();
+                
+                showStatus('모든 패키지 테스트 완료!', 'success');
+                updateSummary();
+                renderTestResults();
+            } catch (error) {
+                showStatus(`테스트 실행 실패: ${error.message}`, 'error');
+            } finally {
+                isRunning = false;
+            }
+        }
+
+        async function runTestsWithWatch() {
+            showStatus('감시 모드로 패키지 테스트 실행 중... (파일 변경 시 자동 재실행)', 'running');
+        }
+
+        async function runTestsWithCoverage() {
+            showStatus('커버리지 포함 패키지 테스트 실행 중...', 'running');
+        }
+
+        function clearResults() {
+            testResults = [];
+            hideStatus();
+            document.getElementById('summary').style.display = 'none';
+            renderTestResults();
+        }
+
+        async function simulatePackageTestExecution() {
+            // 시뮬레이션된 패키지별 테스트 결과
+            const mockResults = [
+                // Framework 패키지 테스트
+                {
+                    package: 'framework',
+                    folder: 'src/abstracts/identifier/command',
+                    name: 'ID 설정 및 조회 테스트',
+                    status: 'PASS',
+                    duration: 2.5
+                },
+                {
+                    package: 'framework',
+                    folder: 'src/abstracts/identifier/command',
+                    name: '생성자에서 ID 초기화 테스트',
+                    status: 'PASS',
+                    duration: 1.8
+                },
+                {
+                    package: 'framework',
+                    folder: 'src/abstracts/identifier/command',
+                    name: '빈 ID 처리 테스트',
+                    status: 'PASS',
+                    duration: 3.2
+                },
+                {
+                    package: 'framework',
+                    folder: 'src/integration',
+                    name: '프레임워크 모듈 로드 테스트',
+                    status: 'PASS',
+                    duration: 15.5
+                },
+                {
+                    package: 'framework',
+                    folder: 'src/integration',
+                    name: '데이터 타입 시스템 테스트',
+                    status: 'PASS',
+                    duration: 4.1
+                },
+                {
+                    package: 'framework',
+                    folder: 'src/integration',
+                    name: '예외 처리 시스템 테스트',
+                    status: 'FAIL',
+                    duration: 8.2,
+                    message: 'Exception 클래스를 찾을 수 없습니다'
+                },
+                // 다른 패키지 예시 (향후 확장용)
+                {
+                    package: 'ui-components',
+                    folder: 'src/components',
+                    name: 'Button 컴포넌트 렌더링 테스트',
+                    status: 'PASS',
+                    duration: 5.3
+                },
+                {
+                    package: 'ui-components',
+                    folder: 'src/components',
+                    name: 'Modal 컴포넌트 테스트',
+                    status: 'PASS',
+                    duration: 12.1
+                },
+                {
+                    package: 'utils',
+                    folder: 'src/helpers',
+                    name: '문자열 유틸리티 테스트',
+                    status: 'PASS',
+                    duration: 1.2
+                },
+                {
+                    package: 'utils',
+                    folder: 'src/helpers',
+                    name: '날짜 유틸리티 테스트',
+                    status: 'FAIL',
+                    duration: 6.8,
+                    message: '날짜 포맷팅 오류'
+                }
+            ];
+
+            // 실제 테스트 실행을 시뮬레이션
+            for (const result of mockResults) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                testResults.push(result);
+                renderTestResults();
+            }
+        }
+
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTestResults();
+        });
+    </script>
+</body>
+</html>
