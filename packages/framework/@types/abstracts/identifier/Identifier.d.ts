@@ -1,8 +1,12 @@
-import { $$txt } from '../../datatypes';
+import { Disposable } from '../../implements';
 import { IIdentifier } from '../../interfaces/identifier/IIdentifier';
-export declare abstract class Identifier implements IIdentifier {
-    protected _id: $$txt;
-    constructor(_id: $$txt);
-    set id(value: $$txt);
-    get id(): $$txt;
+export type Identifier = {
+    type: string;
+};
+export declare function createIdentifier<TPayload>(command: string): Identifier;
+export declare abstract class AbsIdentifier extends Disposable implements IIdentifier {
+    protected _id: string;
+    constructor(_id: string);
+    set id(value: string);
+    get id(): string;
 }

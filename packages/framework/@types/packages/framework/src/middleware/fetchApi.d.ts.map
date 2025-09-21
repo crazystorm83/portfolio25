@@ -1,1 +1,0 @@
-{"version":3,"file":"fetchApi.d.ts","sourceRoot":"","sources":["../../../../../../../packages/framework/src/middleware/fetchApi.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,EAAE,MAAM,sBAAsB,CAAC;AAE7C,qBAAa,QAAQ;IACjB,SAAS,CAAC,WAAW,CAAC,EAAE,eAAe,CAAC;IAElC,aAAa,CAAC,OAAO,EAAE;QAAE,GAAG,EAAE,KAAK,CAAA;KAAE;IAW3C,KAAK;CAGR"}

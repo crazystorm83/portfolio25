@@ -1,3 +1,2 @@
-import { Identifier } from '../../identifier';
-export class PageIdentifier extends Identifier {
+export class PageIdentifier extends AbsIdentifier {
 }

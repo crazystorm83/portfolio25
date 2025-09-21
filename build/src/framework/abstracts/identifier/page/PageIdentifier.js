@@ -1,4 +1,3 @@
-import { Identifier } from '../Identifier';
-export class PageIdentifier extends Identifier {
+export class PageIdentifier extends AbsIdentifier {
 }
 //# sourceMappingURL=PageIdentifier.js.map

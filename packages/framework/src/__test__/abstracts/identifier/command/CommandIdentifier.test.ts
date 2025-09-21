@@ -1,14 +1,18 @@
 /// <reference types="jest" />
 import {
-    PackageTestReporter,
-    describePackage,
-    measurePerformance,
-    testCase
+  PackageTestReporter,
+  describePackage,
+  measurePerformance,
+  testCase
 } from '../../../../../../../__test__/test-utils';
-import { CommandIdentifire } from '../../../../abstracts/identifier/command/CommandIdentifire';
+import { AbsCommandIdentifire } from '../../../../abstracts/identifier/command/CommandIdentifire';
 
 // 테스트용 구체 클래스 생성
-class TestCommandIdentifier extends CommandIdentifire {
+class TestCommandIdentifier extends AbsCommandIdentifire {
+  dispose(): void {
+    console.log('TestCommandIdentifier disposed');
+  }
+  
   constructor(id: string) {
     super(id);
   }

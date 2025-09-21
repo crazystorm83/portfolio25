@@ -13,9 +13,9 @@ export interface IENTITY_DATAMODEL<TData = any> {
 }
 
 export type TY_DIRECTION = {
-    UP: EN_DIRECTION.UP;
-    DOWN: EN_DIRECTION.DOWN;
-    LEFT: EN_DIRECTION.LEFT;
-    RIGHT: EN_DIRECTION.RIGHT;
+    UP: EN_DIRECTION.Up;
+    DOWN: EN_DIRECTION.Down;
+    LEFT: EN_DIRECTION.Left;
+    RIGHT: EN_DIRECTION.Right;
 };
 export type CV_DIRECTION = keyof TY_DIRECTION;

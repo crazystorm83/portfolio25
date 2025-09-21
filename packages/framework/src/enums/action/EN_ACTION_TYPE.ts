@@ -3,8 +3,10 @@ export enum EN_ACTION_TYPE {
     CANCEL = 'cancel', //취소
     DELETE = 'delete', //삭제
     REMOVE = 'remove', //제거
+    CREATE = 'create', //생성
     ADD = 'add', //추가
     EDIT = 'edit', //수정
+    UPDATE = 'update', //업데이트
     APPLY = 'apply', //적용
     SEARCH = 'search', //검색
     PRINT = 'print', //인쇄

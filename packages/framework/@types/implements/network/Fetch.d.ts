@@ -1,6 +1,9 @@
 import { $$txt } from '../../datatypes';
-export declare class Fetch {
+import { Disposable } from '../../implements';
+export declare class Fetch extends Disposable {
     static _controller?: AbortController;
+    constructor();
+    [Symbol.dispose](): void;
     private static callAsync;
     static getAsync(url: $$txt): Promise<any>;
     static postAsync(url: $$txt, body: any): Promise<any>;

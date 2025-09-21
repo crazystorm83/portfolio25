@@ -1,1 +1,0 @@
-{"version":3,"file":"SolutionIdentifier.d.ts","sourceRoot":"","sources":["../../../../../../../../packages/framework/src/implements/identifier/SolutionIdentifier.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,mBAAmB,EAAE,MAAM,+DAA+D,CAAC;AAEpG,qBAAa,kBAAmB,YAAW,mBAAmB;IAC9C,OAAO,CAAC,IAAI;gBAAJ,IAAI,EAAE,MAAM;IAEhC,IAAI,EAAE,IAAI,MAAM,CAEf;CACJ"}

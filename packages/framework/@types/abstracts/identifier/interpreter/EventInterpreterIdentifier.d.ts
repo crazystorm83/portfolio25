@@ -1,3 +1,5 @@
-import { InterpreterIdentifire } from '../../identifier';
-export declare abstract class EventInterpreterIdentifier extends InterpreterIdentifire {
+import { AbsIdentifier, Identifier } from '../Identifier';
+export type EventInterpreterIdentifier = Identifier;
+export declare function createEventInterpreterIdentifier<TPayload>(event: string): EventInterpreterIdentifier;
+export declare abstract class AbsEventInterpreterIdentifier extends AbsIdentifier {
 }

@@ -1,14 +1,21 @@
+import { Disposable } from '../../implements/dispose/Disposable';
 import { IDelegator } from '../../interfaces/events/IDelegator';
 
 type EventHandler = (data: any) => void;
 
-export class Delegator implements IDelegator {
+export class Delegator extends Disposable implements IDelegator {
     private eventMap: Map<string, Set<EventHandler>>;
     private onceMap: Map<string, Set<EventHandler>>;
 
     constructor() {
+        super();
+
         this.eventMap = new Map();
         this.onceMap = new Map();
+    }
+
+    dispose(): void {
+        throw new Error("Method not implemented.");
     }
 
     public on<T = any>(eventName: string, handler: (data: T) => void): void {

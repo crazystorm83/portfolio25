@@ -1,3 +1,2 @@
-import { Identifier } from '../../identifier';
-export class TaskIdentifier extends Identifier {
+export class TaskIdentifier extends AbsIdentifier {
 }

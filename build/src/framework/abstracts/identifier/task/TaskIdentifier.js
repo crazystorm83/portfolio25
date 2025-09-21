@@ -1,4 +1,3 @@
-import { Identifier } from '../Identifier';
-export class TaskIdentifier extends Identifier {
+export class TaskIdentifier extends AbsIdentifier {
 }
 //# sourceMappingURL=TaskIdentifier.js.map

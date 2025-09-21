@@ -1,1 +1,0 @@
-{"version":3,"file":"IData.d.ts","sourceRoot":"","sources":["../../../../../../../../../packages/framework/src/interfaces/entity/base/IData.ts"],"names":[],"mappings":"AAEA,MAAM,WAAW,YAAY,CAAC,KAAK;IAC/B,IAAI,EAAE,KAAK,CAAC;CACf;AAED,MAAM,WAAW,aAAa,CAAC,KAAK;IAChC,IAAI,CAAC,EAAE,KAAK,CAAC;CAChB;AAED,MAAM,WAAW,cAAc,CAAC,KAAK;IACjC,KAAK,CAAC,EAAE,KAAK,EAAE,CAAC;CACnB"}

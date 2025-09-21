@@ -1,4 +1,3 @@
-import { Identifier } from '../Identifier';
-export class InterpreterIdentifire extends Identifier {
+export class InterpreterIdentifire extends AbsIdentifier {
 }
 //# sourceMappingURL=InterpreterIdentifire.js.map

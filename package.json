@@ -27,6 +27,7 @@
         "test:packages": "jest --testPathPattern=packages",
         "test:packages:watch": "jest --testPathPattern=packages --watch",
         "build": "node scripts/build.js",
+        "clean": "node scripts/clean.js",
         "server": "lite-server"
     },
     "type": "module",

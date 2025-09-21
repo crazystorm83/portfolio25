@@ -1,7 +1,16 @@
 import { $$txt } from '../datatypes';
+import { Disposable } from '../implements/dispose/Disposable';
 
-export class fetchApi {
+export class FetchApi extends Disposable {
     protected _controller?: AbortController;
+
+    constructor() {
+        super();
+    }
+
+    dispose(): void {
+        throw new Error("Method not implemented.");
+    }
 
     async fetchApiAsync(payload: { url: $$txt }) {
         this._controller = new AbortController();

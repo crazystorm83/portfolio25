@@ -1,4 +1,4 @@
+import { IRegistry } from '../register/IRegistry';
 import { IModule } from './IModule';
-import { IRegister } from '../register/IRegister';
 
-export interface IModuleRegister extends IRegister<IModule> {}
+export interface IModuleRegister extends IRegistry<IModule> {}

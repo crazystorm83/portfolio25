@@ -1,4 +1,3 @@
-import { Identifier } from '../Identifier';
-export declare abstract class InterpreterIdentifire extends Identifier {
+export declare abstract class InterpreterIdentifire extends AbsIdentifier {
 }
 //# sourceMappingURL=InterpreterIdentifire.d.ts.map

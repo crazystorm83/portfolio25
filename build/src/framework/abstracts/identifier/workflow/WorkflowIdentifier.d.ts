@@ -1,4 +1,3 @@
-import { Identifier } from '../Identifier';
-export declare abstract class WorkflowIdentifier extends Identifier {
+export declare abstract class WorkflowIdentifier extends AbsIdentifier {
 }
 //# sourceMappingURL=WorkflowIdentifier.d.ts.map

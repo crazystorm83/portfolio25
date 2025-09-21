@@ -1,7 +1,16 @@
 import { $$null, $$txt } from '../../datatypes';
+import { Disposable } from '../../implements/dispose/Disposable';
 
-export class Fetch {
+export class Fetch extends Disposable {
     static _controller?: AbortController;
+
+    constructor() {
+        super();
+    }
+
+    dispose(): void {
+        throw new Error("Method not implemented.");
+    }
 
     private static async callAsync(url: $$txt, method: $$txt, body: any) {
         this._controller = new AbortController();

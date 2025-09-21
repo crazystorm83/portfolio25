@@ -1,40 +1,35 @@
-import { ENTITY_DATA } from '../../../computedvalues/ComputedValues';
-import { $$numeric } from '../../../datatypes';
+import { $$numeric, $$tf } from '../../../datatypes';
+import { Disposable } from '../../../implements/dispose/Disposable';
 import {
     IList,
-    IListAddPayload,
     IListAddResult,
-    IListHasPayload,
-    IListHasResult,
-    IListInsertAtPayload,
     IListInsertAtResult,
     IListRemoveAllResult,
-    IListRemoveAtPayload,
     IListRemoveAtResult,
-    IListRemovePayload,
-    IListRemoveResult,
+    IListRemoveResult
 } from '../../../interfaces/entity/IList';
 
-export abstract class AbsList<T extends ENTITY_DATA> implements IList<T> {
+export abstract class AbsList<T> extends Disposable implements IList<T> {
     abstract add<
-        TPayload extends IListAddPayload<T>,
         TResult extends IListAddResult
-    >(payload: TPayload): TResult;
+    >(data: T): TResult;
     abstract insertAt<
-        TPayload extends IListInsertAtPayload<T>,
         TResult extends IListInsertAtResult
-    >(index: $$numeric, payload: TPayload): TResult;
+    >(index: $$numeric, data: T): TResult;
     abstract remove<
-        TPayload extends IListRemovePayload<T>,
         TResult extends IListRemoveResult<T>
-    >(payload: TPayload): TResult;
+    >(data: T): TResult;
     abstract removeAt<
-        TPayload extends IListRemoveAtPayload<T>,
         TResult extends IListRemoveAtResult<T>
-    >(payload: TPayload): TResult;
+    >(index: $$numeric): TResult;
     abstract removeAll<TResult extends IListRemoveAllResult<T>>(): TResult;
-    abstract has<
-        TPayload extends IListHasPayload<T>,
-        TResult extends IListHasResult
-    >(payload: TPayload): TResult;
+    abstract has(data: T): $$tf;
+    abstract getAll(): T[];
+    abstract get length(): $$numeric;
+    abstract getByIndex(index: $$numeric): T;
+    abstract getByIndexOrThrow(index: $$numeric): T;
+
+    dispose(): void {
+        throw new Error("Method not implemented.");
+    }
 }

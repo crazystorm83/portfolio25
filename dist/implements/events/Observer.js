@@ -1,4 +1,3 @@
-import { Identifier } from '../../abstracts/identifier/Identifier';
 export class Subject {
     constructor() {
         this.observers = new Map();
@@ -15,7 +14,7 @@ export class Subject {
         }
     }
 }
-export class Observer extends Identifier {
+export class Observer extends AbsIdentifier {
     constructor(subject) {
         super('');
         this.subject = subject;

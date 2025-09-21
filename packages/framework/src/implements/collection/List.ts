@@ -1,50 +1,38 @@
-import { ENTITY_DATA } from '../../computedvalues/ComputedValues';
-import { $$numeric } from '../../datatypes';
+import { $$numeric, $$tf } from '../../datatypes';
 import {
-    IListAddPayload,
     IListAddResult,
-    IListHasPayload,
-    IListHasResult,
-    IListInsertAtPayload,
     IListInsertAtResult,
     IListRemoveAllResult,
-    IListRemoveAtPayload,
     IListRemoveAtResult,
-    IListRemovePayload,
-    IListRemoveResult,
+    IListRemoveResult
 } from '../../interfaces/entity/IList';
 import { BaseList } from '../collection/base/BaseList';
 
-export class List<T extends ENTITY_DATA> extends BaseList<T> {
+export class List<T> extends BaseList<T> {
     private __list: T[] = [];
 
-    add<TPayload extends IListAddPayload<T>, TResult extends IListAddResult>(
-        payload: TPayload
+    add<TResult extends IListAddResult>(
+        data: T
     ): TResult {
-        return this.insertAt(this.__list.length, payload);
+        return this.insertAt(this.__list.length, data);
     }
     insertAt<
-        TPayload extends IListInsertAtPayload<T>,
         TResult extends IListInsertAtResult
-    >(index: $$numeric, payload: TPayload): TResult {
-        this.__list.splice(index, 0, payload.data);
+    >(index: $$numeric, data: T): TResult {
+        this.__list.splice(index, 0, data);
 
         return { success: true } as TResult;
     }
     remove<
-        TPayload extends IListRemovePayload<T>,
         TResult extends IListRemoveResult<T>
-    >(payload: TPayload): TResult {
-        const index = this.__list.indexOf(payload.data);
+    >(data: T): TResult {
+        const index = this.__list.indexOf(data);
 
-        return this.removeAt({ index });
+        return this.removeAt(index);
     }
     removeAt<
-        TPayload extends IListRemoveAtPayload<T>,
         TResult extends IListRemoveAtResult<T>
-    >(payload: TPayload): TResult {
-        const { index } = payload;
-
+    >(index: $$numeric): TResult {
         const removed_data = this.__list.splice(index, 1);
 
         if (removed_data.length === 0) {
@@ -58,11 +46,25 @@ export class List<T extends ENTITY_DATA> extends BaseList<T> {
 
         return { success: true, removed_data } as TResult;
     }
-    has<TPayload extends IListHasPayload<T>, TResult extends IListHasResult>(
-        payload: TPayload
-    ): TResult {
-        const result = this.__list.includes(payload.data);
-
-        return { success: result } as TResult;
+    has(
+        data: T
+    ): $$tf {
+        return this.__list.includes(data);
+    }
+    getAll(): T[] {
+        return this.__list;
+    }
+    get length(): $$numeric {
+        return this.__list.length;
+    }
+    getByIndex(index: $$numeric): T {
+        return this.__list[index];
+    }
+    getByIndexOrThrow(index: $$numeric): T {
+        const item = this.getByIndex(index);
+        if (!item) {
+            throw new Error('Item not found');
+        }
+        return item;
     }
 }

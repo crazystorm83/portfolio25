@@ -1,40 +1,40 @@
 export declare enum EN_VIEW_TYPE {
-    CODE = "code",
-    DATE = "date",
-    DATETIME = "datetime",
-    DECIMAL = "decimal",
-    ENUM = "enum",
-    MULTICODE = "multicode",
-    NUMERIC = "numeric",
-    BUTTON = "button",
+    Code = "code",
+    Date = "date",
+    Datetime = "datetime",
+    Decimal = "decimal",
+    Enum = "enum",
+    Multicode = "multicode",
+    Numeric = "numeric",
+    Button = "button",
     TF = "tf",
-    TEXT = "text"
+    Text = "text"
 }
 export declare enum EN_LAYOUT_VIEW_TYPE {
-    MENU = "menu",
-    LIST_GRID = "list_grid",
-    INPUT_GRID = "input_grid",
-    FORM = "form",
-    TOOLBAR = "toolbar",
-    TREE = "tree",
-    KANBAN = "kanban",
-    GANTT = "gantt",
-    HORIZONTAL_BAR_GRAPH = "horizontal_bar_graph",
-    VERTICAL_BAR_GRAPH = "vertical_bar_graph",
-    LINE_GRAPH = "line_graph",
-    PIE_GRAPH = "pie_graph",
-    EDITOR = "editor"
+    Menu = "menu",
+    ListGrid = "list_grid",
+    InputGrid = "input_grid",
+    Form = "form",
+    Toolbar = "toolbar",
+    Tree = "tree",
+    Kanban = "kanban",
+    Gantt = "gantt",
+    HorizontalBarGraph = "horizontal_bar_graph",
+    VerticalBarGraph = "vertical_bar_graph",
+    LineGraph = "line_graph",
+    PieGraph = "pie_graph",
+    Editor = "editor"
 }
 export declare enum EN_DATE_FORMAT {
-    YYYY = "YYYY",
-    MM = "MM",
-    DD = "DD"
+    Year = "YYYY",
+    Month = "MM",
+    Day = "DD"
 }
 export declare enum EN_DATETIME_FORMAT {
-    HOUR = "HH",
-    MINUTE = "mm",
-    SECOND = "ss",
-    MILLISECOND = "sss"
+    Hour = "HH",
+    Minute = "mm",
+    Second = "ss",
+    Millisecond = "sss"
 }
 export declare enum EN_ATTR_TYPE {
     Initializer = "initializer",
@@ -43,8 +43,12 @@ export declare enum EN_ATTR_TYPE {
     Validator = "validator"
 }
 export declare enum EN_DIRECTION {
-    UP = 1,
-    DOWN = 2,
-    LEFT = 4,
-    RIGHT = 8
+    Up = "up",
+    Down = "down",
+    Left = "left",
+    Right = "right"
+}
+export declare enum EN_LAYOUT_DIRECTION {
+    Horizontal = "horizontal",
+    Vertical = "vertical"
 }

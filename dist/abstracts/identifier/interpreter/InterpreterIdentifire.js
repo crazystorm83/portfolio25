@@ -1,3 +1,2 @@
-import { Identifier } from '../../identifier';
-export class InterpreterIdentifire extends Identifier {
+export class InterpreterIdentifire extends AbsIdentifier {
 }

@@ -1,73 +1,169 @@
-import { ENTITY_DATA } from '../../computedvalues/ComputedValues';
-import { $$numeric } from '../../datatypes';
+import { $$numeric, $$tf } from '../../datatypes';
 
-export interface IListAddPayload<T extends ENTITY_DATA> {
+export interface IListAddPayload<T> {
     data: T;
 }
 export interface IListAddResult {
     success: boolean;
 }
 
-export interface IListInsertAtPayload<T extends ENTITY_DATA> {
+export interface IListInsertAtPayload<T> {
     data: T;
 }
 export interface IListInsertAtResult {
     success: boolean;
 }
 
-export interface IListRemovePayload<T extends ENTITY_DATA> {
+export interface IListRemovePayload<T> {
     data: T;
 }
-export interface IListRemoveResult<T extends ENTITY_DATA> {
+export interface IListRemoveResult<T> {
     removed_data: T;
     success: boolean;
 }
 
-export interface IListRemoveAtPayload<T extends ENTITY_DATA> {
+export interface IListRemoveAtPayload<T> {
     index: $$numeric;
 }
-export interface IListRemoveAtResult<T extends ENTITY_DATA> {
+export interface IListRemoveAtResult<T> {
     removed_data: T;
     success: boolean;
 }
 
-export interface IListRemoveAllResult<T extends ENTITY_DATA> {
+export interface IListRemoveAllResult<T> {
     removed_data: T[];
     success: boolean;
 }
 
-export interface IListHasPayload<T extends ENTITY_DATA> {
-    data: T;
-}
-export interface IListHasResult {
-    success: boolean;
-}
 
-export interface IList<T extends ENTITY_DATA> {
-    add<TPayload extends IListAddPayload<T>, TResult extends IListAddResult>(
-        payload: TPayload
+export interface IList<T> {
+    /**
+     * 목록에 항목 추가하기
+     * @param data 
+     * @example
+     * ```typescript
+     * const list = new List<number>();
+     * list.add(1);
+     * console.log(list.getAll()); // [1]
+     * ```
+     */
+    add<TResult extends IListAddResult>(
+        data: T
     ): TResult;
+    /**
+     * 목록의 특정 위치에 항목 추가하기
+     * @param index 
+     * @param data 
+     * @example
+     * ```typescript
+     * const list = new List<number>();
+     * list.insertAt(0, 1);
+     * console.log(list.getAll()); // [1]
+     * ```
+     */
     insertAt<
-        TPayload extends IListInsertAtPayload<T>,
         TResult extends IListInsertAtResult
     >(
         index: $$numeric,
-        payload: TPayload
+        data: T
     ): TResult;
+    /**
+     * 목록에서 항목 제거하기
+     * @param data 
+     * @example
+     * ```typescript
+     * const list = new List<number>();
+     * list.add(1);
+     * list.remove(1);
+     * console.log(list.getAll()); // []
+     * ```
+     */
     remove<
-        TPayload extends IListRemovePayload<T>,
         TResult extends IListRemoveResult<T>
     >(
-        payload: TPayload
+        data: T
     ): TResult;
+    /**
+     * 목록의 특정 위치에 항목 제거하기
+     * @param index 
+     * @example
+     * ```typescript
+     * const list = new List<number>();
+     * list.add(1);
+     * list.removeAt(0);
+     * console.log(list.getAll()); // []
+     * ```
+     */
     removeAt<
-        TPayload extends IListRemoveAtPayload<T>,
         TResult extends IListRemoveAtResult<T>
     >(
-        payload: TPayload
+        index: $$numeric
     ): TResult;
+    /**
+     * 목록에서 모든 항목 제거하기
+     * @example
+     * ```typescript
+     * const list = new List<number>();
+     * list.add(1);
+     * list.removeAll();
+     * console.log(list.getAll()); // []
+     * ```
+     */
     removeAll<TResult extends IListRemoveAllResult<T>>(): TResult;
-    has<TPayload extends IListHasPayload<T>, TResult extends IListHasResult>(
-        payload: TPayload
-    ): TResult;
+    /**
+     * 목록에 항목이 있는지 확인하기
+     * @param data 
+     * @example
+     * ```typescript
+     * const list = new List<number>();
+     * list.add(1);
+     * console.log(list.has(1)); // true
+     * ```
+     */
+    has(
+        data: T
+    ): $$tf;
+    /**
+     * 목록에서 모든 항목 가져오기
+     * @example
+     * ```typescript
+     * const list = new List<number>();
+     * list.add(1);
+     * console.log(list.getAll()); // [1]
+     * ```
+     */
+    getAll(): T[];
+    /**
+     * 목록에서 항목 개수 가져오기
+     * @example
+     * ```typescript
+     * const list = new List<number>();
+     * list.add(1);
+     * console.log(list.getLength()); // 1
+     * ```
+     */
+    get length(): $$numeric;
+    /**
+     * 목록에서 특정 위치의 항목 가져오기
+     * @param index 
+     * @example
+     * ```typescript
+     * const list = new List<number>();
+     * list.add(1);
+     * console.log(list.getByIndex(0)); // 1
+     * ```
+     */
+    getByIndex(index: $$numeric): T;
+    /**
+     * 목록에서 특정 위치의 항목 가져오기
+     * 해당 위치에 항목이 없으면 예외 발생
+     * @param index 
+     * @example
+     * ```typescript
+     * const list = new List<number>();
+     * list.add(1);
+     * console.log(list.getByIndexOrThrow(0)); // 1
+     * ```
+     */
+    getByIndexOrThrow(index: $$numeric): T;
 }

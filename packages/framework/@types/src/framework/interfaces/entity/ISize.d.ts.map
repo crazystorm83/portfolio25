@@ -1,1 +1,0 @@
-{"version":3,"file":"ISize.d.ts","sourceRoot":"","sources":["../../../../../../../src/framework/interfaces/entity/ISize.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,sBAAsB,CAAC;AAEjD,MAAM,WAAW,KAAK;IAClB,IAAI,KAAK,IAAI,SAAS,CAAC;IACvB,IAAI,KAAK,CAAC,KAAK,EAAE,SAAS,EAAE;IAE5B,IAAI,MAAM,IAAI,SAAS,CAAC;IACxB,IAAI,MAAM,CAAC,KAAK,EAAE,SAAS,EAAE;CAChC"}

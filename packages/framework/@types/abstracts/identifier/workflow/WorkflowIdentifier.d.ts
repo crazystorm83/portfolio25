@@ -1,3 +1,5 @@
-import { Identifier } from '../../identifier';
-export declare abstract class WorkflowIdentifier extends Identifier {
+import { AbsIdentifier, Identifier } from '../Identifier';
+export type WorkflowIdentifier = Identifier;
+export declare function createWorkflowIdentifier<TPayload>(workflow: string): WorkflowIdentifier;
+export declare abstract class AbsWorkflowIdentifier extends AbsIdentifier {
 }

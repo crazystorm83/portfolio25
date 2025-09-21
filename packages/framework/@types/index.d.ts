@@ -5,6 +5,7 @@ export * from './computedvalues';
 export * from './datatypes';
 export * from './decoarator';
 export * from './enums';
+export * from './exception';
 export * from './implements';
 export * from './interfaces';
 export * from './lifecycle';

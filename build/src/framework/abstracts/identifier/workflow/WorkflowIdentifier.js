@@ -1,4 +1,3 @@
-import { Identifier } from '../Identifier';
-export class WorkflowIdentifier extends Identifier {
+export class WorkflowIdentifier extends AbsIdentifier {
 }
 //# sourceMappingURL=WorkflowIdentifier.js.map

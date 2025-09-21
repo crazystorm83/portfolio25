@@ -13,6 +13,12 @@
     "skipLibCheck": true
   },
   "include": ["packages/*/src/**/*"],
-  "exclude": ["**/dist/**", "**/node_modules/**", "scripts/**", "src/**"],
+  "exclude": [
+    "**/dist/**",
+    "**/@types/**",
+    "**/node_modules/**",
+    "scripts/**",
+    "src/**"
+  ],
   "extends": "./tsconfig.json"
 }

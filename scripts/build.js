@@ -27,7 +27,7 @@ const thirdPartyExternalsRegExp = new RegExp(`^(${thirdPartyExternals.join('|')}
  */
 async function buildTSDeclarationFiles(pkg) {
     const pkgDir = path.dirname(pkg.packageJsonPath);
-    const pkgTsconfigPath = path.resolve(pkgDir, 'tsconfig.json');
+    const pkgTsconfigPath = path.resolve(pkgDir, 'tsconfig.build.json');
     const tmpTsconfigPath = path.resolve(pkgDir, '.tsbuild.temp.json');
     const relRoot = path.relative(pkgDir, process.cwd()) || '.';
     const outDir = path.resolve(process.cwd(), '.ts-temp', pkgDir);
@@ -35,7 +35,7 @@ async function buildTSDeclarationFiles(pkg) {
     const hasLocalTsconfig = fs.existsSync(pkgTsconfigPath);
 
     const tempConfig = {
-        extends: hasLocalTsconfig ? './tsconfig.json' : path.join(relRoot, 'tsconfig.json'),
+        // extends: hasLocalTsconfig ? './tsconfig.build.json' : path.join(relRoot, 'tsconfig.json'),
         compilerOptions: {
             noEmit: false,
             declaration: true,
@@ -45,10 +45,8 @@ async function buildTSDeclarationFiles(pkg) {
             jsx: 'react-jsx',
             moduleResolution: 'Bundler',
             skipLibCheck: true,
-            typeRoots: [path.join(relRoot, 'node_modules/@types'), path.join(relRoot, '@types')],
-            types: ['lodash'],
         },
-        include: ['src/**/*'],
+        include: ['src/index.ts'],
     };
 
     fs.writeJsonSync(tmpTsconfigPath, tempConfig, { spaces: 2 });

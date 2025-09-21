@@ -1,4 +1,5 @@
 import { $$null, $$txt } from '../../../datatypes';
+import { Disposable } from '../../../implements';
 import { ITree } from '../../../interfaces/entity/ITree';
 export type $$root_node_sid = $$null;
 export type $$node_sid = $$txt | $$root_node_sid;
@@ -50,7 +51,7 @@ export interface INextSiblingPayload {
 export interface IPreviousPayload {
     sid: $$node_sid;
 }
-export declare abstract class AbsTree<TNode extends INode> implements ITree {
+export declare abstract class AbsTree<TNode extends INode> extends Disposable implements ITree {
     abstract addNode(payload: IAddPayload<TNode>): void;
     abstract addNextSibling(payload: IAddNextSibling<TNode>): void;
     abstract addPrevSibling(payload: IAddPrevSibling<TNode>): void;
@@ -62,4 +63,5 @@ export declare abstract class AbsTree<TNode extends INode> implements ITree {
     abstract hasChildren(payload: IHasChildrenPayload): boolean;
     abstract nextSibling(payload: INextSiblingPayload): TNode;
     abstract previousSibling(payload: IPreviousPayload): TNode;
+    [Symbol.dispose](): void;
 }

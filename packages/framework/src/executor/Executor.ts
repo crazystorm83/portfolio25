@@ -5,6 +5,7 @@ import {
     EN_MODULE_POSTFIX,
     EN_MOUDLE_PREFIX,
 } from '../enums';
+import { Disposable } from '../implements';
 
 export interface IDispatchPayload {
     prefix: EN_MOUDLE_PREFIX;
@@ -15,8 +16,16 @@ export interface IDispatchPayload {
     postfix: EN_MODULE_POSTFIX;
 }
 
-export abstract class Executor {
+export abstract class Executor extends Disposable {
     protected static _map = new Map<$$txt, any>();
+
+    constructor() {
+        super();
+    }
+
+    dispose(): void {
+        throw new Error("Method not implemented.");
+    }
 
     private static __createId(payload: IDispatchPayload): $$txt {
         const {

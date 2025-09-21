@@ -1,3 +1,2 @@
-import { Identifier } from '../../identifier';
-export declare abstract class WorkflowIdentifier extends Identifier {
+export declare abstract class WorkflowIdentifier extends AbsIdentifier {
 }

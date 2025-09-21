@@ -1,49 +1,49 @@
 export enum EN_VIEW_TYPE {
-    CODE = 'code',
-    DATE = 'date',
-    DATETIME = 'datetime',
-    DECIMAL = 'decimal',
-    ENUM = 'enum',
-    MULTICODE = 'multicode',
-    NUMERIC = 'numeric',
-    BUTTON = 'button',
+    Code = 'code',
+    Date = 'date',
+    Datetime = 'datetime',
+    Decimal = 'decimal',
+    Enum = 'enum',
+    Multicode = 'multicode',
+    Numeric = 'numeric',
+    Button = 'button',
     TF = 'tf',
-    TEXT = 'text',
+    Text = 'text',
 }
 
 export enum EN_LAYOUT_VIEW_TYPE {
-    MENU = 'menu',
+    Menu = 'menu',
 
-    LIST_GRID = 'list_grid',
-    INPUT_GRID = 'input_grid',
+    ListGrid = 'list_grid',
+    InputGrid = 'input_grid',
 
-    FORM = 'form',
-    TOOLBAR = 'toolbar',
-    TREE = 'tree',
-    KANBAN = 'kanban',
-    GANTT = 'gantt',
+    Form = 'form',
+    Toolbar = 'toolbar',
+    Tree = 'tree',
+    Kanban = 'kanban',
+    Gantt = 'gantt',
 
-    HORIZONTAL_BAR_GRAPH = 'horizontal_bar_graph',
-    VERTICAL_BAR_GRAPH = 'vertical_bar_graph',
-    LINE_GRAPH = 'line_graph',
-    PIE_GRAPH = 'pie_graph',
+    HorizontalBarGraph = 'horizontal_bar_graph',
+    VerticalBarGraph = 'vertical_bar_graph',
+    LineGraph = 'line_graph',
+    PieGraph = 'pie_graph',
 
-    EDITOR = 'editor',
+    Editor = 'editor',
 }
 
 //#region format
 
 export enum EN_DATE_FORMAT {
-    YYYY = 'YYYY',
-    MM = 'MM',
-    DD = 'DD',
+    Year = 'YYYY',
+    Month = 'MM',
+    Day = 'DD',
 }
 
 export enum EN_DATETIME_FORMAT {
-    HOUR = 'HH',
-    MINUTE = 'mm',
-    SECOND = 'ss',
-    MILLISECOND = 'sss',
+    Hour = 'HH',
+    Minute = 'mm',
+    Second = 'ss',
+    Millisecond = 'sss',
 }
 
 export enum EN_ATTR_TYPE {
@@ -56,8 +56,13 @@ export enum EN_ATTR_TYPE {
 //#endregion
 
 export enum EN_DIRECTION {
-    UP = 1,
-    DOWN = 2,
-    LEFT = 4,
-    RIGHT = 8,
+    Up = 'up',
+    Down = 'down',
+    Left = 'left',
+    Right = 'right',
+}
+
+export enum EN_LAYOUT_DIRECTION {
+    Horizontal = 'horizontal',
+    Vertical = 'vertical',
 }

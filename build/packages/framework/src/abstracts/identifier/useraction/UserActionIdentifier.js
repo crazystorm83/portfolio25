@@ -1,4 +1,3 @@
-import { Identifier } from '../Identifier';
-export class UserActionIdentifier extends Identifier {
+export class UserActionIdentifier extends AbsIdentifier {
 }
 //# sourceMappingURL=UserActionIdentifier.js.map

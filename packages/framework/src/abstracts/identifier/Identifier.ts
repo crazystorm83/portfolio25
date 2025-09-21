@@ -1,7 +1,18 @@
+import { Disposable } from '../../implements';
 import { IIdentifier } from '../../interfaces/identifier/IIdentifier';
 
-export abstract class Identifier implements IIdentifier {
-    constructor(protected _id: string) {}
+export type Identifier = {
+    type: string;
+}
+
+export function createIdentifier<TPayload>(command: string): Identifier  {
+    return { type: command };
+}
+
+export abstract class AbsIdentifier extends Disposable implements IIdentifier {
+    constructor(protected _id: string) {
+        super();
+    }
 
     set id(value: string) {
         this._id = value;
