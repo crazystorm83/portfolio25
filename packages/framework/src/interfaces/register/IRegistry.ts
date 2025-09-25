@@ -1,4 +1,4 @@
-import { $$numeric, $$txt } from "../../datatypes";
+import { $$numeric, $$txt } from '../../datatypes';
 
 export interface IRegistry<T = any> {
     add(id: $$txt, listener: Function): () => void;

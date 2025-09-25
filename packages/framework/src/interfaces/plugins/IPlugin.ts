@@ -1,8 +1,13 @@
-import { IOptionalData, IOptionalDatas, IRequireData } from "../entity/base/IData";
+import {
+    IOptionalData,
+    IOptionalDatas,
+    IRequireData,
+} from '../entity/base/IData';
 
-
-export interface IPluginPayload<TData> extends IRequireData<TData>{}
-export interface IPluginResult<TData> extends IOptionalData<TData>, IOptionalDatas<TData> {
+export interface IPluginPayload<TData> extends IRequireData<TData> {}
+export interface IPluginResult<TData>
+    extends IOptionalData<TData>,
+        IOptionalDatas<TData> {
     pluginname: string;
 }
 

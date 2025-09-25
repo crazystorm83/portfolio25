@@ -1,15 +1,18 @@
-import { ExceptionIdentifier } from "../abstracts/identifier";
-import { Exception, ExceptionThrowPayload } from "./Exception";
+import { ExceptionIdentifier } from '../abstracts/identifier';
+import { Exception, ExceptionThrowPayload } from './Exception';
 
-export type ThrowExceptionPayload = ExceptionIdentifier & {    
+export type ThrowExceptionPayload = ExceptionIdentifier & {
     message: string;
-}
+};
 
 /**
  * @param payload
  * @param condition if false, throw exception
  */
-export function throwException(payload: ThrowExceptionPayload, condition?: boolean): asserts condition {
+export function throwException(
+    payload: ThrowExceptionPayload,
+    condition?: boolean,
+): asserts condition {
     if (condition) {
         return;
     }
@@ -20,4 +23,4 @@ export class ThrowException extends Exception {
     throw<TPayload extends ExceptionThrowPayload<TPayload>>(payload: TPayload) {
         throw new Error(payload.message);
     }
-} 
+}

@@ -9,7 +9,7 @@ export class Fetch extends Disposable {
     }
 
     dispose(): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 
     private static async callAsync(url: $$txt, method: $$txt, body: any) {
@@ -29,7 +29,7 @@ export class Fetch extends Disposable {
                 // 응답 처리 (HTTP 상태 확인)
                 if (!response.ok) {
                     throw new Error(
-                        'Network response was not ok ' + response.statusText
+                        'Network response was not ok ' + response.statusText,
                     );
                 }
                 return response.json(); // JSON으로 파싱

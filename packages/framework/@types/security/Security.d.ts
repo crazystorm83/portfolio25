@@ -1,2 +1,1 @@
-export interface ISecurity {
-}
+export interface ISecurity {}

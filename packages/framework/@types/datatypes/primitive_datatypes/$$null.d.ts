@@ -1,2 +1,2 @@
-export declare const $$null = "$$null";
+export declare const $$null = '$$null';
 export type $$null = null;

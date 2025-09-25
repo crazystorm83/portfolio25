@@ -1,2 +1,2 @@
-export declare const $$date = "$$date";
+export declare const $$date = '$$date';
 export type $$date = Date;

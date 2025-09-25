@@ -1,12 +1,36 @@
-
 import { throwException } from '../../exception';
 import { TREE_ERROR } from '../../exception/message/TREE_ERROR';
-import { $$node_sid, IAddChildrenNextSiblingPayload, IAddChildrenPrevSiblingPayload, IAddNextSiblingNodesPayload, IAddPreviousSiblingNodesPayload, IMoveNextSiblingNodePayload, IMovePreviousSiblingNodePayload, IMoveToChildrenNodePayload, INode, IRemoveChildrenNodeAtPayload, IRemoveNodePayload, IRemoveNodesPayload, IRootNode } from '../../interfaces';
+import {
+    $$node_sid,
+    IAddChildrenNextSiblingPayload,
+    IAddChildrenPrevSiblingPayload,
+    IAddNextSiblingNodesPayload,
+    IAddPreviousSiblingNodesPayload,
+    IMoveNextSiblingNodePayload,
+    IMovePreviousSiblingNodePayload,
+    IMoveToChildrenNodePayload,
+    INode,
+    IRemoveChildrenNodeAtPayload,
+    IRemoveNodePayload,
+    IRemoveNodesPayload,
+    IRootNode,
+} from '../../interfaces';
+import {
+    IJSONDeserializer,
+    IJSONSerializer,
+} from '../../interfaces/serializer';
 import { BaseTree } from './base';
 
-export class Tree<TNode extends INode<TNode>> extends BaseTree<TNode> {
+export class Tree<TNode extends INode<TNode>>
+    extends BaseTree<TNode>
+    implements IJSONSerializer, IJSONDeserializer
+{
     private __node_map: Map<$$node_sid, TNode | IRootNode<TNode>> = new Map();
-    private __root_node: IRootNode<TNode> = { sid: 'root', parent_sid: null, children: [] };
+    private __root_node: IRootNode<TNode> = {
+        sid: 'root',
+        parent_sid: null,
+        children: [],
+    };
 
     constructor() {
         super();
@@ -19,7 +43,9 @@ export class Tree<TNode extends INode<TNode>> extends BaseTree<TNode> {
         parent_node.children.push(node);
         this.__addNodeMap(node);
     }
-    addChildrenNextSibling(payload: IAddChildrenNextSiblingPayload<TNode>): void {
+    addChildrenNextSibling(
+        payload: IAddChildrenNextSiblingPayload<TNode>,
+    ): void {
         const target_node = this.__getOrThrow(payload.target_sid, true);
         const parent_node = this.__getOrThrow(target_node.parent_sid, true);
 
@@ -27,7 +53,9 @@ export class Tree<TNode extends INode<TNode>> extends BaseTree<TNode> {
         parent_node.children.splice(target_node_index + 1, 0, payload.node);
         this.__addNodeMap(payload.node);
     }
-    addChildrenPrevSibling(payload: IAddChildrenPrevSiblingPayload<TNode>): void {
+    addChildrenPrevSibling(
+        payload: IAddChildrenPrevSiblingPayload<TNode>,
+    ): void {
         const target_node = this.__getOrThrow(payload.target_sid, true);
         const parent_node = this.__getOrThrow(target_node.parent_sid, true);
 
@@ -45,7 +73,9 @@ export class Tree<TNode extends INode<TNode>> extends BaseTree<TNode> {
             this.__addNodeMap(node);
         }
     }
-    addPreviousSiblingNodes(payload: IAddPreviousSiblingNodesPayload<TNode>): void {
+    addPreviousSiblingNodes(
+        payload: IAddPreviousSiblingNodesPayload<TNode>,
+    ): void {
         const node = this.__getOrThrow(payload.target_sid, true);
         const parent_node = this.__getOrThrow(node.parent_sid, true);
 
@@ -77,7 +107,10 @@ export class Tree<TNode extends INode<TNode>> extends BaseTree<TNode> {
     }
     removeChildrenNodeAt(payload: IRemoveChildrenNodeAtPayload): boolean {
         const parent_node = this.__getOrThrow(payload.parent_sid, true);
-        const removed_nodes = parent_node.children.splice(payload.children_index, 1);
+        const removed_nodes = parent_node.children.splice(
+            payload.children_index,
+            1,
+        );
         for (const removed_node of removed_nodes) {
             for (const child_node of removed_node.children) {
                 this.removeNode({ sid: child_node.sid });
@@ -111,7 +144,7 @@ export class Tree<TNode extends INode<TNode>> extends BaseTree<TNode> {
         if (from_node.parent_sid !== to_node.parent_sid) {
             from_node.parent_sid = to_node.parent_sid;
         }
-        
+
         const from_node_index = from_parent_node.children.indexOf(from_node);
         from_parent_node.children.splice(from_node_index, 1);
 
@@ -120,13 +153,13 @@ export class Tree<TNode extends INode<TNode>> extends BaseTree<TNode> {
     }
     /**
      * from_sid 의 노드를 to_sid 의 자식노드로 이동
-     * @param payload 
+     * @param payload
      */
     moveToChildrenNode(payload: IMoveToChildrenNodePayload): void {
         const from_node = this.__getOrThrow(payload.from_sid, true);
         const to_node = this.__getOrThrow(payload.to_sid, true);
         const from_parent_node = this.__getOrThrow(from_node.parent_sid, true);
-        
+
         from_node.parent_sid = to_node.sid;
 
         const from_node_index = from_parent_node.children.indexOf(from_node);
@@ -166,23 +199,44 @@ export class Tree<TNode extends INode<TNode>> extends BaseTree<TNode> {
         return parent_node.children[node_index - 1];
     }
 
+    toJson<TJSONDeserialize>(): TJSONDeserialize {
+        return JSON.stringify(this.__root_node) as TJSONDeserialize;
+    }
+    fromJson(data: string): void {
+        this.__root_node = JSON.parse(data) as IRootNode<TNode>;
+        this.__addNodeMap(this.__root_node);
+    }
+
+    __loadJson(data: INode<TNode>): void {
+        for (const node of data.children) {
+            this.__addNodeMap(node);
+            this.__loadJson(node);
+        }
+    }
+
     __get(sid: $$node_sid, condition?: boolean): TNode | undefined {
         const node = this.__node_map.get(sid);
         if (this.__isRootNode(node)) {
-            throwException({
-                type: 'RootNodeAccessError',
-                message: TREE_ERROR.ROOT_NODE_ACCESS_ERROR
-            }, condition);
+            throwException(
+                {
+                    type: 'RootNodeAccessError',
+                    message: TREE_ERROR.ROOT_NODE_ACCESS_ERROR,
+                },
+                condition,
+            );
         }
         return node as Readonly<TNode> | undefined;
     }
     __getOrThrow(sid: $$node_sid, condition?: boolean): TNode {
         const node = this.__get(sid, condition);
         if (!node) {
-            throwException({
-                type: 'NodeNotFoundError',
-                message: TREE_ERROR.NODE_NOT_FOUND
-            }, condition);
+            throwException(
+                {
+                    type: 'NodeNotFoundError',
+                    message: TREE_ERROR.NODE_NOT_FOUND,
+                },
+                condition,
+            );
         }
         return node as TNode;
     }
@@ -190,7 +244,9 @@ export class Tree<TNode extends INode<TNode>> extends BaseTree<TNode> {
         this.__node_map.set(node.sid, node);
     }
 
-    __isRootNode(node: TNode | IRootNode<TNode> | undefined): node is IRootNode<TNode> {
+    __isRootNode(
+        node: TNode | IRootNode<TNode> | undefined,
+    ): node is IRootNode<TNode> {
         return node?.parent_sid === null;
     }
 }

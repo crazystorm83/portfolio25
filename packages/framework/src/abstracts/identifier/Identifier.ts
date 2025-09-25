@@ -3,9 +3,9 @@ import { IIdentifier } from '../../interfaces/identifier/IIdentifier';
 
 export type Identifier = {
     type: string;
-}
+};
 
-export function createIdentifier<TPayload>(command: string): Identifier  {
+export function createIdentifier<TPayload>(command: string): Identifier {
     return { type: command };
 }
 

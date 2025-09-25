@@ -1,2 +1,1 @@
-export interface IAuthority {
-}
+export interface IAuthority {}

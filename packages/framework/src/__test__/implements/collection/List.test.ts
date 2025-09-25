@@ -28,7 +28,7 @@ describe('List', () => {
         list.insertAt(0, item);
         expect(list.has(item)).toBe(true);
     });
-    
+
     it('should remove an item', () => {
         const list = new List<{ id: number; name: string }>();
         const item: { id: number; name: string } = { id: 1, name: 'Item 1' };
@@ -36,7 +36,7 @@ describe('List', () => {
         list.remove(item);
         expect(list.has(item)).toBe(false);
     });
-    
+
     it('should remove an item at a specific index', () => {
         const list = new List<{ id: number; name: string }>();
         const item: { id: number; name: string } = { id: 1, name: 'Item 1' };
@@ -44,8 +44,7 @@ describe('List', () => {
         list.removeAt(0);
         expect(list.has(item)).toBe(false);
     });
-    
-    
+
     it('should remove all items', () => {
         const list = new List<{ id: number; name: string }>();
         const item: { id: number; name: string } = { id: 1, name: 'Item 1' };
@@ -53,29 +52,28 @@ describe('List', () => {
         list.removeAll();
         expect(list.has(item)).toBe(false);
     });
-    
-    
+
     it('should check if an item exists', () => {
         const list = new List<{ id: number; name: string }>();
         const item: { id: number; name: string } = { id: 1, name: 'Item 1' };
         list.add(item);
         expect(list.has(item)).toBe(true);
     });
-    
+
     it('should get the list', () => {
         const list = new List<{ id: number; name: string }>();
         const item: { id: number; name: string } = { id: 1, name: 'Item 1' };
         list.add(item);
         expect(list.getAll()).toEqual([item]);
     });
-    
+
     it('should get the length of the list', () => {
         const list = new List<{ id: number; name: string }>();
         const item: { id: number; name: string } = { id: 1, name: 'Item 1' };
         list.add(item);
         expect(list.length).toEqual(1);
     });
-    
+
     it('should get the item at a specific index', () => {
         const list = new List<{ id: number; name: string }>();
         const item: { id: number; name: string } = { id: 1, name: 'Item 1' };

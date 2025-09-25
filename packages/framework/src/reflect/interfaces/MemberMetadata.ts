@@ -1,4 +1,8 @@
-import { CommentMetadata, DecoratorMetadata, ParameterMetadata } from '../interfaces';
+import {
+    CommentMetadata,
+    DecoratorMetadata,
+    ParameterMetadata,
+} from '../interfaces';
 
 export interface MemberMetadata {
     kind: string;

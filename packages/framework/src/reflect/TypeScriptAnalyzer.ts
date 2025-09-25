@@ -1,5 +1,11 @@
 import * as ts from 'typescript';
-import { AnalysisResult, ClassMetadata, CommentMetadata, DecoratorMetadata, MemberMetadata } from './interfaces';
+import {
+    AnalysisResult,
+    ClassMetadata,
+    CommentMetadata,
+    DecoratorMetadata,
+    MemberMetadata,
+} from './interfaces';
 
 /**
  * TypeScript 코드 분석을 위한 클래스
@@ -15,7 +21,7 @@ class TypeScriptAnalyzer {
             'analyzed-code.ts',
             code,
             ts.ScriptTarget.Latest,
-            true
+            true,
         );
     }
 
@@ -39,7 +45,7 @@ class TypeScriptAnalyzer {
      */
     private static getTypeAsString(
         typeChecker: ts.TypeChecker,
-        node: ts.Node
+        node: ts.Node,
     ): string {
         const type = typeChecker.getTypeAtLocation(node);
         return typeChecker.typeToString(type);
@@ -51,7 +57,7 @@ class TypeScriptAnalyzer {
      */
     private static getComments(
         node: ts.Node,
-        sourceFile: ts.SourceFile
+        sourceFile: ts.SourceFile,
     ): CommentMetadata[] {
         const comments: CommentMetadata[] = [];
         const nodeStart = node.getFullStart();
@@ -71,7 +77,7 @@ class TypeScriptAnalyzer {
      */
     private static analyzeJSDocComments(
         node: ts.Node,
-        comments: CommentMetadata[]
+        comments: CommentMetadata[],
     ): void {
         const jsDocComments = ts.getJSDocTags(node);
         if (!jsDocComments) return;
@@ -101,8 +107,8 @@ class TypeScriptAnalyzer {
                     typeof c === 'string'
                         ? c
                         : Array.isArray(c)
-                        ? c.map((cc) => cc.text).join(' ')
-                        : c.text
+                          ? c.map((cc) => cc.text).join(' ')
+                          : c.text,
                 )
                 .join(' ');
         }
@@ -120,7 +126,7 @@ class TypeScriptAnalyzer {
      */
     private static extractJSDocTags(
         tag: ts.JSDocTag,
-        commentText: string
+        commentText: string,
     ): Array<{ tag: string; text: string }> {
         return tag.tagName
             ? [{ tag: tag.tagName.text, text: commentText }]
@@ -133,7 +139,7 @@ class TypeScriptAnalyzer {
     private static analyzeRegularComments(
         sourceFile: ts.SourceFile,
         nodeStart: number,
-        comments: CommentMetadata[]
+        comments: CommentMetadata[],
     ): void {
         ts.forEachLeadingCommentRange(
             sourceFile.text,
@@ -153,7 +159,7 @@ class TypeScriptAnalyzer {
                     text: commentText,
                     range: { start: pos, end },
                 });
-            }
+            },
         );
     }
 
@@ -162,7 +168,7 @@ class TypeScriptAnalyzer {
      * 데코레이터를 분석하여 DecoratorMetadata 배열을 반환합니다.
      */
     private static analyzeDecorators(
-        decorators: ts.NodeArray<ts.Decorator> | undefined
+        decorators: ts.NodeArray<ts.Decorator> | undefined,
     ): DecoratorMetadata[] {
         if (!decorators) return [];
 
@@ -172,7 +178,7 @@ class TypeScriptAnalyzer {
                 return {
                     name: (expression.expression as ts.Identifier).text,
                     arguments: expression.arguments.map((arg) =>
-                        ts.isStringLiteral(arg) ? arg.text : arg.getText()
+                        ts.isStringLiteral(arg) ? arg.text : arg.getText(),
                     ),
                 };
             }
@@ -190,7 +196,7 @@ class TypeScriptAnalyzer {
     private static analyzeMember(
         typeChecker: ts.TypeChecker,
         member: ts.ClassElement,
-        sourceFile: ts.SourceFile
+        sourceFile: ts.SourceFile,
     ): MemberMetadata | null {
         const memberMetadata: MemberMetadata = {
             kind: ts.SyntaxKind[member.kind],
@@ -209,7 +215,7 @@ class TypeScriptAnalyzer {
                 member,
                 memberMetadata,
                 typeChecker,
-                sourceFile
+                sourceFile,
             );
         }
 
@@ -222,7 +228,7 @@ class TypeScriptAnalyzer {
     private static getModifiers(member: ts.ClassElement): string[] {
         return (
             (member as any).modifiers?.map(
-                (mod: ts.Modifier) => ts.SyntaxKind[mod.kind]
+                (mod: ts.Modifier) => ts.SyntaxKind[mod.kind],
             ) || []
         );
     }
@@ -233,14 +239,14 @@ class TypeScriptAnalyzer {
     private static analyzeProperty(
         member: ts.PropertyDeclaration,
         metadata: MemberMetadata,
-        typeChecker: ts.TypeChecker
+        typeChecker: ts.TypeChecker,
     ): MemberMetadata {
         metadata.name = (member.name as ts.Identifier).text;
         metadata.type = this.getTypeAsString(typeChecker, member);
 
         if ((member as any).decorators) {
             metadata.decorators = this.analyzeDecorators(
-                (member as any).decorators
+                (member as any).decorators,
             );
         }
 
@@ -254,7 +260,7 @@ class TypeScriptAnalyzer {
         member: ts.MethodDeclaration,
         metadata: MemberMetadata,
         typeChecker: ts.TypeChecker,
-        sourceFile: ts.SourceFile
+        sourceFile: ts.SourceFile,
     ): MemberMetadata {
         metadata.name = (member.name as ts.Identifier).text;
         metadata.returnType = member.type
@@ -273,7 +279,7 @@ class TypeScriptAnalyzer {
 
         if ((member as any).decorators) {
             metadata.decorators = this.analyzeDecorators(
-                (member as any).decorators
+                (member as any).decorators,
             );
         }
 
@@ -287,7 +293,7 @@ class TypeScriptAnalyzer {
     private static analyzeClass(
         typeChecker: ts.TypeChecker,
         node: ts.ClassDeclaration,
-        sourceFile: ts.SourceFile
+        sourceFile: ts.SourceFile,
     ): ClassMetadata | null {
         if (!node.name) return null;
 
@@ -315,7 +321,7 @@ class TypeScriptAnalyzer {
      */
     private static analyzeHeritageClauses(
         node: ts.ClassDeclaration,
-        metadata: ClassMetadata
+        metadata: ClassMetadata,
     ): void {
         if (!node.heritageClauses) return;
 
@@ -336,13 +342,13 @@ class TypeScriptAnalyzer {
         node: ts.ClassDeclaration,
         metadata: ClassMetadata,
         typeChecker: ts.TypeChecker,
-        sourceFile: ts.SourceFile
+        sourceFile: ts.SourceFile,
     ): void {
         node.members.forEach((member) => {
             const memberMetadata = this.analyzeMember(
                 typeChecker,
                 member,
-                sourceFile
+                sourceFile,
             );
             if (memberMetadata) {
                 metadata.members.push(memberMetadata);
@@ -366,7 +372,7 @@ class TypeScriptAnalyzer {
                 const classMetadata = TypeScriptAnalyzer.analyzeClass(
                     typeChecker,
                     node,
-                    sourceFile
+                    sourceFile,
                 );
                 if (classMetadata) {
                     analysis.classes.push(classMetadata);

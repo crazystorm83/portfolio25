@@ -51,15 +51,22 @@ export interface INextSiblingPayload {
 export interface IPreviousPayload {
     sid: $$node_sid;
 }
-export declare abstract class AbsTree<TNode extends INode> extends Disposable implements ITree {
+export declare abstract class AbsTree<TNode extends INode>
+    extends Disposable
+    implements ITree
+{
     abstract addNode(payload: IAddPayload<TNode>): void;
     abstract addNextSibling(payload: IAddNextSibling<TNode>): void;
     abstract addPrevSibling(payload: IAddPrevSibling<TNode>): void;
     abstract removeNode(payload: IRemovePayload): boolean;
     abstract moveNode(payload: IMovePayload): void;
     abstract addChildrenNode(payload: IAddChildrenPayload<TNode>): void;
-    abstract addChildrenNextSibling(payload: IAddChildrenNextSiblingPayload<TNode>): void;
-    abstract addChildrenPrevSibling(payload: IAddChildrenPrevSiblingPayload<TNode>): void;
+    abstract addChildrenNextSibling(
+        payload: IAddChildrenNextSiblingPayload<TNode>,
+    ): void;
+    abstract addChildrenPrevSibling(
+        payload: IAddChildrenPrevSiblingPayload<TNode>,
+    ): void;
     abstract hasChildren(payload: IHasChildrenPayload): boolean;
     abstract nextSibling(payload: INextSiblingPayload): TNode;
     abstract previousSibling(payload: IPreviousPayload): TNode;

@@ -1,4 +1,4 @@
-export * from '../plugins'
+export * from '../plugins';
 
 export * from './IModule';
 export * from './IModuleRegister';

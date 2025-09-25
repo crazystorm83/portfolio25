@@ -1,5 +1,6 @@
-import { Disposable } from "../../implements";
-import { IModuleConfiguration } from "../../interfaces";
+import { Disposable } from '../../implements';
+import { IModuleConfiguration } from '../../interfaces';
 
-
-export abstract class AbsModuleConfiguration extends Disposable implements IModuleConfiguration {}
+export abstract class AbsModuleConfiguration
+    extends Disposable
+    implements IModuleConfiguration {}

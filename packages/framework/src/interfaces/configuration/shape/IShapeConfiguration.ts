@@ -5,7 +5,7 @@ import { IRenderer } from '../../entity/IRenderer';
 export interface IShapeConfiguration<
     TClassData extends ENTITY_DATA,
     TStyleData extends ENTITY_DATA,
-    TAttributeData extends ENTITY_DATA
+    TAttributeData extends ENTITY_DATA,
 > {
     type: 'none' | 'rectangle' | 'circle' | 'ellipse' | 'line' | 'polygon';
 

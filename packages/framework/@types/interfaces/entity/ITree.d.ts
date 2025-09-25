@@ -1,2 +1,1 @@
-export interface ITree {
-}
+export interface ITree {}

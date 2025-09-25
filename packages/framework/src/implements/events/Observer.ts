@@ -10,7 +10,7 @@ export class Subject extends Disposable implements ISubject {
     }
 
     dispose(): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 
     public attach(observer: IObserver): void {
@@ -39,7 +39,7 @@ export abstract class Observer extends Disposable implements IObserver {
     abstract get id(): string;
 
     dispose(): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 
     public abstract update(data?: any): void;

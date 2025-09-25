@@ -24,7 +24,7 @@ export abstract class Executor extends Disposable {
     }
 
     dispose(): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 
     private static __createId(payload: IDispatchPayload): $$txt {
@@ -56,7 +56,7 @@ export abstract class Executor extends Disposable {
     }
 
     static dispatch<TPayload extends IDispatchPayload, TResult = any>(
-        payload: TPayload
+        payload: TPayload,
     ): TResult {
         const id = this.__createId(payload);
         const action = this._map.get(id);
@@ -68,7 +68,7 @@ export abstract class Executor extends Disposable {
     }
     static async dispatchAsync<
         TPayload extends IDispatchPayload,
-        TResult = any
+        TResult = any,
     >(payload: TPayload): Promise<TResult> {
         const id = this.__createId(payload);
         const action = this._map.get(id);

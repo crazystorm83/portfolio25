@@ -1,7 +1,7 @@
 export function methodHook(
     target: any,
     propertyKey: any,
-    descriptor: PropertyDescriptor
+    descriptor: PropertyDescriptor,
 ) {
     const originalMethod = descriptor.value;
     descriptor.value = function (...args: any[]) {

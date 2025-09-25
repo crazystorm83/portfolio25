@@ -1,10 +1,10 @@
-import { IRegistry } from "../../interfaces";
+import { IRegistry } from '../../interfaces';
 
 /**
  * @class Registry
  * @description 이벤트 등록 클래스
  */
-export class Registry implements IRegistry   {
+export class Registry implements IRegistry {
     private __listeners: Record<string, Function[]> = {};
 
     /**
@@ -26,7 +26,9 @@ export class Registry implements IRegistry   {
 
     public remove(event: string, listener?: Function): void {
         if (listener) {
-            this.__listeners[event] = this.__listeners[event].filter((x) => x !== listener);
+            this.__listeners[event] = this.__listeners[event].filter(
+                (x) => x !== listener,
+            );
         } else {
             delete this.__listeners[event];
         }
@@ -47,7 +49,10 @@ export class Registry implements IRegistry   {
         this.add(event, listener);
     }
 
-    public sort(event: string, sort: (a: Function, b: Function) => number): void {
+    public sort(
+        event: string,
+        sort: (a: Function, b: Function) => number,
+    ): void {
         if (!this.__listeners[event]) {
             return;
         }

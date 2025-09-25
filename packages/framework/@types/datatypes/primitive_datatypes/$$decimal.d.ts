@@ -1,2 +1,2 @@
-export declare const $$decimal = "$$decimal";
+export declare const $$decimal = '$$decimal';
 export type $$decimal = number;

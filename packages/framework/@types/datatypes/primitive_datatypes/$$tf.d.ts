@@ -1,2 +1,2 @@
-export declare const $$tf = "$$tf";
+export declare const $$tf = '$$tf';
 export type $$tf = boolean;

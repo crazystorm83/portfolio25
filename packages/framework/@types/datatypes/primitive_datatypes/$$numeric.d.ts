@@ -1,2 +1,2 @@
-export declare const $$numeric = "$$numeric";
+export declare const $$numeric = '$$numeric';
 export type $$numeric = number;

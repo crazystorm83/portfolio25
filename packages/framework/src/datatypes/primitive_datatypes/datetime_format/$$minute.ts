@@ -1,4 +1,4 @@
-import { $$txt } from "../../index";
+import { $$txt } from '../../index';
 
 export const $$minute = '$$minute';
-export type $$minute = $$txt
+export type $$minute = $$txt;

@@ -1,3 +1,1 @@
-export function txt_not_null() {
-
-}
+export function txt_not_null() {}

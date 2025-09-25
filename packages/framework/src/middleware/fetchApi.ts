@@ -9,7 +9,7 @@ export class FetchApi extends Disposable {
     }
 
     dispose(): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 
     async fetchApiAsync(payload: { url: $$txt }) {

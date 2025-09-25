@@ -1,4 +1,4 @@
-import { $$null, $$txt } from "../../datatypes";
+import { $$null, $$txt } from '../../datatypes';
 
 export type $$root_node_sid = $$null;
 export type $$node_sid = $$txt | $$root_node_sid;
@@ -8,7 +8,7 @@ export type IRootNode<TNode extends INode<TNode>> = {
     sid: $$node_sid;
 
     children: INode<TNode>[];
-}
+};
 
 export interface INode<TNode extends INode<TNode>> {
     parent_sid: $$node_sid;
@@ -101,7 +101,7 @@ export interface IGetPreviousSiblingPayload {
 export interface ITree<TNode extends INode<TNode>> {
     /**
      * parent_sid 의 마지막 노드에 노드 추가하기
-     * @param payload 
+     * @param payload
      * @example
      * ```typescript
      * const tree = new Tree<INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: any[] }>[] }>>();
@@ -113,7 +113,7 @@ export interface ITree<TNode extends INode<TNode>> {
     addChildrenNode(node: TNode): void;
     /**
      * 제공한 sid 의 다음 노드 추가하기
-     * @param payload 
+     * @param payload
      * @example
      * ```typescript
      * const tree = new Tree<INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: any[] }>[] }>>();
@@ -121,10 +121,12 @@ export interface ITree<TNode extends INode<TNode>> {
      * tree.addChildrenNextSibling({ target_sid: 'children1', node: { parent_sid: null, sid: 'children2', children: [] } });
      * ```
      */
-    addChildrenNextSibling(payload: IAddChildrenNextSiblingPayload<TNode>): void;
+    addChildrenNextSibling(
+        payload: IAddChildrenNextSiblingPayload<TNode>,
+    ): void;
     /**
      * 제공한 sid 의 이전 노드 추가하기
-     * @param payload 
+     * @param payload
      * @example
      * ```typescript
      * const tree = new Tree<INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: any[] }>[] }>>();
@@ -132,45 +134,49 @@ export interface ITree<TNode extends INode<TNode>> {
      * tree.addChildrenPrevSibling({ target_sid: 'children1', node: { parent_sid: null, sid: 'children2', children: [] } });
      * ```
      */
-    addChildrenPrevSibling(payload: IAddChildrenPrevSiblingPayload<TNode>): void;
+    addChildrenPrevSibling(
+        payload: IAddChildrenPrevSiblingPayload<TNode>,
+    ): void;
     /**
      * 트리에 노드 추가하기
-     * @param payload 
+     * @param payload
      */
     addNextSiblingNodes(payload: IAddNextSiblingNodesPayload<TNode>): void;
     /**
      * 트리에 노드 추가하기
-     * @param payload 
+     * @param payload
      */
-    addPreviousSiblingNodes(payload: IAddPreviousSiblingNodesPayload<TNode>): void;
+    addPreviousSiblingNodes(
+        payload: IAddPreviousSiblingNodesPayload<TNode>,
+    ): void;
     /**
      * 트리에서 노드 제거하기
-     * @param payload 
+     * @param payload
      */
     removeNode(payload: IRemoveNodePayload): void;
     /**
      * 트리에서 노드 제거하기
-     * @param payload 
+     * @param payload
      */
     removeNodes(payload: IRemoveNodesPayload): void;
     /**
      * from_sid 의 노드를 to_sid 의 자식노드로 이동
-     * @param payload 
+     * @param payload
      */
-    moveToChildrenNode(payload: IMoveToChildrenNodePayload): void
+    moveToChildrenNode(payload: IMoveToChildrenNodePayload): void;
     /**
      * from_sid 의 다음 노드를 to_sid 의 다음 노드에 추가하기
-     * @param payload 
+     * @param payload
      */
     moveNextSiblingNode(payload: IMoveNextSiblingNodePayload): void;
     /**
      * from_sid 의 이전 노드를 to_sid 의 이전 노드에 추가하기
-     * @param payload 
+     * @param payload
      */
     movePreviousSiblingNode(payload: IMovePreviousSiblingNodePayload): void;
     /**
      * 트리에 노드 존재 여부 확인하기
-     * @param sid 
+     * @param sid
      * @example
      * ```typescript
      * const tree = new Tree<INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: any[] }>[] }>>();
@@ -181,7 +187,7 @@ export interface ITree<TNode extends INode<TNode>> {
     hasNode(sid: $$node_sid): boolean;
     /**
      * 트리에 노드 추가하기
-     * @param sid 
+     * @param sid
      * @example
      * ```typescript
      * const tree = new Tree<INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: any[] }>[] }>>();
@@ -192,7 +198,7 @@ export interface ITree<TNode extends INode<TNode>> {
     hasChildrenNode(sid: $$node_sid): boolean;
     /**
      * 트리에서 노드의 자식 노드 가져오기
-     * @param sid 
+     * @param sid
      * @example
      * ```typescript
      * const tree = new Tree<INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: any[] }>[] }>>();
@@ -202,10 +208,10 @@ export interface ITree<TNode extends INode<TNode>> {
      * console.log(tree.getChildrenNodes(null));
      * ```
      */
-    getChildrenNodes(sid: $$node_sid): Readonly<TNode>[]
+    getChildrenNodes(sid: $$node_sid): Readonly<TNode>[];
     /**
      * sid 의 다음 노드 가져오기
-     * @param sid 
+     * @param sid
      * @example
      * ```typescript
      * const tree = new Tree<INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: any[] }>[] }>>();
@@ -218,7 +224,7 @@ export interface ITree<TNode extends INode<TNode>> {
     getNextSiblingNode(sid: $$node_sid): Readonly<TNode>;
     /**
      * sid 의 이전 노드 가져오기
-     * @param sid 
+     * @param sid
      * @example
      * ```typescript
      * const tree = new Tree<INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: INode<{ parent_sid: $$node_sid; sid: $$node_sid; children: any[] }>[] }>>();

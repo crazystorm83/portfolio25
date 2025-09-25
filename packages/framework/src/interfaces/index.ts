@@ -10,4 +10,3 @@ export * from './module';
 export * from './plugins';
 export * from './register';
 export * from './solution';
-

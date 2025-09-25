@@ -1,2 +1,1 @@
-export interface ISolutionLifecycle {
-}
+export interface ISolutionLifecycle {}

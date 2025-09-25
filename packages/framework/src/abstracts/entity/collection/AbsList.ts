@@ -6,22 +6,19 @@ import {
     IListInsertAtResult,
     IListRemoveAllResult,
     IListRemoveAtResult,
-    IListRemoveResult
+    IListRemoveResult,
 } from '../../../interfaces/entity/IList';
 
 export abstract class AbsList<T> extends Disposable implements IList<T> {
-    abstract add<
-        TResult extends IListAddResult
-    >(data: T): TResult;
-    abstract insertAt<
-        TResult extends IListInsertAtResult
-    >(index: $$numeric, data: T): TResult;
-    abstract remove<
-        TResult extends IListRemoveResult<T>
-    >(data: T): TResult;
-    abstract removeAt<
-        TResult extends IListRemoveAtResult<T>
-    >(index: $$numeric): TResult;
+    abstract add<TResult extends IListAddResult>(data: T): TResult;
+    abstract insertAt<TResult extends IListInsertAtResult>(
+        index: $$numeric,
+        data: T,
+    ): TResult;
+    abstract remove<TResult extends IListRemoveResult<T>>(data: T): TResult;
+    abstract removeAt<TResult extends IListRemoveAtResult<T>>(
+        index: $$numeric,
+    ): TResult;
     abstract removeAll<TResult extends IListRemoveAllResult<T>>(): TResult;
     abstract has(data: T): $$tf;
     abstract getAll(): T[];
@@ -30,6 +27,6 @@ export abstract class AbsList<T> extends Disposable implements IList<T> {
     abstract getByIndexOrThrow(index: $$numeric): T;
 
     dispose(): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 }

@@ -37,10 +37,30 @@ export interface IListHasResult {
     success: boolean;
 }
 export interface IList<T extends ENTITY_DATA> {
-    add<TPayload extends IListAddPayload<T>, TResult extends IListAddResult>(payload: TPayload): TResult;
-    insertAt<TPayload extends IListInsertAtPayload<T>, TResult extends IListInsertAtResult>(index: $$numeric, payload: TPayload): TResult;
-    remove<TPayload extends IListRemovePayload<T>, TResult extends IListRemoveResult<T>>(payload: TPayload): TResult;
-    removeAt<TPayload extends IListRemoveAtPayload<T>, TResult extends IListRemoveAtResult<T>>(payload: TPayload): TResult;
+    add<TPayload extends IListAddPayload<T>, TResult extends IListAddResult>(
+        payload: TPayload,
+    ): TResult;
+    insertAt<
+        TPayload extends IListInsertAtPayload<T>,
+        TResult extends IListInsertAtResult,
+    >(
+        index: $$numeric,
+        payload: TPayload,
+    ): TResult;
+    remove<
+        TPayload extends IListRemovePayload<T>,
+        TResult extends IListRemoveResult<T>,
+    >(
+        payload: TPayload,
+    ): TResult;
+    removeAt<
+        TPayload extends IListRemoveAtPayload<T>,
+        TResult extends IListRemoveAtResult<T>,
+    >(
+        payload: TPayload,
+    ): TResult;
     removeAll<TResult extends IListRemoveAllResult<T>>(): TResult;
-    has<TPayload extends IListHasPayload<T>, TResult extends IListHasResult>(payload: TPayload): TResult;
+    has<TPayload extends IListHasPayload<T>, TResult extends IListHasResult>(
+        payload: TPayload,
+    ): TResult;
 }

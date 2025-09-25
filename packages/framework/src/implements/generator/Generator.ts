@@ -3,9 +3,9 @@ import { IGenerator } from '../../interfaces/generator/IGenerator';
 
 export abstract class Generator extends AbsGenerator implements IGenerator {
     abstract generate<TPayload = any, TResult = any>(
-        payload: TPayload
+        payload: TPayload,
     ): TResult;
     abstract generateAsync<TPayload = any, TResult = any>(
-        payload: TPayload
+        payload: TPayload,
     ): Promise<TResult>;
 }

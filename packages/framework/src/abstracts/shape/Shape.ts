@@ -1,5 +1,9 @@
 import { ENTITY_DATA } from '../../computedvalues/ComputedValues';
-import { IShapeDrawLifecycle, IShapeMoveLifecycle, IShapeResizeLifecycle } from '../../interfaces';
+import {
+    IShapeDrawLifecycle,
+    IShapeMoveLifecycle,
+    IShapeResizeLifecycle,
+} from '../../interfaces';
 import { IShapeConfiguration } from '../../interfaces/configuration/shape/IShapeConfiguration';
 import { IPaint } from '../../interfaces/entity/IPaint';
 import { IRenderer } from '../../interfaces/entity/IRenderer';
@@ -7,7 +11,7 @@ import { IRenderer } from '../../interfaces/entity/IRenderer';
 export abstract class Shape<
     TClassData extends ENTITY_DATA,
     TStyleData extends ENTITY_DATA,
-    TAttributeData extends ENTITY_DATA
+    TAttributeData extends ENTITY_DATA,
 > {
     protected _configuration: IShapeConfiguration<
         TClassData,
@@ -32,7 +36,7 @@ export abstract class Shape<
             TClassData,
             TStyleData,
             TAttributeData
-        >
+        >,
     ) {
         this._configuration = configuration;
     }

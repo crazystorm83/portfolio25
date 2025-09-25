@@ -6,7 +6,7 @@ import { IStyle } from './IStyle';
 export interface IPaint<
     TClassData extends ENTITY_DATA,
     TStyleData extends ENTITY_DATA,
-    TAttributeData extends ENTITY_DATA
+    TAttributeData extends ENTITY_DATA,
 > {
     get class(): IClass<TClassData>;
     set class(value: IClass<TClassData>);

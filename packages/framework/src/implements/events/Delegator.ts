@@ -15,7 +15,7 @@ export class Delegator extends Disposable implements IDelegator {
     }
 
     dispose(): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 
     public on<T = any>(eventName: string, handler: (data: T) => void): void {

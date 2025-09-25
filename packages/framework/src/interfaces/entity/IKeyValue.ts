@@ -5,6 +5,6 @@ export interface IKeyValue {
     remove<TPayload = any, TResult = any>(key: $$txt, value: TPayload): TResult;
     has<TPayload = any, TResult = boolean>(
         key: $$txt,
-        value: TPayload
+        value: TPayload,
     ): TResult;
 }
